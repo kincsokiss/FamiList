@@ -25,32 +25,19 @@
           </ion-list>
         </ion-content>
       </ion-menu>
-      <ion-router-outlet id="main-content"></ion-router-outlet>
+      <ion-router-outlet id="main-content">
+        <MainPage/>
+      </ion-router-outlet>
     </ion-split-pane>
   </ion-app>
 </template>
 
-<script setup>
-import {
-  IonApp,
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
-  IonRouterOutlet,
-  IonSplitPane,
-} from '@ionic/vue';
+<script>
+
 import { ref } from 'vue';
 import {
   archiveOutline,
   archiveSharp,
-  bookmarkOutline,
-  bookmarkSharp,
   heartOutline,
   heartSharp,
   mailOutline,
@@ -62,6 +49,16 @@ import {
   warningOutline,
   warningSharp,
 } from 'ionicons/icons';
+
+import MainPage from './views/MainPage.vue';
+
+export default {
+  name: 'App',
+  components: {
+    MainPage // Register the imported component
+  },
+  // Other component options
+};
 
 const selectedIndex = ref(0);
 const appPages = [
@@ -102,7 +99,7 @@ const appPages = [
     mdIcon: warningSharp,
   },
 ];
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+//const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const path = window.location.pathname.split('folder/')[1];
 if (path !== undefined) {
@@ -231,3 +228,4 @@ ion-item.selected {
   --color: var(--ion-color-primary);
 }
 </style>
+
