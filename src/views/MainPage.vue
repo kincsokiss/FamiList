@@ -5,9 +5,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <h1>Heading 1</h1>
-
-    <p>Here's a small text description for the content. Nothing more, nothing less.</p>
+    <h1>To-Do List</h1>
+    <ToDoList/>
   </ion-content>
   <ion-footer>
     <ion-toolbar>
@@ -17,8 +16,11 @@
 </template>
 
 <script>
+import ToDoList from './ToDoList.vue';
+
   export default({
-    name:'MainPage',
-  });
+    name: "MainPage",
+    components: { ToDoList }
+});
 </script>
 
