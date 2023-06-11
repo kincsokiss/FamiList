@@ -1,0 +1,8 @@
+{
+  "name": "FamiList",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "2d02da64"
+}
