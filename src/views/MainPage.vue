@@ -6,6 +6,8 @@
   </ion-header>
   <MenuVue/>
   <ion-content class="ion-padding">
+    <h1>Calendar</h1>
+    <Calendar/>
     <h1>To-Do List</h1>
     <ToDoList/>
   </ion-content>
@@ -17,17 +19,18 @@
 </template>
 
 <script>
+  import ToDoList from './ToDoList.vue';
   import MenuVue from "./Menu.vue";
+  import Calendar from './Calendar.vue';
   
-import ToDoList from './ToDoList.vue';
-
   export default({
-    name:'MainPage',
-    components: {
-    MenuVue,
-    ToDoList
-  }
-})
+    name: "MainPage",
+    components: { 
+      ToDoList,
+      Calendar,
+      MenuVue 
+      },
+  });
 
 </script>
 
