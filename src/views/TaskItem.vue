@@ -5,18 +5,25 @@
 
   export default defineComponent({
     components: { IonItem, IonLabel },
-    setup() {
+    props: ['taskItem'],
+    setup(props) {
+      //const task = props.taskItem;
+      console.log(props.taskItem)
       return {
         caretForwardOutline,
       };
     },
   });
+  
 </script>
+
 <template>
   <ion-item detail="true">
     <ion-label>
-      <h3>Task Title</h3>
-      <p>Task Description and Details</p>
+      <h3> {{ props.taskItem.title }} </h3>
+      <p> {{ props.taskItem.desc }} </p>
+      <p> {{ props.taskItem.creationDate }}</p>
+      <p> {{ props.taskItem.deadline }}</p>
     </ion-label>
   </ion-item>
 </template>
