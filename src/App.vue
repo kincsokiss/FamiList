@@ -82,5 +82,3 @@ if (path !== undefined) {
   selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
 }
 </script>
-
-

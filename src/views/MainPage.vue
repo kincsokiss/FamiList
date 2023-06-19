@@ -12,7 +12,7 @@
 
 <script>
   import ToDoList from './ToDoList.vue';
-  import MenuVue from "./Menu.vue";
+  import MenuItem from "./Menu.vue";
   import Calendar from './Calendar.vue';
   import HeaderVue from './Header.vue';
   import FooterVue from './Footer.vue';
@@ -30,3 +30,8 @@
 
 </script>
 
+<style scoped>
+  ion-toolbar {
+    --opacity: 0.5;
+  }
+</style>

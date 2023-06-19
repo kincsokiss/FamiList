@@ -21,7 +21,7 @@
 </script>
 
 <template>
-  <ion-content>
+  <ion-content class="ion-padding">
     <ion-list>
         <TaskItem v-for="taskItem in taskItems" :key="taskItem.title"
           {{ taskItem.title }},{{taskItem.desc}},{{ taskItem.creationDate}},{{ taskItem.deadline}}
