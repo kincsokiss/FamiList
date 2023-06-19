@@ -9,7 +9,7 @@
 </script> -->
 
 <template>
-  <ion-datetime></ion-datetime>
+    <ion-datetime class="ion-padding"></ion-datetime>
 </template>
 
 <script>

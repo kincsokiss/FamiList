@@ -42,8 +42,20 @@
 </template>
 
 <script>
-  export default({
-      name:'MenuVue',
+  import { IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonTitle, IonToolbar } from '@ionic/vue';
+  import { defineComponent } from 'vue';
+
+  export default defineComponent({
+    name:'MenuItem',
+    components: {
+      IonButtons,
+      IonContent,
+      IonHeader,
+      IonMenu,
+      IonMenuButton,
+      IonTitle,
+      IonToolbar,
+    },
   });
 </script>
 
