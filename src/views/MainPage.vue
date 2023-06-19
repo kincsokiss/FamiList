@@ -1,9 +1,5 @@
 <template>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title> Header </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <HeaderVue/>
   <MenuVue/>
   <ion-content class="ion-padding">
     <h1>Calendar</h1>
@@ -11,24 +7,24 @@
     <h1>To-Do List</h1>
     <ToDoList/>
   </ion-content>
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title> Footer </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <FooterVue/>
 </template>
 
 <script>
   import ToDoList from './ToDoList.vue';
   import MenuVue from "./Menu.vue";
   import Calendar from './Calendar.vue';
+  import HeaderVue from './Header.vue';
+  import FooterVue from './Footer.vue';
   
   export default({
     name: "MainPage",
     components: { 
       ToDoList,
       Calendar,
-      MenuVue 
+      MenuVue,
+      HeaderVue,
+      FooterVue
       },
   });
 
