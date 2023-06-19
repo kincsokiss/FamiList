@@ -14,8 +14,6 @@
     creationDate: 'Date',
     deadline: 'Deadline'
   }];
-  // az ion-listre kell a v-for, a taskitemnek atadni egy elemet, propot hogy adunkk at
-  // taskitem.vuet megkell updatelni hogy mutassa ki a tasklistanak egy elemet
   console.log(taskItem);
   
 </script>
