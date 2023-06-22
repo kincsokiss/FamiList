@@ -1,34 +1,35 @@
 <template>
-  <ion-menu content-id="main-content" type="overlay">
+  <ion-menu content-id="main-content" type="overlay" side="start" @ionDidClose="closeMenuOutside">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu Content</ion-title>
+        <ion-title>
+          Menu Content
+        </ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+      <ion-list id="inbox-list">
+        <ion-list-header>Inbox</ion-list-header>
+        <ion-note>hi@ionicframework.com</ion-note>
 
-          <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-            <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-              <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+        <ion-item v-for="(p, i) in appPages" :key="i" @click="selectPage(i)" :class="{ selected: selectedIndex === i }">
+          <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-list>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
+      <ion-list id="labels-list">
+        <ion-list-header>Labels</ion-list-header>
 
-          <ion-item v-for="(label, index) in labels" lines="none" :key="index">
-            <ion-icon aria-hidden="true" slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>  
+        <ion-item v-for="(label, index) in labels" :key="index">
+          <ion-icon aria-hidden="true" slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
+          <ion-label>{{ label }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
   </ion-menu>
+
   <ion-page id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -42,22 +43,38 @@
 </template>
 
 <script>
-  import { IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonTitle, IonToolbar } from '@ionic/vue';
-  import { defineComponent } from 'vue';
+import { IonMenuButton, IonButtons, IonContent, IonHeader, IonMenu, IonTitle, IonToolbar } from '@ionic/vue';
+import { defineComponent, onMounted, onUnmounted } from 'vue';
 
-  export default defineComponent({
-    name:'MenuItem',
-    components: {
-      IonButtons,
-      IonContent,
-      IonHeader,
-      IonMenu,
-      IonMenuButton,
-      IonTitle,
-      IonToolbar,
-    },
-  });
+export default defineComponent({
+  name: 'MenuItem',
+  components: {
+    IonMenuButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonMenu,
+    IonTitle,
+    IonToolbar,
+  },
+  setup() {
+    const closeMenuOutside = () => {
+      const menuController = document.querySelector('ion-menu');
+      menuController.close();
+    };
+
+    onMounted(() => {
+      document.addEventListener('click', closeMenuOutside);
+    });
+
+    onUnmounted(() => {
+      document.removeEventListener('click', closeMenuOutside);
+    });
+  },
+});
 </script>
+
+
 
 <style scoped>
 ion-menu ion-content {
@@ -179,4 +196,15 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-menu::part(backdrop) {
+    background-color: rgba(183, 228, 247, 0.5);
+  }
+
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(150, 220, 250, 0.18);
+}
+
 </style>
