@@ -82,3 +82,7 @@ if (path !== undefined) {
   selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
 }
 </script>
+
+<style>
+  .menu-content{width: 100%;}
+</style>

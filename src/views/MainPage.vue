@@ -1,6 +1,6 @@
 <template>
   <HeaderVue/>
-  <MenuVue/>
+  <MenuItem/>
   <ion-content class="ion-padding">
     <h1>Calendar</h1>
     <Calendar/>
@@ -22,7 +22,7 @@
     components: { 
       ToDoList,
       Calendar,
-      MenuVue,
+      MenuItem,
       HeaderVue,
       FooterVue
       },

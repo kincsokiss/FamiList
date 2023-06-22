@@ -7,7 +7,9 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "ionic:build": "vue-cli-service build",
+    "ionic:serve": "vue-cli-service serve"
   },
   "dependencies": {
     "@capacitor/android": "5.0.3",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "5.0.3",
+    "@ionic/lab": "3.2.15",
     "@vue/cli-plugin-babel": "~5.0.0-rc.1",
     "@vue/cli-plugin-e2e-cypress": "~5.0.0-rc.1",
     "@vue/cli-plugin-eslint": "~5.0.0-rc.1",
