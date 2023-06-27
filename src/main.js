@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import firebaseDb from './modules/firebase';
+import Users from './modules/users';
 
 import { IonicVue } from '@ionic/vue';
 
@@ -25,7 +27,9 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(firebaseDb)
+  .use(Users);
   
 router.isReady().then(() => {
   app.mount('#app');

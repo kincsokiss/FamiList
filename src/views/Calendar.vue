@@ -1,13 +1,3 @@
-<!-- <template>
-  <ion-datetime></ion-datetime>
-</template>
-
-<script>
- export default({
-  name:'CalendarItem',
- });
-</script> -->
-
 <template>
     <ion-datetime class="ion-padding"></ion-datetime>
 </template>

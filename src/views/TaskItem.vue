@@ -7,7 +7,6 @@
     components: { IonItem, IonLabel },
     props: ['taskItem'],
     setup(props) {
-      //const task = props.taskItem;
       console.log(props.taskItem)
       return {
         caretForwardOutline,
