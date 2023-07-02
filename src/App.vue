@@ -1,4 +1,4 @@
-<template>
+<template>s
   <ion-app>
     <ion-split-pane content-id="main-content">
       <ion-router-outlet id="main-content">
