@@ -13,9 +13,9 @@
         <ion-list-header>Inbox</ion-list-header>
         <ion-note>hi@ionicframework.com</ion-note>
 
-        <ion-item v-for="(p, i) in appPages" :key="i" @click="selectPage(i)" :class="{ selected: selectedIndex === i }">
-          <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
-          <ion-label>{{ p.title }}</ion-label>
+        <ion-item v-for="(page, i) in appPages" :key="i" @click="selectPage(i)" :class="{ selected: selectedIndex === i }">
+          <ion-icon aria-hidden="true" slot="start" :ios="page.iosIcon" :md="page.mdIcon"></ion-icon>
+          <ion-label>{{ page.title }}</ion-label>
         </ion-item>
       </ion-list>
 

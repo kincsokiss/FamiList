@@ -84,5 +84,8 @@ if (path !== undefined) {
 </script>
 
 <style>
-  .menu-content{width: 100%;}
+  .menu-content {
+      width: 100%;
+  }
+  
 </style>
