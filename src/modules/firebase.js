@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
-  getFirestore, collection, getDocs
+  getFirestore, collection, getDocs, 
+  addDoc
 } from 'firebase/firestore';
 
 class FirebaseDbModule{
@@ -19,6 +20,23 @@ class FirebaseDbModule{
           
     }
 
+    storeDoc(collectionName, data) {
+
+        //initialize services
+        const dataBase = getFirestore();
+
+        //collection reference
+        const collectionReference = collection( dataBase, collectionName );
+
+        addDoc(collectionReference, data)
+        .then((docRef) => {
+            return docRef.id;
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    }
+
     getDocs(collectionName){
         //initialize services
         const dataBase = getFirestore();
@@ -32,11 +50,11 @@ class FirebaseDbModule{
         snapshot.docs.forEach((doc) => {
             Users.push({ ...doc.data(), id: doc.id })
         })
-        console.log(Users)
         })
         .catch(err => {
         console.log(err.message)
         })
+        
     }
 
 }
