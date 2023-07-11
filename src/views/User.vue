@@ -1,14 +1,18 @@
 <template>
-    <form ref="form">
-        <ion-input label="Name" labelPlacement="floating" placeholder="Enter user's name" ref="name"></ion-input>
-        <ion-input label="Age" labelPlacement="floating" type="number" placeholder="Enter user's age" ref="age"></ion-input>
-        <ion-input label="Phone number" labelPlacement="floating" type="tel" placeholder="Enter user's phone number" ref="phonenumber"></ion-input>
-        <ion-input label="Rank" labelPlacement="floating" placeholder="Enter user's rank" ref="rank"></ion-input>
+    <form ref="form" @submit="formSubmit">
+        <ion-input label="Name" labelPlacement="floating" placeholder="Enter user's name" ref="name" required="required"></ion-input>
+        <ion-input label="Age" labelPlacement="floating" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
+        <ion-input label="Phone number" labelPlacement="floating" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
+        <ion-input label="Rank" labelPlacement="floating" placeholder="Enter user's rank" ref="rank" required="required"></ion-input>
+
+        <ion-button type="submit">Add</ion-button>
     </form>
-    <ion-button @click="resetInput">Add</ion-button>
+    
 </template>
 
 <script>
+import users from '../modules/users.js';
+
 export default({
     name:'UserItem',
 
@@ -22,7 +26,9 @@ export default({
     },
 
     methods: {
-        resetInput() {
+        formSubmit(e) {
+            e.preventDefault();
+            console.log('alma');
             const name = this.$refs.name.value;
             console.log(name);
 
@@ -36,7 +42,9 @@ export default({
             console.log(rank);
 
             this.$refs.form.reset();
-        },
+
+            users.storeUser(name, age, rank, phonenumber);
+        }
     },
     
 });

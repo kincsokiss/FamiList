@@ -13,14 +13,22 @@ class UsersModule {
     console.log('Users= ', Users);
   }
 
-  storeUser(name, age, rank, phoneNumber){
-    const UserID = firebaseDb.storeDoc('Users', {
-      Age: age,
-      Name: name,
-      Rank: rank,
-      PhoneNumber: phoneNumber
-    });
-    console.log(UserID);
+  async storeUser(name, age, rank, phoneNumber) {
+    try {
+      const userId = await firebaseDb.storeDoc('Users',{
+        Age: age,
+        Name: name,
+        Rank: rank,
+        PhoneNumber: phoneNumber
+      });
+
+      console.log(userId);
+    } catch (error) {
+      console.log('storeUser has failed: ', error)
+    }
+    
+
+    
   }
 
   deleteUser(dataId){
