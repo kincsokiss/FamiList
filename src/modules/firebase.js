@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, getDocs, 
-  addDoc
+  addDoc, doc,
+  deleteDoc
 } from 'firebase/firestore';
 
 class FirebaseDbModule{
@@ -36,6 +37,19 @@ class FirebaseDbModule{
             console.log(err.message)
         })
     }
+
+    destroyDoc(collectionName, docID){
+        const dataBase = getFirestore();
+
+        deleteDoc(doc(dataBase, collectionName, docID))
+        .then((docRef) => {
+            return docRef;
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    }
+
 
     getDocs(collectionName){
         //initialize services
