@@ -3,8 +3,17 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, getDocs
 } from 'firebase/firestore';
+// import { RouteRecordRaw } from 'vue-router';
+// import App from '@/views/App.vue';
 
-const routes = []
+// const routes: <RouteRecordRaw> = [{
+//   path: '/',
+//   name: 'App',
+//   component: App,
+//   },
+// ];
+
+const routes = [];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

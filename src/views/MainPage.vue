@@ -4,6 +4,8 @@
   <ion-content class="ion-padding">
     <h1>Calendar</h1>
     <Calendar/>
+    <h1>Create User</h1>
+    <UserItem/>
     <h1>To-Do List</h1>
     <ToDoList/>
   </ion-content>
@@ -16,6 +18,7 @@
   import Calendar from './Calendar.vue';
   import HeaderVue from './Header.vue';
   import FooterVue from './Footer.vue';
+  import UserItem from './User.vue';
   
   export default({
     name: "MainPage",
@@ -24,7 +27,8 @@
       Calendar,
       MenuItem,
       HeaderVue,
-      FooterVue
+      FooterVue,
+      UserItem
       },
   });
 

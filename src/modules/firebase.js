@@ -29,12 +29,13 @@ class FirebaseDbModule{
         //collection reference
         const collectionReference = collection( dataBase, collectionName );
 
-        addDoc(collectionReference, data)
+        return addDoc(collectionReference, data)
         .then((docRef) => {
             return docRef.id;
         })
         .catch(err => {
             console.log(err.message)
+            return err;
         })
     }
 
@@ -58,17 +59,18 @@ class FirebaseDbModule{
         //collection reference
         const collectionReference = collection( dataBase, collectionName );
 
-        getDocs(collectionReference)
+        return getDocs(collectionReference)
         .then((snapshot) => {
-        let Users = []
+        let users = []
         snapshot.docs.forEach((doc) => {
-            Users.push({ ...doc.data(), id: doc.id })
+            users.push({ ...doc.data(), id: doc.id })
         })
+        return users;
         })
         .catch(err => {
         console.log(err.message)
-        })
-        
+        return err;
+        });
     }
 
 }
