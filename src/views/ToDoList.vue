@@ -8,13 +8,13 @@
     }
   );
 
-  const taskItem = [{ 
-    title: 'Task Title',
-    desc: 'Description',
-    creationDate: 'Date',
-    deadline: 'Deadline'
-  }];
-  console.log(taskItem);
+  // const taskItem = [{ 
+  //   title: 'Task Title',
+  //   desc: 'Description',
+  //   creationDate: 'Date',
+  //   deadline: 'Deadline'
+  // }];
+  // console.log(taskItem);
   
 </script>
 

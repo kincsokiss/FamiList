@@ -3,7 +3,8 @@ import firebaseDb from "./firebase"
 class UsersModule {
   constructor() {
   //  this.getUsers();\
-    this.storeUser('Kati', 15, 'Child', '0764847355');
+  // this.deleteUser('14dxWum9j8028ftcyqQl');
+  //this.storeUser('Kati', 17, 'Child', '07453468768');
   }
 
   getUsers(){
@@ -13,13 +14,25 @@ class UsersModule {
   }
 
   storeUser(name, age, rank, phoneNumber){
-    const UserID = firebaseDb.storeDoc('Users',{
+    const UserID = firebaseDb.storeDoc('Users', {
       Age: age,
       Name: name,
       Rank: rank,
       PhoneNumber: phoneNumber
     });
     console.log(UserID);
+  }
+
+  deleteUser(dataId){
+    firebaseDb.destroyDoc('Users', dataId);
+  }
+
+  updateUser(){
+    
+  }
+
+  searchUserByID(){
+
   }
 
 }
