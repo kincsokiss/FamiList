@@ -2,7 +2,9 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, getDocs, 
   addDoc, doc,
-  deleteDoc
+  deleteDoc,
+  updateDoc,
+  getDoc
 } from 'firebase/firestore';
 
 class FirebaseDbModule{
@@ -38,10 +40,10 @@ class FirebaseDbModule{
         })
     }
 
-    destroyDoc(collectionName, docID){
+    async editDoc(collectionName, documentID, data){
         const dataBase = getFirestore();
-
-        deleteDoc(doc(dataBase, collectionName, docID))
+        const docRef = doc(dataBase,collectionName,documentID);
+        return updateDoc(docRef, data)
         .then((docRef) => {
             return docRef;
         })
@@ -50,6 +52,21 @@ class FirebaseDbModule{
         })
     }
 
+    async destroyDoc(collectionName, docID){
+        const dataBase = getFirestore();
+        const docRef = doc(dataBase, collectionName, docID);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()){
+                return deleteDoc(doc(dataBase, collectionName, docID))
+            .then((docRef) => {
+                    return docRef;
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+        }
+        else console.log('No such document!');
+    }
 
     getDocs(collectionName){
         //initialize services
