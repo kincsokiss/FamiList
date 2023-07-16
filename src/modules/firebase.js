@@ -88,6 +88,19 @@ class FirebaseDbModule{
         });
     }
 
+
+    async searchDocbyID(collectionName, docID){
+        const dataBase = getFirestore();
+        const docRef = doc(dataBase, collectionName, docID);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()){
+            return docSnap.data();
+        }
+        else{
+            console.log('No such document');
+        }
+    }
+
 }
 
 const firebaseDb = new FirebaseDbModule();

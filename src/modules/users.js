@@ -6,6 +6,7 @@ class UsersModule {
   //this.deleteUser('ABQFbm6JnlQx1eDSeBJh');
   //this.addUser('Kati', 17, 'Child', '07453468768');
   this.updateUser('UlWHuHmaDgc2R0oTeFo0','Hankuka', 3, 'kiskocsag', '0776154686')
+  this.searchUserByID('UlWHuHmaDgc2R0oTeFo0');
   }
   async addUser(name, age, rank, phoneNumber) {
       try {
@@ -46,8 +47,13 @@ class UsersModule {
     console.log('Users= ', Users);
   }
 
-  searchUserByID(){
-
+  async searchUserByID(documentId){
+    try{
+      const datas = await firebaseDb.searchDocbyID('Users', documentId);
+      console.log(datas);
+    } catch (error) {
+      console.log('searchUserbyID has failed: ', error);
+    }
   }
 
 }
