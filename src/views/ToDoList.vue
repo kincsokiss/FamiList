@@ -3,10 +3,13 @@
   import { defineComponent } from 'vue';
   import TaskItem from './TaskItem.vue';
 
-  export default defineComponent({
-    components: { IonList, TaskItem } 
-    }
-  );
+  export default defineComponent ({
+    name: "ToDoList",
+    components: { 
+      IonList, 
+      TaskItem, 
+    } 
+  });
 
   // const taskItem = [{ 
   //   title: 'Task Title',
@@ -19,6 +22,7 @@
 </script>
 
 <template>
+  <h1>To-Do List</h1>
   <ion-content class="ion-padding">
     <ion-list>
         <TaskItem v-for="taskItem in taskItems" :key="taskItem.title"

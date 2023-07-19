@@ -1,26 +1,14 @@
+import { createApp } from 'vue';
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, getDocs
-} from 'firebase/firestore';
-// import { RouteRecordRaw } from 'vue-router';
-// import App from '@/views/App.vue';
+} from 'firebase/firestore';  
+import UserSettings from '@/views/UserSettings.vue';
+import MainPage from '@/views/MainPage.vue';
+import Calendar from '@/views/Calendar.vue';
+import ToDoList from '@/views/ToDoList.vue';
 
-// const routes: <RouteRecordRaw> = [{
-//   path: '/',
-//   name: 'App',
-//   component: App,
-//   },
-// ];
-
-const routes = [];
-
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
-
-export default router
 
 const firebaseConfig = {
   apiKey: "AIzaSyB82mQoV7e2l0Na-GRYDZYxVC7eaqth8Rk",
@@ -52,6 +40,25 @@ getDocs(collectionReference)
   .catch(err => {
     console.log(err.message)
   })
+  
+  const routes = [
+    { path: '/', name: 'mainpage', component: MainPage },
+    { path: '/User-Settings', component: UserSettings },
+    { path: '/calendar', component: Calendar },
+    { path: '/to-do-list', component: ToDoList }
+  ];
+  
+    const router = createRouter({
+    history: createWebHistory(process.env.BASE_URL),
+    routes
+  })
 
+  const app = createApp({})
+  
+  app.use(router)
+  
+  app.mount('#app')
+  
+  export default router
 
 

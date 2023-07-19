@@ -1,5 +1,6 @@
 <template>
-    <ion-datetime class="ion-padding"></ion-datetime>
+  <h1>Calendar</h1>
+  <ion-datetime class="ion-padding"></ion-datetime>
 </template>
 
 <script>
