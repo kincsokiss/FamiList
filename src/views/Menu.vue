@@ -57,10 +57,12 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
   },
+
   setup() {
     const closeMenuOutside = () => {
+
       const menuController = document.querySelector('ion-menu');
-      menuController.close();
+      menuController.close(); 
     };
 
     onMounted(() => {

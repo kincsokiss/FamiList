@@ -1,26 +1,13 @@
+import { createApp } from 'vue';
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, getDocs
 } from 'firebase/firestore';
-// import { RouteRecordRaw } from 'vue-router';
-// import App from '@/views/App.vue';
 
-// const routes: <RouteRecordRaw> = [{
-//   path: '/',
-//   name: 'App',
-//   component: App,
-//   },
-// ];
 
-const routes = [];
-
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
-
-export default router
+import RegisterPage from '@/views/Register.vue';
+import SignInPage from '@/views/SignIn.vue';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB82mQoV7e2l0Na-GRYDZYxVC7eaqth8Rk",
@@ -47,11 +34,26 @@ getDocs(collectionReference)
     snapshot.docs.forEach((doc) => {
       Users.push({ ...doc.data(), id: doc.id })
     })
-    console.log(Users)
+    // console.log(Users)
   })
   .catch(err => {
     console.log(err.message)
   })
 
+const routes = [
+  { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
+  { path: '/SignInPage', name: 'signinpage', component: SignInPage }
+];
 
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
+const app = createApp({});
+
+app.use(router)
+
+app.mount('#app')
+
+export default router

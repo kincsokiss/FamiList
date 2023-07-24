@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381982770857",
+    "project_id": "familist-c5615",
+    "storage_bucket": "familist-c5615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381982770857:android:4c2020aeb7bcf01e4bcbb8",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381982770857-iij0ilhrjbj1eboi0ffslviduau4u0h0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDZYCSGCPoq3ZWz6q8YbFo8VN4Q4nE6Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381982770857-iij0ilhrjbj1eboi0ffslviduau4u0h0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
