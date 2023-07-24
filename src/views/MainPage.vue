@@ -4,8 +4,21 @@
   <ion-content class="ion-padding">
     <h1>Calendar</h1>
     <Calendar/>
-    <h1>Create User</h1>
-    <UserItem/>
+    
+    <nav>
+      <div id="nav">
+        <router-link to="/RegisterPage" class="link_color"> Register Page</router-link>
+      </div>
+    </nav>
+
+    <nav>
+      <div id="nav">
+        <router-link to="/SignInPage" class="link_color"> Sign In Page</router-link>
+      </div>
+    </nav>
+
+    <router-view></router-view>
+
     <h1>To-Do List</h1>
     <ToDoList/>
   </ion-content>
@@ -18,7 +31,6 @@
   import Calendar from './Calendar.vue';
   import HeaderVue from './Header.vue';
   import FooterVue from './Footer.vue';
-  import UserItem from './User.vue';
   
   export default({
     name: "MainPage",
@@ -28,7 +40,6 @@
       MenuItem,
       HeaderVue,
       FooterVue,
-      UserItem
       },
   });
 
@@ -38,4 +49,9 @@
   ion-toolbar {
     --opacity: 0.5;
   }
+
+  .link_color {
+    color: white;
+  }
+
 </style>
