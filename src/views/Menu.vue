@@ -60,7 +60,6 @@ export default defineComponent({
 
   setup() {
     const closeMenuOutside = () => {
-
       const menuController = document.querySelector('ion-menu');
       menuController.close(); 
     };

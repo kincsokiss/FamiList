@@ -48,23 +48,15 @@ getDocs(collectionReference)
     { path: '/', name: 'mainpage', component: MainPage },
     { path: '/User-Settings', component: UserSettings },
     { path: '/calendar', component: Calendar },
-    { path: '/to-do-list', component: ToDoList }
+    { path: '/to-do-list', component: ToDoList },
+    { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
+    { path: '/SignInPage', name: 'signinpage', component: SignInPage }
   ];
   
     const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
   })
-
-const routes = [
-  { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
-  { path: '/SignInPage', name: 'signinpage', component: SignInPage }
-];
-
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
 
 const app = createApp({});
 

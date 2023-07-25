@@ -1,4 +1,8 @@
 <template>
+    <div id="nav">
+        <router-link class="link_color" to="/user-settings">User Settings</router-link>
+    </div>
+    
     <form ref="form" @submit="formSubmit" class="back_color">
         <h2>Create an Account</h2>
         <ion-input label="Name" labelPlacement="floating" placeholder="Enter user's name" ref="name" required="required"></ion-input>
@@ -11,6 +15,7 @@
         <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
         <label>Hello {{ name }} :) </label>
     </form>
+
 </template>   
 
 <script>
