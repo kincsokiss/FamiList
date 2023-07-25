@@ -10,6 +10,9 @@ import Calendar from '@/views/Calendar.vue';
 import ToDoList from '@/views/ToDoList.vue';
 
 
+import RegisterPage from '@/views/Register.vue';
+import SignInPage from '@/views/SignIn.vue';
+
 const firebaseConfig = {
   apiKey: "AIzaSyB82mQoV7e2l0Na-GRYDZYxVC7eaqth8Rk",
   authDomain: "familist-c5615.firebaseapp.com",
@@ -35,7 +38,7 @@ getDocs(collectionReference)
     snapshot.docs.forEach((doc) => {
       Users.push({ ...doc.data(), id: doc.id })
     })
-    console.log(Users)
+    // console.log(Users)
   })
   .catch(err => {
     console.log(err.message)
@@ -53,12 +56,20 @@ getDocs(collectionReference)
     routes
   })
 
-  const app = createApp({})
-  
-  app.use(router)
-  
-  app.mount('#app')
-  
-  export default router
+const routes = [
+  { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
+  { path: '/SignInPage', name: 'signinpage', component: SignInPage }
+];
 
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
+const app = createApp({});
+
+app.use(router)
+
+app.mount('#app')
+
+export default router
