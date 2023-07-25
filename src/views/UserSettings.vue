@@ -3,16 +3,32 @@
 <div class="userSettings">
     
     <h1>User Settings</h1>
-    <h3>Create User</h3>
-    <UserItem/>
+    <nav>
+      <div id="nav">
+        <router-link to="/RegisterPage" class="link_color"> Register Page</router-link>
+      </div>
+    </nav>
+
+    <nav>
+      <div id="nav">
+        <router-link to="/SignInPage" class="link_color"> Sign In Page</router-link>
+      </div>
+    </nav>
+
+    <router-view></router-view>    
+
 </div>
 </template>
 
 <script>
- import UserItem from './User.vue';
 
     export default ({
         name: 'UserSettings',
-        components: {UserItem}
     })
 </script>
+
+<style>
+    .link_color {
+        color: white;
+    }
+</style>

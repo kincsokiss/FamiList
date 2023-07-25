@@ -11,16 +11,16 @@
           <MenuItem/>
           <ion-content class="ion-padding">
             <div id="nav">
-              <router-link to="/">Main Page</router-link>
+              <router-link class="link_color" to="/">Main Page</router-link>
             </div>
             <div id="nav">
-              <router-link to="/calendar">Calendar</router-link>
+              <router-link class="link_color" to="/calendar">Calendar</router-link>
             </div>
             <div id="nav">
-              <router-link to="/user-settings">User Settings</router-link>
+              <router-link class="link_color" to="/user-settings">User Settings</router-link>
             </div>
             <div id="nav">
-            <router-link to="/to-do-list">To-Do List</router-link>
+            <router-link class="link_color" to="/to-do-list">To-Do List</router-link>
             </div>  
             <div class="container">
                 <router-view></router-view>
@@ -114,6 +114,10 @@ if (path !== undefined) {
 </script>
 
 <style scoped>
+  .link_color {
+    color: white;
+  }
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
