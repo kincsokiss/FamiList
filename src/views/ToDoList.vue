@@ -2,32 +2,36 @@
   import { IonList } from '@ionic/vue';
   import { defineComponent } from 'vue';
   import TaskItem from './TaskItem.vue';
+  import tasks from '../modules/tasks';
 
   export default defineComponent ({
     name: "ToDoList",
     components: { 
-      IonList, 
-      TaskItem, 
-    } 
+      IonList,
+      TaskItem
+    },
+
+    data() {
+        return {
+          tasks: [],
+        };
+    },
+
+    async mounted() {
+      this.tasks = await tasks.getTasks();
+      console.log(this.tasks);
+    },
+
   });
 
-  // const taskItem = [{ 
-  //   title: 'Task Title',
-  //   desc: 'Description',
-  //   creationDate: 'Date',
-  //   deadline: 'Deadline'
-  // }];
-  // console.log(taskItem);
   
 </script>
 
 <template>
   <h1>To-Do List</h1>
   <ion-content class="ion-padding">
-    <ion-list>
-        <TaskItem v-for="taskItem in taskItems" :key="taskItem.title"
-          {{ taskItem.title }},{{taskItem.desc}},{{ taskItem.creationDate}},{{ taskItem.deadline}}
-        /> 
+    <ion-list v-if="tasks.length > 0">
+        <TaskItem v-for="task in tasks" :key="task.id" :task-item="task"/> 
     </ion-list>
   </ion-content>
 </template>

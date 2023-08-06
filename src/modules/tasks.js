@@ -2,11 +2,11 @@ import firebaseDb from "./firebase"
 
 class TasksModule {
   constructor() {
-  //  this.getUsers();\
-  //this.deleteUser('ABQFbm6JnlQx1eDSeBJh');
-  //this.addUser('Kati', 17, 'Child', '07453468768');
-  this.updateTask('UlWHuHmaDgc2R0oTeFo0','Hankuka', 3, 'kiskocsag', '0776154686')
-  this.searchTaskByID('UlWHuHmaDgc2R0oTeFo0');
+  // this.getTasks();
+  // this.deleteTask('Pcx9IxkNrNvUQG0H8dC7');
+  // this.addTask('title', 'desc', '29 Jul 2023', 'Reka', false, 'vlm', 'Gabi');
+  // this.updateTask('lAOm9ACmQ4TMi0xv9E2Q', 'tit', 'desc', '10 Jul 2023', 'Reka', true, 'valamike', 'Gabi');
+  // this.searchTaskByID('rT89H5JF5rn4PloGiDzW');
   }
   async addTask(title, discription, deadline, responsebles, repeatable, attachments, creator) {
       try {
@@ -29,13 +29,13 @@ class TasksModule {
   async updateTask(documentID, newTitle, newDiscription, newDeadline, newResponsebles, newRepeatable, newAttachments, newCreator) {
     try {
       await firebaseDb.editDoc('Tasks', documentID, {
-        title:  newTitle,
-        discription: newDiscription,
-        deadline: newDeadline,
-        responsables: newResponsebles,
-        repeatable: newRepeatable,
-        attachments: newAttachments,
-        creator: newCreator
+        Title:  newTitle,
+        Discription: newDiscription,
+        Deadline: newDeadline,
+        Responsables: newResponsebles,
+        Repeatable: newRepeatable,
+        Attachments: newAttachments,
+        Creator: newCreator
       });
       console.log('Task updated');
     } catch (error) {
@@ -47,10 +47,10 @@ class TasksModule {
     firebaseDb.destroyDoc('Tasks', dataId);
   }
 
-  getTask(){
-    const Tasks = firebaseDb.getDocs('Tasks');
-
-    console.log('Tasks= ', Tasks);
+  async getTasks(){
+    const tasks = await firebaseDb.getDocs('Tasks');
+    
+    return tasks;
   }
 
   async searchTaskByID(documentId){

@@ -4,10 +4,31 @@
   import { defineComponent } from 'vue';
 
   export default defineComponent({
+    name: "TaskItem",
     components: { IonItem, IonLabel },
-    props: ['taskItem'],
-    setup(props) {
-      console.log(props.taskItem)
+
+    props: {
+      taskItem: { default: {title: ''} } 
+    },
+
+    // data() {
+    //   return {
+    //     task: {}
+    //   };
+    // },
+
+    // watch: {
+    //   taskItem: {
+    //     handle(value) {
+    //       this.task = value;
+    //     },
+    //     deep: true
+    //   }
+    // },
+
+    setup() {
+      // this.task = props.taskItem;
+
       return {
         caretForwardOutline,
       };
@@ -19,10 +40,16 @@
 <template>
   <ion-item detail="true">
     <ion-label>
-      <h3> {{ props.taskItem.title }} </h3>
-      <p> {{ props.taskItem.desc }} </p>
-      <p> {{ props.taskItem.creationDate }}</p>
-      <p> {{ props.taskItem.deadline }}</p>
+      <h3 class="color-light"> {{ props?.taskItem.title }} </h3>
+      <p class="color-light">mindegy</p>
+      <!-- <p> {{ props.taskItem.description }} </p>
+      <p> {{ props.taskItem.deadline }}</p> -->
     </ion-label>
   </ion-item>
 </template>
+
+<style>
+  .color-light {
+    color:white;
+  }
+</style>
