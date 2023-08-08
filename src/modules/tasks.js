@@ -48,9 +48,10 @@ class TasksModule {
   }
 
   async getTasks(){
-    const tasks = await firebaseDb.getDocs('Tasks');
+    //const tasks = await firebaseDb.getDocs('Tasks');
+    return firebaseDb.getDocs('Tasks');
     
-    return tasks;
+   // return tasks;
   }
 
   async searchTaskByID(documentId){

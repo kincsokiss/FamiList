@@ -4,6 +4,7 @@
   import TaskItem from './TaskItem.vue';
   import tasks from '../modules/tasks';
 
+
   export default defineComponent ({
     name: "ToDoList",
     components: { 
@@ -13,13 +14,12 @@
 
     data() {
         return {
-          tasks: [],
+          tasks: null,
         };
     },
 
     async mounted() {
       this.tasks = await tasks.getTasks();
-      console.log(this.tasks);
     },
 
   });
@@ -29,9 +29,16 @@
 
 <template>
   <h1>To-Do List</h1>
-  <ion-content class="ion-padding">
-    <ion-list v-if="tasks.length > 0">
-        <TaskItem v-for="task in tasks" :key="task.id" :task-item="task"/> 
+  <ion-content class="ion-padding to-do-list">
+    <ion-list>
+      <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
     </ion-list>
   </ion-content>
 </template>
+
+<style>
+  .to-do-list {
+    height: 400px;
+  }
+
+</style>
