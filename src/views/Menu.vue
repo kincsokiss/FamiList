@@ -55,7 +55,7 @@ export default defineComponent({
     IonHeader,
     IonMenu,
     IonTitle,
-    IonToolbar,
+    IonToolbar
   },
 
   setup() {
