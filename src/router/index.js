@@ -8,6 +8,7 @@ import UserSettings from '@/views/UserSettings.vue';
 import MainPage from '@/views/MainPage.vue';
 import Calendar from '@/views/Calendar.vue';
 import ToDoList from '@/views/ToDoList.vue';
+import CreateTask from '@/views/CreateTask.vue';
 
 
 import RegisterPage from '@/views/Register.vue';
@@ -50,7 +51,8 @@ getDocs(collectionReference)
     { path: '/calendar', component: Calendar },
     { path: '/to-do-list', component: ToDoList },
     { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
-    { path: '/SignInPage', name: 'signinpage', component: SignInPage }
+    { path: '/SignInPage', name: 'signinpage', component: SignInPage },
+    { path: '/CreateTask', name: 'createtask', component: CreateTask }
   ];
   
     const router = createRouter({

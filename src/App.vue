@@ -1,35 +1,11 @@
 <template>
-  <ion-app>
-    <ion-split-pane content-id="main-content">
-      <ion-menu content-id="main-content" type="overlay">
-        <ion-content>
-        </ion-content>
-      </ion-menu>
-      <ion-router-outlet id="main-content">
-        <ion-content>
-          <HeaderVue/>
-          <MenuItem/>
-          <ion-content class="ion-padding">
-            <div id="nav">
-              <router-link class="link_color" to="/">Main Page</router-link>
-            </div>
-            <div id="nav">
-              <router-link class="link_color" to="/calendar">Calendar</router-link>
-            </div>
-            <div id="nav">
-              <router-link class="link_color" to="/user-settings">User Settings</router-link>
-            </div>
-            <div id="nav">
-            <router-link class="link_color" to="/to-do-list">To-Do List</router-link>
-            </div>  
-            <div class="container">
-                <router-view></router-view>
-              </div>
-            </ion-content>
-          <FooterVue/>
-          </ion-content>
-      </ion-router-outlet>
-    </ion-split-pane>
+  <ion-app >
+    <HeaderVue/>
+    <div class="app">
+      <SideBar/>
+      <router-view/>
+    </div>
+    <FooterVue/>
   </ion-app>
 </template>
 
@@ -51,19 +27,21 @@ import {
   warningSharp,
 } from 'ionicons/icons';
 
+
+// import MenuItem from './views/Menu.vue';
 // import MainPage from './views/MainPage.vue';
 import HeaderVue from './views/Header.vue';
-import MenuItem from './views/Menu.vue';
 import FooterVue from './views/Footer.vue';
+import SideBar from './views/SideBar.vue';
 
 export default {
   name: 'App',
   components: {
-    // MainPage,
+    // MenuItem,
     HeaderVue,
-    MenuItem,
-    FooterVue
-  },
+    FooterVue,
+    SideBar
+},
 };
 
 const selectedIndex = ref(0);
@@ -114,128 +92,46 @@ if (path !== undefined) {
 </script>
 
 <style scoped>
-  .link_color {
-    color: white;
+  :root {
+    --primary: #4ade80;
+    --grey: #64748b;
+    --dark: #1e293b;
+    --dark-alt: #334155;
+    --light: #f1f5f9;
+    --sidebar-width: 300px;
   }
 
-ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--light);
+  }
 
-ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
-}
+  button {
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    outline: none;
+    background-color: none;
+  }
 
-ion-menu.md ion-list {
-  padding: 20px 0;
-}
+  .app {
+    display: flex;    
+  }
 
-ion-menu.md ion-note {
-  margin-bottom: 30px;
-}
+  ion-note {
+    display: inline-block;
+    font-size: 16px;
 
-ion-menu.md ion-list-header,
-ion-menu.md ion-note {
-  padding-left: 10px;
-}
+    color: var(--ion-color-medium-shade);
+  }
 
-ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
-}
-
-ion-menu.md ion-list#inbox-list ion-list-header {
-  font-size: 22px;
-  font-weight: 600;
-
-  min-height: 20px;
-}
-
-ion-menu.md ion-list#labels-list ion-list-header {
-  font-size: 16px;
-
-  margin-bottom: 18px;
-
-  color: #757575;
-
-  min-height: 26px;
-}
-
-ion-menu.md ion-item {
-  --padding-start: 10px;
-  --padding-end: 10px;
-  border-radius: 4px;
-}
-
-ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
-}
-
-ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
-}
-
-ion-menu.md ion-item ion-icon {
-  color: #616e7e;
-}
-
-ion-menu.md ion-item ion-label {
-  font-weight: 500;
-}
-
-ion-menu.ios ion-content {
-  --padding-bottom: 20px;
-}
-
-ion-menu.ios ion-list {
-  padding: 20px 0 0 0;
-}
-
-ion-menu.ios ion-note {
-  line-height: 24px;
-  margin-bottom: 20px;
-}
-
-ion-menu.ios ion-item {
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --min-height: 50px;
-}
-
-ion-menu.ios ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
-}
-
-ion-menu.ios ion-item ion-icon {
-  font-size: 24px;
-  color: #73849a;
-}
-
-ion-menu.ios ion-list#labels-list ion-list-header {
-  margin-bottom: 8px;
-}
-
-ion-menu.ios ion-list-header,
-ion-menu.ios ion-note {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-ion-menu.ios ion-note {
-  margin-bottom: 8px;
-}
-
-ion-note {
-  display: inline-block;
-  font-size: 16px;
-
-  color: var(--ion-color-medium-shade);
-}
-
-ion-item.selected {
-  --color: var(--ion-color-primary);
-}
+  ion-item.selected {
+    --color: var(--ion-color-primary);
+  }
 </style>
 
