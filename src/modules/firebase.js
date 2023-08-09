@@ -76,11 +76,11 @@ class FirebaseDbModule{
 
         return getDocs(collectionReference)
         .then((snapshot) => {
-        let users = []
+        let collectionName = []
         snapshot.docs.forEach((doc) => {
-            users.push({ ...doc.data(), id: doc.id })
+            collectionName.push({ ...doc.data(), id: doc.id })
         })
-        return users;
+        return collectionName;
         })
         .catch(err => {
         console.log(err.message)
