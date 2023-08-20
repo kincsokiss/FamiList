@@ -12,7 +12,6 @@
             <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
             <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
             <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-            <!-- <ion-input label="Repeatable" placeholder="Enter the title" ref="title" required="required"></ion-input> -->
             <ion-input label="Responsables" placeholder="Who should do it?" ref="resp"></ion-input>
             <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
             <ion-input label="Attachment" ref="att"></ion-input>
@@ -65,10 +64,10 @@
 
 </script>
 
-<style>
+<style scoped> 
     .back_color {
-        background-color: rgb(102, 104, 107);
-        width: 100%;
+        background-color: #1B2F33;
+        width: 400px;
         height: 100%;
     }
 
@@ -79,11 +78,28 @@
         position: relative;
         font-size: 1.5rem;
         color: #f1f5f9;
+        top: -2.4rem;
         
         &:hover {
-            color: #4ade80;
-                    
+            color: #4ade80;       
         }
+    }
+
+    div {
+        position: absolute;
+        top: 20%;
+        text-align: center;
+        padding-left: 750px;
+    }
+
+    h2 {
+        font-size: 30pt;
+        position: relative;
+    }
+
+    ion-button {
+        --background: rgb(64, 130, 161);
+        --border-radius: 10px;
     }
 
 </style>

@@ -1,42 +1,34 @@
 <template> 
-    <main class="dimensions">  
-      <h1>User Settings</h1>
-      <nav>
-        <div id="nav">
-          <router-link to="/RegisterPage" class="link_color"> Register Page</router-link>
-        </div>
-      </nav>
-
-      <nav>
-        <div id="nav">
-          <router-link to="/SignInPage" class="link_color"> Sign In Page</router-link>
-        </div>
-      </nav>
-
-      <router-view/>
+    <main class="dimensions">
+      <SignInPage/>
+      <NewHere/>
     </main> 
 </template>
 
 <script>
+    import SignInPage from './SignIn.vue';
+    import NewHere from './NewHere.vue';
 
     export default ({
         name: 'UserSettings',
+
+        components: {
+          SignInPage,
+          NewHere
+        }
     })
 </script>
 
-<style>
-    .link_color {
-        color: white;
-    }
-
+<style scoped> 
     .dimensions {
-    width: 1404px;
-    height: 9999px;
-    flex: 1, 1 0;
-    padding: 2rem;
+      padding: 2rem;
+      display: flex; 
+      height: fit-content;
+      width: 1375px;
+      margin: 0;
 
-    @media (max-width: 768px) {
-      padding-left: 6rem;
+      @media (max-width: 768px) {
+        padding-left: 6rem;
+      }
     }
-  }
 </style>

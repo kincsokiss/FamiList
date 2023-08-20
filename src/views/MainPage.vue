@@ -1,5 +1,5 @@
 <template>
-  <main class="dimensions">
+  <main class="dimensions colored">
     <CalendarItem/>
     <ToDoList/>
   </main>  
@@ -25,15 +25,15 @@ import CalendarItem from './Calendar.vue';
     --opacity: 0.5;
   }
 
-  .link_color {
-    color: white;
+  .colored {
+    background-color: rgb(72, 72, 72);
   }
 
   .dimensions {
-    width: 1404px;
-    height: 9999px;
     flex: 1, 1 0;
     padding: 2rem;
+    display: flow-root;
+    height: auto;
 
     @media (max-width: 768px) {
       padding-left: 6rem;

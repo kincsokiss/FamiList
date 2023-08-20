@@ -1,5 +1,5 @@
 <template>
-  <ion-app >
+  <ion-app>
     <HeaderVue/>
     <div class="app">
       <SideBar/>
@@ -27,9 +27,6 @@ import {
   warningSharp,
 } from 'ionicons/icons';
 
-
-// import MenuItem from './views/Menu.vue';
-// import MainPage from './views/MainPage.vue';
 import HeaderVue from './views/Header.vue';
 import FooterVue from './views/Footer.vue';
 import SideBar from './views/SideBar.vue';
@@ -37,7 +34,6 @@ import SideBar from './views/SideBar.vue';
 export default {
   name: 'App',
   components: {
-    // MenuItem,
     HeaderVue,
     FooterVue,
     SideBar
@@ -120,7 +116,8 @@ if (path !== undefined) {
   }
 
   .app {
-    display: flex;    
+    display: flex; 
+    background-color: rgb(72, 72, 72);
   }
 
   ion-note {
