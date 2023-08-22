@@ -96,8 +96,8 @@
     }
 
     .dimensions {
-    width: 1404px;
-    height: 9999px;
+    width: 100%;
+    height: 100%;
     flex: 1, 1 0;
     padding: 2rem;
 
