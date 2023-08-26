@@ -5,7 +5,7 @@
         </div>
 
         <div class="menu-toggle-wrap">
-            <button size="small" class="menu-toggle" @click="ToggleMenu">
+            <button size="small" class="menu-toggle" @click="toggleMenu">
                 <ion-icon :icon="chevronForwardOutline" class="material"></ion-icon>
             </button>
         </div>
@@ -46,7 +46,7 @@
         },  
 
         methods: {
-            ToggleMenu() {
+            toggleMenu() {
                 this.is_expanded = !this.is_expanded;
             }
         },

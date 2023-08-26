@@ -47,12 +47,12 @@ getDocs(collectionReference)
   
   const routes = [
     { path: '/', name: 'mainpage', component: MainPage },
-    { path: '/User-Settings', component: UserSettings },
+    { path: '/user-settings', component: UserSettings },
     { path: '/calendar', component: Calendar },
     { path: '/to-do-list', component: ToDoList },
-    { path: '/RegisterPage', name: 'registerpage', component: RegisterPage },
-    { path: '/SignInPage', name: 'signinpage', component: SignInPage },
-    { path: '/CreateTask', name: 'createtask', component: CreateTask }
+    { path: '/register-page', name: 'registerpage', component: RegisterPage },
+    { path: '/sign-in-page', name: 'signinpage', component: SignInPage },
+    { path: '/create-task', name: 'createtask', component: CreateTask }
   ];
   
     const router = createRouter({
