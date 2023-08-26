@@ -38,11 +38,10 @@
   <h1>To-Do List</h1>
   <span class="text_">Create</span>
   <router-link to="/CreateTask" class="pos">
-          
     <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
   </router-link>
       
-  <ion-content class="ion-padding to-do-list">
+  <ion-content class="to-do-list">
     <ion-list>
       <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
     </ion-list>
@@ -51,7 +50,8 @@
 
 <style scoped>
   .to-do-list {
-    height: 400px;
+    height: 300px;
+    width: 1275px;
   }
 
   .logo_ {

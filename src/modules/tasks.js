@@ -11,13 +11,13 @@ class TasksModule {
   async addTask(title, discription, deadline, responsebles, repeatable, attachments, creator) {
       try {
         const taskId = await firebaseDb.storeDoc('Tasks',{
-          Title: title,
-          Discription:  discription,
-          Deadline: deadline,
-          Responsebles: responsebles,
-          Repeatable: repeatable,
-          Attachments: attachments,
-          Creator: creator,
+          title: title,
+          discription:  discription,
+          deadline: deadline,
+          responsebles: responsebles,
+          repeatable: repeatable,
+          attachments: attachments,
+          creator: creator,
         });
 
         console.log(taskId);
@@ -29,13 +29,13 @@ class TasksModule {
   async updateTask(documentID, newTitle, newDiscription, newDeadline, newResponsebles, newRepeatable, newAttachments, newCreator) {
     try {
       await firebaseDb.editDoc('Tasks', documentID, {
-        Title:  newTitle,
-        Discription: newDiscription,
-        Deadline: newDeadline,
-        Responsables: newResponsebles,
-        Repeatable: newRepeatable,
-        Attachments: newAttachments,
-        Creator: newCreator
+        title:  newTitle,
+        discription: newDiscription,
+        deadline: newDeadline,
+        responsables: newResponsebles,
+        repeatable: newRepeatable,
+        attachments: newAttachments,
+        creator: newCreator
       });
       console.log('Task updated');
     } catch (error) {
@@ -58,6 +58,7 @@ class TasksModule {
     try{
       const datas = await firebaseDb.searchDocbyID('Tasks', documentId);
       console.log(datas);
+      return datas;
     } catch (error) {
       console.log('searchTaskbyID has failed: ', error);
     }

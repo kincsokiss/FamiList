@@ -1,17 +1,16 @@
 <template>
-    <main class="dimensions">
-        <div id="nav">
-            <router-link class="link_color" to="/user-settings">User Settings</router-link>
+    <main class="details">
+        <div>
+            <form ref="form" @submit="formSubmit">
+                <h1>Login to Your Account</h1>
+                <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+                <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
+                <ion-button type="submit">Submit</ion-button>
+                <p>OR</p>
+                <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
+            </form>
         </div>
-        
-        <form ref="form" @submit="formSubmit" class="back_color">
-            <h2>Sign In to an Account</h2>
-            <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-            <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
-            <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
-            <ion-button type="submit">Submit</ion-button>
-            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
-        </form>
     </main>
 </template>  
 
@@ -73,23 +72,33 @@
 
 </script>
 
-<style>
-    .back_color {
-        background-color: rgb(102, 104, 107);
+<style scoped>
+    .details {
+        background-color: #1B2F33;
+        width: 100%;
+        height: 700px;
+    }
+
+    div {
+        position: absolute;
+        top: 20%;
+        text-align: center;
+        padding-left: 250px;
     }
 
     .color-danger {
         color: red;
     }
 
-    .dimensions {
-    width: 1404px;
-    height: 9999px;
-    flex: 1, 1 0;
-    padding: 2rem;
-
-    @media (max-width: 768px) {
-      padding-left: 6rem;
+    h1 {
+        font-size: 30pt;
+        position: relative;
     }
-  }
+
+    ion-button {
+        --background: rgb(64, 130, 161);
+        --border-radius: 10px;
+    }
+
+
 </style>

@@ -1,21 +1,20 @@
 <template>
-    <main class="dimensions">
-        <div id="nav">
-            <router-link class="link_color" to="/user-settings">User Settings</router-link>
+    <main class="dimensions back_color">
+        <div>
+            <form ref="form" @submit="formSubmit">
+                <h1>Create an Account</h1>
+                <ion-input label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
+                <ion-input label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
+                <ion-input label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
+                
+                <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+                <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <ion-button type="submit">Create</ion-button>
+                <p>OR</p>
+                <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/>
+                <label>Hello {{ name }} :) </label>
+            </form>
         </div>
-        
-        <form ref="form" @submit="formSubmit" class="back_color">
-            <h2>Create an Account</h2>
-            <ion-input label="Name" labelPlacement="floating" placeholder="Enter user's name" ref="name" required="required"></ion-input>
-            <ion-input label="Age" labelPlacement="floating" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
-            <ion-input label="Phone number" labelPlacement="floating" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
-            
-            <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-            <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
-            <ion-button type="submit">Submit</ion-button>
-            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
-            <label>Hello {{ name }} :) </label>
-        </form>
     </main>
 </template>   
 
@@ -90,19 +89,38 @@
 
 </script>
 
-<style>
+<style scoped>
     .back_color {
-        background-color: rgb(102, 104, 107);
+        background-color: #1B2F33;
     }
 
     .dimensions {
-    width: 100%;
-    height: 100%;
-    flex: 1, 1 0;
-    padding: 2rem;
+        width: 1320px;
+        height: 700px;
+        padding: 2rem;
+        margin: 2rem;
 
-    @media (max-width: 768px) {
-      padding-left: 6rem;
+        @media (max-width: 768px) {
+        padding-left: 6rem;
+        }
     }
-  }
+
+    div {
+        position: absolute;
+        top: 12%;
+        text-align: center;
+        padding-left: 446px;
+    }
+
+    h1 {
+        font-size: 30pt;
+        position: relative;
+    }
+
+    ion-button {
+        --background: rgb(64, 130, 161);
+        --border-radius: 10px;
+    }
+
+    
 </style>
