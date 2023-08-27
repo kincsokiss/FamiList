@@ -10,9 +10,9 @@ import Calendar from '@/views/Calendar.vue';
 import ToDoList from '@/views/ToDoList.vue';
 import CreateTask from '@/views/CreateTask.vue';
 
-
 import RegisterPage from '@/views/Register.vue';
 import SignInPage from '@/views/SignIn.vue';
+import TaskDetailPage from '@/views/TaskDetailPage.vue'
 
 const firebaseConfig = {
   apiKey: "AIzaSyB82mQoV7e2l0Na-GRYDZYxVC7eaqth8Rk",
@@ -52,7 +52,9 @@ getDocs(collectionReference)
     { path: '/to-do-list', component: ToDoList },
     { path: '/register-page', name: 'registerpage', component: RegisterPage },
     { path: '/sign-in-page', name: 'signinpage', component: SignInPage },
-    { path: '/create-task', name: 'createtask', component: CreateTask }
+    { path: '/create-task', name: 'createtask', component: CreateTask },
+    { path: '/tasks/:taskid', component: TaskDetailPage }
+    
   ];
   
     const router = createRouter({

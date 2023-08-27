@@ -1,3 +1,18 @@
+
+<template>
+  <h1>To-Do List</h1>
+  <span class="text_">Create</span>
+  <router-link to="/create-task" class="pos">
+    <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
+  </router-link>
+      
+  <ion-content class="to-do-list">
+    <ion-list>
+      <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
+    </ion-list>
+  </ion-content>
+</template>
+
 <script>
   import { IonList } from '@ionic/vue';
   import { defineComponent } from 'vue';
@@ -23,7 +38,9 @@
 
     async mounted() {
       this.tasks = await tasks.getTasks();
+      console.log(this.tasks);
     },
+    
 
     setup() {
       return { addCircleOutline };
@@ -34,19 +51,6 @@
   
 </script>
 
-<template>
-  <h1>To-Do List</h1>
-  <span class="text_">Create</span>
-  <router-link to="/CreateTask" class="pos">
-    <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
-  </router-link>
-      
-  <ion-content class="to-do-list">
-    <ion-list>
-      <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
-    </ion-list>
-  </ion-content>
-</template>
 
 <style scoped>
   .to-do-list {
