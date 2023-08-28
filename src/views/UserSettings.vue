@@ -1,7 +1,18 @@
 <template> 
-    <main class="dimensions">
-      <SignInPage/>
-      <NewHere/>
+    <main>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <SignInPage/>
+          </ion-col>          
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <NewHere/>
+          </ion-col>          
+        </ion-row>
+      </ion-grid>
+      
     </main> 
 </template>
 
@@ -20,15 +31,5 @@
 </script>
 
 <style scoped> 
-    .dimensions {
-      padding: 2rem;
-      display: flex; 
-      height: fit-content;
-      width: 1375px;
-      margin: 0;
 
-      @media (max-width: 768px) {
-        padding-left: 6rem;
-      }
-    }
 </style>

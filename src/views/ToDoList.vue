@@ -35,23 +35,29 @@
 </script>
 
 <template>
-  <h1>To-Do List</h1>
-  <span class="text_">Create</span>
-  <router-link to="/CreateTask" class="pos">
-    <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
-  </router-link>
-      
-  <ion-content class="to-do-list">
-    <ion-list>
-      <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
-    </ion-list>
-  </ion-content>
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col> -->
+        <h1>To-Do List</h1>
+        <span class="text_">Create</span>
+        <router-link to="/create-task" class="pos">
+          <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
+        </router-link>
+            
+        <ion-content class="fix">
+          <ion-list>
+            <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
+          </ion-list>
+        </ion-content>
+      <!-- </ion-col>
+    </ion-row>
+  </ion-grid> -->
 </template>
 
 <style scoped>
-  .to-do-list {
-    height: 300px;
-    width: 1275px;
+
+  .fix {
+    height: 100%;
   }
 
   .logo_ {

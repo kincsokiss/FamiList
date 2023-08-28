@@ -1,8 +1,8 @@
 <template>
-    <ion-footer>
-      <ion-toolbar>
-        <ion-title> Footer </ion-title>
-      </ion-toolbar>
+    <ion-footer class="ion-no-border">
+        <ion-toolbar>
+            <ion-title> Footer </ion-title>
+        </ion-toolbar>
     </ion-footer>
   </template>
   

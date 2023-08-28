@@ -2,7 +2,7 @@
     <main class="back_color dimension centered">
         <h2>New Here?</h2>
         <h5>Sign Up and discover the coolest To-Do List for families</h5>
-        <router-link to="/RegisterPage" class="link_color">Sign Up</router-link>
+        <router-link to="/register-page" class="link_color">Sign Up</router-link>
     </main>
 </template>
 
@@ -30,13 +30,12 @@
     }
 
     .dimension {
-        height: auto;
-        width: auto;
-        
+        height: 100%;
+        width: 100%;
     }
 
     .centered {
         text-align: center;
-        padding: 200px 50px;
+        position: relative;
     }
 </style>

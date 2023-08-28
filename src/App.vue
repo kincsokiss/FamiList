@@ -1,90 +1,43 @@
 <template>
   <ion-app>
-    <HeaderVue/>
-    <div class="app">
-      <SideBar/>
-      <router-view/>
-    </div>
-    <FooterVue/>
+    <SideBar/>
+    <!-- <ion-header><HeaderVue/></ion-header>
+    <ion-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <router-view/>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <ion-footer><FooterVue/></ion-footer> -->
+    
+    <ion-page id="main-content">
+      <HeaderVue/>
+        <router-view/>
+      <!-- <FooterVue/> -->
+    </ion-page>
   </ion-app>
 </template>
 
 <script>
-
-import { ref } from 'vue';
-import {
-  archiveOutline,
-  archiveSharp,
-  heartOutline,
-  heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
-} from 'ionicons/icons';
-
 import HeaderVue from './views/Header.vue';
-import FooterVue from './views/Footer.vue';
+// import FooterVue from './views/Footer.vue';
 import SideBar from './views/SideBar.vue';
+// import { IonContent } from '@ionic/vue';
+// import MainPage from './views/MainPage.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HeaderVue,
-    FooterVue,
-    SideBar
-},
+    name: 'App',
+    components: {
+      HeaderVue,
+      // FooterVue,
+      SideBar,
+      // IonContent,
+      // MainPage
+  },
 };
-
-const selectedIndex = ref(0);
-const appPages = [
-  {
-    title: 'Inbox',
-    url: '/folder/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp,
-  },
-  {
-    title: 'Outbox',
-    url: '/folder/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
-  },
-  {
-    title: 'Favorites',
-    url: '/folder/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
-  },
-  {
-    title: 'Archived',
-    url: '/folder/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp,
-  },
-  {
-    title: 'Trash',
-    url: '/folder/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp,
-  },
-  {
-    title: 'Spam',
-    url: '/folder/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp,
-  },
-];
-//const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
-const path = window.location.pathname.split('folder/')[1];
-if (path !== undefined) {
-  selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
-}
 </script>
 
 <style scoped>
@@ -94,7 +47,6 @@ if (path !== undefined) {
     --dark: #1e293b;
     --dark-alt: #334155;
     --light: #f1f5f9;
-    --sidebar-width: 300px;
   }
 
   * {
@@ -105,6 +57,11 @@ if (path !== undefined) {
   
   body {
     background-color: var(--light);
+    overflow: auto;
+  }
+
+  .content-fix {
+    width: 100%;
   }
 
   button {
@@ -113,11 +70,6 @@ if (path !== undefined) {
     border: none;
     outline: none;
     background-color: none;
-  }
-
-  .app {
-    display: flex; 
-    background-color: rgb(72, 72, 72);
   }
 
   ion-note {
