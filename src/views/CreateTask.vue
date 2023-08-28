@@ -1,24 +1,29 @@
 <template>
-    <div>
-        <form ref="form" @submit="formSubmit" class="back_color">
-            <h2>Create a new task!</h2>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <form ref="form" @submit="formSubmit" class="back_color">
+                    <h2>Create a new task!</h2>
 
-            <nav>
-                <router-link to="/">
-                    <ion-icon :icon="closeCircle" class="position"></ion-icon>
-                </router-link>
-            </nav>
+                    <nav>
+                        <router-link to="/">
+                            <ion-icon :icon="closeCircle" class="position"></ion-icon>
+                        </router-link>
+                    </nav>
 
-            <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-            <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-            <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-            <ion-input label="Responsables" placeholder="Who should do it?" ref="resp"></ion-input>
-            <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-            <ion-input label="Attachment" ref="att"></ion-input>
-            <ion-input label="Creator" placeholder="Who did create?" ref="creator"></ion-input>    
-            <ion-button type="submit">{{ buttonLabel }}</ion-button>
-        </form>
-    </div>
+                    <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
+                    <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
+                    <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
+                    <ion-input label="Responsables" placeholder="Who should do it?" ref="resp"></ion-input>
+                    <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
+                    <ion-input label="Attachment" ref="att"></ion-input>
+                    <ion-input label="Creator" placeholder="Who did create?" ref="creator"></ion-input>    
+                    <ion-button type="submit">{{ buttonLabel }}</ion-button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+        
 </template>
 
 <script>
@@ -74,7 +79,7 @@
 <style scoped> 
     .back_color {
         background-color: #1B2F33;
-        width: 400px;
+        width: 52%;
         height: 100%;
     }
 
@@ -85,18 +90,17 @@
         position: relative;
         font-size: 1.5rem;
         color: #f1f5f9;
-        top: -2.4rem;
+        top: -3rem;
         
         &:hover {
             color: #4ade80;       
         }
     }
 
-    div {
+    ion-col {
         position: absolute;
         top: 20%;
         text-align: center;
-        padding-left: 750px;
     }
 
     h2 {

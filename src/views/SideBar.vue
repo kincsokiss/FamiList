@@ -1,16 +1,11 @@
 <template>
-    <aside :class="{'is-expanded' : is_expanded}">
-        <div>
+    <ion-menu content-id="main-content" class="is-expanded">
+      <ion-header>
+        <ion-toolbar>
             <ion-icon :icon="listCircleOutline" size="large" class="logo"></ion-icon>
-        </div>
-
-        <div class="menu-toggle-wrap">
-            <button size="small" class="menu-toggle" @click="toggleMenu">
-                <ion-icon :icon="chevronForwardOutline" class="material"></ion-icon>
-            </button>
-        </div>
-
-        <h3>Menu</h3>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
         <div class="menu">
             <nav>
                 <div id="nav">
@@ -23,14 +18,25 @@
 
             <nav>
                 <div id="nav">
-                    <router-link to="/User-Settings" class="button">
+                    <router-link to="/user-settings" class="button">
                         <ion-icon :icon="settingsOutline" class="material"></ion-icon>
                         <span class="text">User Settings</span>
                     </router-link>
                 </div>
             </nav>
         </div>
-    </aside>
+      </ion-content>
+    </ion-menu>
+    <!-- <ion-menu :class="{'is-expanded' : is_expanded}">
+
+        <div class="menu-toggle-wrap">
+            <button size="small" class="menu-toggle" @click="toggleMenu">
+                <ion-icon :icon="chevronForwardOutline" class="material"></ion-icon>
+            </button>
+        </div> 
+
+        
+    </ion-menu> -->
 </template>
 
 <script>
@@ -60,18 +66,22 @@
 
 <style lang="scss" scoped>
 
-    aside {
-        display: flex;
-        flex-direction: column;
-        width: calc(2rem + 32px);
-        min-height: 100vh;
-        overflow: hidden;
-        padding: 1rem;
+    ion-menu {
+        // display: flex;
+        // flex-direction: column;
+        // width: calc(2rem + 32px);
+        // min-height: 100vh;
+        // overflow: hidden;
+        // padding: 1rem;
 
-        background-color: #334155;
-        color: #f1f5f9;
+        ion-content {
+            #background-content{
+                background-color: #334155 !important;
+                color: #f1f5f9;
+            }
+        }
 
-        transition: 0.2s ease-out;
+        // transition: 0.2s ease-out;
 
         .logo {
             margin-bottom: 0.5rem;
@@ -155,7 +165,6 @@
         }
 
         &.is-expanded {
-            width: 300px;
 
             .menu-toggle-wrap {
                 top: -3rem;

@@ -1,16 +1,14 @@
 <template>
     <main class="details">
-        <div>
-            <form ref="form" @submit="formSubmit">
-                <h1>Login to Your Account</h1>
-                <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-                <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
-                <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
-                <ion-button type="submit">Submit</ion-button>
-                <p>OR</p>
-                <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
-            </form>
-        </div>
+        <form ref="form" @submit="formSubmit">
+            <h4 class="nagysag">Login to Your Account</h4>
+            <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+            <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+            <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
+            <ion-button type="submit">Submit</ion-button>
+            <p>OR</p>
+            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
+        </form>
     </main>
 </template>  
 
@@ -76,23 +74,18 @@
     .details {
         background-color: #1B2F33;
         width: 100%;
-        height: 700px;
-    }
-
-    div {
-        position: absolute;
-        top: 20%;
+        height: 100%;
         text-align: center;
-        padding-left: 250px;
+        padding: 3%;
+        position: relative;
     }
 
     .color-danger {
         color: red;
     }
 
-    h1 {
-        font-size: 30pt;
-        position: relative;
+    .nagysag {
+        font-size: 25pt;
     }
 
     ion-button {

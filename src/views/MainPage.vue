@@ -1,8 +1,16 @@
 <template>
-  <ion-content class="dimensions colored">
-    <CalendarItem/>
-    <ToDoList/>
-  </ion-content>  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <CalendarItem/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ToDoList/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </template>
 
 <script>
@@ -24,21 +32,4 @@ import CalendarItem from './Calendar.vue';
   ion-toolbar {
     --opacity: 0.5;
   }
-
-  .colored {
-    background-color: rgb(72, 72, 72);
-  }
-
-  .dimensions {
-    flex: 1, 1 0;
-    padding: 2rem;
-    display: flow-root;
-    height: auto;
-
-    @media (max-width: 768px) {
-      padding-left: 6rem;
-    }
-  }
-
-
 </style>
