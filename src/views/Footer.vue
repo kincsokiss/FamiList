@@ -1,5 +1,5 @@
 <template>
-    <ion-footer class="ion-no-border">
+    <ion-footer>
         <ion-toolbar>
             <ion-title> Footer </ion-title>
         </ion-toolbar>

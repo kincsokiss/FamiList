@@ -1,6 +1,11 @@
 <template>
     <h1>Calendar</h1>
-    <ion-datetime ></ion-datetime> 
+    <ion-row>
+      <ion-col>
+        <ion-datetime class="full-width"></ion-datetime>
+      </ion-col>
+    </ion-row>
+    
 </template>
 
 <script>
@@ -12,3 +17,9 @@
     components: { IonDatetime },
   });
 </script>
+
+<style scoped>
+  .full-width {
+    max-width: 100%;
+  }
+</style>

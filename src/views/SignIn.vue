@@ -1,13 +1,13 @@
 <template>
     <main class="details">
         <form ref="form" @submit="formSubmit">
-            <h4 class="nagysag">Login to Your Account</h4>
+            <h4 class="size">Login to Your Account</h4>
             <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
             <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
             <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
             <ion-button type="submit">Submit</ion-button>
-            <p>OR</p>
-            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button>
+            <!-- <p>OR</p>
+            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button> -->
         </form>
     </main>
 </template>  
@@ -26,6 +26,11 @@
         };
     },
 
+
+    mounted(){
+
+    },
+
     methods: {
         formSubmit(e) {
             e.preventDefault();
@@ -36,8 +41,9 @@
             signInWithEmailAndPassword(auth, email, password)
             .then((data) => {
                 console.log(data, "Successfully signed in!");
-
                 console.log(auth.currentUser)
+
+                this.$router.push('/main-page')
             }) 
             .catch((error) => {
                 console.log(error.code);
@@ -58,6 +64,7 @@
             })
 
             this.$refs.form.reset();
+            
         },
 
         // 
@@ -81,8 +88,9 @@
         color: red;
     }
 
-    .nagysag {
+    .size {
         font-size: 25pt;
+        margin-bottom: 10%;
     }
 
     ion-button {
