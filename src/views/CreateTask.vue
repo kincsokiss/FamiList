@@ -11,19 +11,16 @@
                         </router-link>
                     </nav>
 
-                    <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-                    <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-                    <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-                    <ion-input label="Responsables" placeholder="Who should do it?" ref="resp"></ion-input>
-                    <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-                    <ion-input label="Attachment" ref="att"></ion-input>
-                    <ion-input label="Creator" placeholder="Who did create?" ref="creator"></ion-input>    
-                    <ion-button type="submit">{{ buttonLabel }}</ion-button>
-                </form>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-        
+            <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
+            <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
+            <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
+            <ion-input label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
+            <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
+            <ion-input label="Attachment" ref="att"></ion-input>
+            <ion-input label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+            <ion-button type="submit">{{ buttonLabel }}</ion-button>
+        </form>
+    </div>
 </template>
 
 <script>

@@ -8,13 +8,13 @@ class TasksModule {
   // this.updateTask('lAOm9ACmQ4TMi0xv9E2Q', 'tit', 'desc', '10 Jul 2023', 'Reka', true, 'valamike', 'Gabi');
   // this.searchTaskByID('rT89H5JF5rn4PloGiDzW');
   }
-  async addTask(title, discription, deadline, responsebles, repeatable, attachments, creator) {
+  async addTask(title, description, deadline, responsibles, repeatable, attachments, creator) {
       try {
         const taskId = await firebaseDb.storeDoc('Tasks',{
           title: title,
-          discription:  discription,
+          description:  description,
           deadline: deadline,
-          responsebles: responsebles,
+          responsibles: responsibles,
           repeatable: repeatable,
           attachments: attachments,
           creator: creator,
@@ -26,13 +26,13 @@ class TasksModule {
       }
   }
 
-  async updateTask(documentID, newTitle, newDiscription, newDeadline, newResponsebles, newRepeatable, newAttachments, newCreator) {
+  async updateTask(documentID, newTitle, newDescription, newDeadline, newResponsibles, newRepeatable, newAttachments, newCreator) {
     try {
       await firebaseDb.editDoc('Tasks', documentID, {
         title:  newTitle,
-        discription: newDiscription,
+        description: newDescription,
         deadline: newDeadline,
-        responsables: newResponsebles,
+        responsibles: newResponsibles,
         repeatable: newRepeatable,
         attachments: newAttachments,
         creator: newCreator
@@ -48,9 +48,9 @@ class TasksModule {
   }
 
   async getTasks(){
-    //const tasks = await firebaseDb.getDocs('Tasks');
+    // const tasks = await firebaseDb.getDocs('Tasks');
+    // return tasks;
     return firebaseDb.getDocs('Tasks');
-    
    // return tasks;
   }
 
