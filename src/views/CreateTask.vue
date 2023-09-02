@@ -7,7 +7,7 @@
                         <h2>Create a new task!</h2>
 
                         <nav>
-                            <router-link to="/">
+                            <router-link to="/main-page">
                                 <ion-icon :icon="closeCircle" class="position"></ion-icon>
                             </router-link>
                         </nav>
