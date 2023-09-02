@@ -22,7 +22,8 @@ import CalendarItem from './Calendar.vue';
     name: "MainPage",
     components: {
       ToDoList,
-      CalendarItem
+      CalendarItem,
+    
     },
   });
 
@@ -31,5 +32,9 @@ import CalendarItem from './Calendar.vue';
 <style lang="scss" scoped>
   ion-toolbar {
     --opacity: 0.5;
+  }
+
+  main {
+    max-height: 100%;
   }
 </style>

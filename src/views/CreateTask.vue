@@ -2,25 +2,30 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <form ref="form" @submit="formSubmit" class="back_color">
-                    <h2>Create a new task!</h2>
+                <div>
+                    <form ref="form" @submit="formSubmit" class="back_color">
+                        <h2>Create a new task!</h2>
 
-                    <nav>
-                        <router-link to="/">
-                            <ion-icon :icon="closeCircle" class="position"></ion-icon>
-                        </router-link>
-                    </nav>
+                        <nav>
+                            <router-link to="/">
+                                <ion-icon :icon="closeCircle" class="position"></ion-icon>
+                            </router-link>
+                        </nav>
 
-            <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-            <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-            <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-            <ion-input label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
-            <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-            <ion-input label="Attachment" ref="att"></ion-input>
-            <ion-input label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
-            <ion-button type="submit">{{ buttonLabel }}</ion-button>
-        </form>
-    </div>
+                        <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
+                        <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
+                        <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
+                        <ion-input label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
+                        <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
+                        <ion-input label="Attachment" ref="att"></ion-input>
+                        <ion-input label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+                        <ion-button type="submit">{{ buttonLabel }}</ion-button>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    
 </template>
 
 <script>
@@ -41,11 +46,23 @@
             att: '',
             creator: '',
             closeCircle,
-            isTaskUpdating: false
+            isTaskUpdating: false,
+            task: {
+                default: {
+                    title: '',
+                    description: '',
+                    deadline: '',
+                    id: '',
+                    responsible: '',
+                    attachments: '',
+                    creator: ''
+                }
+            }
         };
     },
 
     computed: {
+
         buttonLabel(){
             return this.isTaskUpdating ? 'Update' : 'Create'
         }
@@ -62,9 +79,12 @@
             const att = this.$refs.att.value;
             const creator = this.$refs.creator.value;
 
-            tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
-            
-
+            if(!this.isTaskUpdating){
+                tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
+            }
+            else{
+                tasks.updateTask(this.task.id, title, desc, deadline, resp, repeat, att, creator)
+            }
             this.$refs.form.reset();
         },
     },

@@ -12,8 +12,8 @@
                         <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
                         <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
                         <ion-button type="submit">Create</ion-button>
-                        <p>OR</p>
-                        <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/>
+                        <!-- <p>OR</p>
+                        <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
                         <label>Hello {{ name }} :) </label>
                     </form>
                 </ion-col>
@@ -60,8 +60,9 @@
             createUserWithEmailAndPassword(auth, email, password)
             .then((data) => {
                 console.log(data, "Successfully registered!");
-
                 console.log(auth.currentUser)
+
+                this.$router.push('/main-page')
             }) 
             .catch((error) => {
                 console.log(error.code);
