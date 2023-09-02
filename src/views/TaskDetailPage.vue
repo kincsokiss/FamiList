@@ -4,26 +4,21 @@
             <ion-col>
                 <div>
                     <nav>
-                        <router-link to="/">
+                        <router-link to="/main-page">
                             <ion-icon :icon="closeCircle" class="position"></ion-icon>
                         </router-link>
                     </nav>
 
                     <form ref="form">
-                        <ion-input label="Title" ref="tit" :value="task.title" :readonly="isRead"></ion-input>
-                        <ion-input label="Description" ref="desc" :value="task.description" :readonly="isRead"></ion-input>
-                        <ion-input label="Deadline" ref="dead" :value="task.deadline" :readonly="isRead"></ion-input>
-                        <ion-input label="Responsibles" ref="resp" :value="task.responsibles" :readonly="isRead"></ion-input>
-                        <ion-input label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="isRead"></ion-input>
-                        <ion-input label="Attachment" ref="att" :value="task.attachments" :readonly="isRead"></ion-input>
-                        <ion-input label="Creator" ref="crea" :value="task.creator" :readonly="isRead"></ion-input>  
-                        <ion-button @click="isTaskReadOnly">{{ buttonLabel }}</ion-button>
+                        <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Responsibles" ref="resp" :value="task.responsibles" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
+                        <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
+                        <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
                         <ion-button @click="deleteTask">Delete</ion-button>
-                        <!-- <h1>creator: {{ task.creator }}</h1>
-                        <h1>responsible:  {{ task.responsibles }} </h1>
-                        <h1>description:  {{ task.description }} </h1>
-                        <h1>attachment: {{ task.attachments }} </h1>
-                        <h1>deadline:  {{ task.deadline }} </h1> -->
                     </form>
                 </div>
             </ion-col>
@@ -58,7 +53,7 @@ import { closeCircle } from 'ionicons/icons';
                     }           
                 },
                 closeCircle,
-                isRead: true,
+                isEditMode: false,
                 tit: '',
                 desc: '',
                 dead: '',
@@ -75,28 +70,42 @@ import { closeCircle } from 'ionicons/icons';
             },
 
             buttonLabel() {
-                return this.isRead ? 'Edit' : 'Save'
-            }    
+                return this.isEditMode ? 'Save' : 'Edit'
+            },
+
+            isInputEditable() {
+                return this.isEditMode ? 'solid' : 'outline'
+            }
         },
 
         methods: {
-            isTaskReadOnly() {
-                if(!this.isRead) {
-                    const newTitle = this.$refs.tit.value;
-                    const newDesc = this.$refs.desc.value;
-                    const newDead = this.$refs.dead.value;
-                    const newResp = this.$refs.resp.value;
-                    const newRepeat = this.$refs.repeat.value;
-                    const newAtt = this.$refs.att.value;
-                    const newCrea = this.$refs.crea.value;
-                    tasks.updateTask(this.taskId, newTitle, newDesc, newDead, newResp, newRepeat, newAtt, newCrea)
+            saveTask() {
+                if(this.isEditMode) {
+                    this.task.title = this.$refs.tit.value;
+                    this.task.description = this.$refs.desc.value;
+                    this.task.deadline = this.$refs.dead.value;
+                    this.task.responsibles = this.$refs.resp.value;
+                    this.task.repeatable = this.$refs.repeat.value;
+                    this.task.attachments = this.$refs.att.value;
+                    this.task.creator = this.$refs.crea.value;
+                    tasks.updateTask(this.taskId, this.task)
                 }
-                return this.isRead = !this.isRead;
+                this.changeEditMode();
+            },
+
+            changeEditMode() {
+                this.isEditMode = !this.isEditMode;
+
+            },
+
+            onClickButton() {
+                this.isEditMode ? this.saveTask() : this.changeEditMode()
             },
 
             deleteTask() {
                 tasks.deleteTask(this.taskId)
                 this.$refs.form.reset();
+                this.$router.push('/main-page')
             }
         },
 
@@ -125,4 +134,16 @@ import { closeCircle } from 'ionicons/icons';
             color: #4ade80;       
         }
     }
+
+    .is-input-visible {
+        .color{
+            background-color: #355155;
+        }
+        
+    }
+
+    .size {
+        height: 100%;
+    }
+
 </style>

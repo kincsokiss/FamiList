@@ -35,7 +35,6 @@
 <template>
   <ion-item detail="true" :href="detailsPageURL">
     <ion-label>
-      <!-- <h3 class="color-light"> {{ detailsPageURL }} </h3> -->
       <h3 class="color-light"> {{ this.task.title }} </h3>
       <p> {{ this.task.description }} </p>
       <p> {{ this.task.deadline }}</p>
