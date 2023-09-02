@@ -1,25 +1,24 @@
 
 <template>
   <h1>To-Do List</h1>
-  <span class="text_">Create</span>
   <router-link to="/create-task" class="pos">
     <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
   </router-link>
       
-  <ion-content class="to-do-list">
+  <ion-content>
     <ion-list>
-      <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
+        <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
     </ion-list>
   </ion-content>
 </template>
 
 <script>
-  import { IonList } from '@ionic/vue';
   import { defineComponent } from 'vue';
   import TaskItem from './TaskItem.vue';
   import tasks from '../modules/tasks';
   import { IonContent } from '@ionic/vue';
   import { addCircleOutline } from 'ionicons/icons';
+  import { IonList,  } from '@ionic/vue';
 
 
   export default defineComponent ({
@@ -27,7 +26,7 @@
     components: { 
       IonList,
       TaskItem,
-      IonContent
+      IonContent,
     },
 
     data() {
@@ -54,10 +53,6 @@
 
 <style scoped>
 
-  .fix {
-    height: 100%;
-  }
-
   .logo_ {
     margin-bottom: 0.5rem;
     font-size: 2rem;
@@ -69,17 +64,6 @@
     }
   }
 
-  .text_ {
-    color: #f1f5f9;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: end;
-    position: relative;
-    top: -3rem;
-  }
-
   .pos {
     display: flex;
     justify-content: end;
@@ -89,6 +73,8 @@
   }
 
   ion-content {
-    top: -4.1rem;
+    top: -2.5rem;
+    max-width: 100%;
+    height: 100%;
   }
 </style>
