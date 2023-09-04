@@ -18,7 +18,7 @@
                         <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
                         <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
                         <ion-input class="text" label="Attachment" ref="att"></ion-input>
-                        <ion-input class="text" label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+                        <ion-input class="text" label="Creator" :value="this.user.name"></ion-input>    
                         <ion-button type="submit">{{ buttonLabel }}</ion-button>
                     </form>
                 </div>
@@ -33,6 +33,8 @@
     import { toastController } from '@ionic/vue';
     import tasks from '../modules/tasks';
     import { closeCircle } from 'ionicons/icons';
+    import { getAuth, onAuthStateChanged } from 'firebase/auth';
+    import users from '../modules/users';
 
     export default defineComponent({
     name:'CreateTask',
@@ -47,6 +49,8 @@
             att: '',
             creator: '',
             closeCircle,
+            userAuthId: '',
+            userId: '',
             task: {
                 default: {
                     title: '',
@@ -57,9 +61,27 @@
                     attachments: '',
                     creator: ''
                 }
+            },
+            user: {
+                default: {
+                    name: ''
+                }
             }
         };
     },
+
+    created() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            this.userAuthId = user.uid;
+            this.fetchUserData();
+        } else {
+            this.userAuthId = null;
+        }
+        });
+    },
+    
 
     computed: {
 
@@ -77,6 +99,25 @@
                 });
 
                 await toast.present();
+        },
+
+        async fetchUserData() {
+            try {
+                this.userId = await users.searchUserByAuthID(this.userAuthId);
+                console.log(this.userId)
+                this.getUserData()
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+            },
+
+            async getUserData() {
+                try{
+                    this.user = await users.searchUserByID(this.userId);
+                    console.log(this.user);
+                } catch (error) {
+                    console.log('Error in getUserData: ', error);
+                }
         },
 
         formSubmit(e) {
@@ -133,8 +174,8 @@
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
-        color: #f7d6c5;
-        top: -3rem;
+        color: #191514;
+        top: -1rem;
         
         &:hover {
             color: #312b27;       

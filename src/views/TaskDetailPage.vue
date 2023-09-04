@@ -34,8 +34,8 @@
 
 <script>
 import tasks from '../modules/tasks';
-import { IonButton, IonAlert } from '@ionic/vue';
 import { toastController } from '@ionic/vue';
+import { IonButton, IonAlert } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
 
     export default({
@@ -190,17 +190,6 @@ import { closeCircle } from 'ionicons/icons';
         &:hover {
             background-color: #191514;
         }
-    }
-
-    .is-input-visible {
-        .color{
-            background-color: #355155;
-        }
-        
-    }
-
-    .size {
-        height: 100%;
     }
 
 </style>

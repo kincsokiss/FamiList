@@ -1,5 +1,4 @@
 <template>
-    <h1>Calendar</h1>
     <ion-row>
       <ion-col>
         <ion-datetime presentation="date" :highlighted-dates="taskDeadlines" class="full-width"></ion-datetime>
@@ -36,7 +35,7 @@
 <style scoped>
   .full-width {
     max-width: 100%;
-    background-color: grey;
+    background-color: #f3bdaa;
     color:black;
   }
 

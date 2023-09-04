@@ -1,6 +1,6 @@
 
 <template>
-  <h1>To-Do List</h1>
+  <h1>To-Do</h1>
   <router-link to="/create-task" class="pos">
     <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
   </router-link>
@@ -72,7 +72,6 @@
       color: #312b27;
     }
   }
-
   .pos {
     display: flex;
     justify-content: end;
@@ -83,7 +82,7 @@
 
   ion-content {
     top: -2.5rem;
-    max-width: 100%;
-    height: 100%;
+    max-width: 200%;
+    height: 200%;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <ion-app>
-    <HeaderVue/>    
+    <HeaderVue v-if="isVisible"/>    
     <ion-page id="main-content">
       <router-view/>
     </ion-page>
@@ -10,13 +10,33 @@
 <script>
 import HeaderVue from './views/Header.vue';
 // import FooterVue from './views/Footer.vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default {
     name: 'App',
     components: {
       HeaderVue,
       // FooterVue,
-  },
+    },
+
+    data(){
+      return{ isVisible: false }
+    },
+
+    created() {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if(user){
+          this.$router.push('/main-page');
+          this.isVisible = true;
+          console.log(user.uid)
+        } else {
+          this.isVisible = false;
+          this.$router.push('/');
+        }
+      })
+    }
+    
 };
 </script>
 

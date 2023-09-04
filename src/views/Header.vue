@@ -1,7 +1,7 @@
 <template>
   <SideBar/>
     <ion-header>
-        <ion-toolbar>
+        <ion-toolbar class="style">
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
@@ -18,3 +18,12 @@
    }
   });
  </script>
+
+<style scoped>
+  ion-toolbar {
+    div {
+      background-color: #f3bdaa;
+    }
+    
+  }
+</style>
