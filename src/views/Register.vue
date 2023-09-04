@@ -14,7 +14,6 @@
                         <ion-button type="submit">Create</ion-button>
                         <!-- <p>OR</p>
                         <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
-                        <label>Hello {{ name }} :) </label>
                     </form>
                 </ion-col>
             </ion-row>
@@ -54,14 +53,16 @@
 
             if(age >= 18) rank = "adult";
 
-            users.addUser(name, age, rank, phonenumber);
-
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, password)
             .then((data) => {
                 console.log(data, "Successfully registered!");
                 console.log(auth.currentUser)
 
+                const user = auth.currentUser;
+                const uid = user.uid;
+
+                users.addUser(name, age, rank, phonenumber, uid);
                 this.$router.push('/main-page')
             }) 
             .catch((error) => {
@@ -72,22 +73,10 @@
             this.$refs.form.reset();
         },
 
-        // 
-        // googleSignIn: function() {
-        //     let provider = new firebase.auth.GoogleAuthProvider();
-        //     firebase
-        //             .auth()
-        //             .signInWithPopup(provider)
-        //             .then((result) => {
-        //                 let token = result.credential.accessToken;
-        //                 let user = result.user;
-        //                     console.log(token)
-        //                     console.log(user)
-        //             })
-        //             .catch((err) => {
-        //                 console.log(err);
-        //             })
-        // }
+        
+        googleSignIn() {
+            
+        }
 
     },
     

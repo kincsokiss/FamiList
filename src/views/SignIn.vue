@@ -44,6 +44,7 @@
                 console.log(auth.currentUser)
 
                 this.$router.push('/main-page')
+                this.$refs.form.reset();
             }) 
             .catch((error) => {
                 console.log(error.code);
@@ -63,7 +64,7 @@
                 }
             })
 
-            this.$refs.form.reset();
+            
             
         },
 

@@ -135,15 +135,4 @@ import { closeCircle } from 'ionicons/icons';
         }
     }
 
-    .is-input-visible {
-        .color{
-            background-color: #355155;
-        }
-        
-    }
-
-    .size {
-        height: 100%;
-    }
-
 </style>

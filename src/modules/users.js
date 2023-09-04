@@ -2,19 +2,21 @@ import firebaseDb from "./firebase"
 
 class UsersModule {
   constructor() {
-  //  this.getUsers();\
-  //this.deleteUser('ABQFbm6JnlQx1eDSeBJh');
+  // this.getUsers();
+  // this.deleteUser('ABQFbm6JnlQx1eDSeBJh');
   // this.addUser('Kati', 17, 'Child', '07453468768');
   // this.updateUser('UlWHuHmaDgc2R0oTeFo0','Hanuka', 5, 'kiskocsag', '0776154686');
-  // this.searchUserByID('UlWHuHmaDgc2R0oTeFo0');
+  // this.searchUserByID('DPNL6AbhecyhJzD7gBI0');
+  // this.searchUserByAuthID('LmPKLXfGtFfEjIOOooScPIwFih12');
   }
-  async addUser(name, age, rank, phoneNumber) {
+  async addUser(name, age, rank, phoneNumber, id) {
       try {
         const userId = await firebaseDb.storeDoc('Users',{
-          Age: age,
-          Name: name,
-          Rank: rank,
-          PhoneNumber: phoneNumber
+          age: age,
+          name: name,
+          rank: rank,
+          phoneNumber: phoneNumber,
+          id: id
         });
 
         console.log(userId);
@@ -23,13 +25,14 @@ class UsersModule {
       }
   }
 
-  async updateUser(documentID, newName, newAge, newRank, newPhoneNumber) {
+  async updateUser(documentID, user) {
     try {
       await firebaseDb.editDoc('Users', documentID, {
-        age: newAge,
-        name: newName,
-        rank: newRank,
-        phoneNumber: newPhoneNumber
+        age: user.age,
+        name: user.name,
+        rank: user.rank,
+        phoneNumber: user.phoneNumber,
+        id: user.id
       });
       console.log('User updated');
     } catch (error) {
@@ -47,12 +50,23 @@ class UsersModule {
     console.log('Users= ', Users);
   }
 
-  async searchUserByID(documentId){
+  async searchUserByAuthID(authId){
     try{
-      const datas = await firebaseDb.searchDocbyID('Users', documentId);
-      console.log(datas);
+      const datas = await firebaseDb.searchDocbyAuthID('Users', authId);
+      console.log(datas)
+      return datas;
     } catch (error) {
-      console.log('searchUserbyID has failed: ', error);
+      console.log('searchUserbyAuthID has failed: ', error);
+    }
+  }
+
+  async searchUserByID(dataId){
+    try {
+      const datas = await firebaseDb.searchDocbyID('Users', dataId);
+      console.log(datas)
+      return datas;
+    } catch (error) {
+      console.log('searchUserByID has failed: ', error);
     }
   }
 
