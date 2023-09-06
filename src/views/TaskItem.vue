@@ -25,7 +25,6 @@
 
     mounted(){
       this.detailsPageURL = '/tasks/' + this.task.id;
-      console.log(this.detailsPageURL);
     }
 
   });

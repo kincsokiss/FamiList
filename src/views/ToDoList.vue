@@ -37,7 +37,6 @@
 
     async mounted() {
       this.tasks = await tasks.getTasks();
-      console.log(this.tasks);
     },
     
 

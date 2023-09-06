@@ -18,7 +18,13 @@
                         <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
                         <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
                         <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
-                        <ion-button @click="deleteTask">Delete</ion-button>
+                        <ion-button id="present-alert">Delete</ion-button>
+                        <ion-alert
+                            trigger="present-alert"
+                            sub-header="Important message"
+                            message="Are you sure you want to delete this task?"
+                            :buttons="alertButtons"
+                        ></ion-alert>
                     </form>
                 </div>
             </ion-col>
@@ -28,7 +34,7 @@
 
 <script>
 import tasks from '../modules/tasks';
-import { IonButton } from '@ionic/vue';
+import { IonButton, IonAlert } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
 
     export default({
@@ -36,6 +42,7 @@ import { closeCircle } from 'ionicons/icons';
 
         components: {
             IonButton,
+            IonAlert
         },
 
         data() {
@@ -60,9 +67,11 @@ import { closeCircle } from 'ionicons/icons';
                 resp: '',
                 repeat: '',
                 att: '',
-                crea: ''
+                crea: '',
+                alertButtons: []
             };
         },
+        
 
         computed:{
             taskId(){
@@ -106,12 +115,27 @@ import { closeCircle } from 'ionicons/icons';
                 tasks.deleteTask(this.taskId)
                 this.$refs.form.reset();
                 this.$router.push('/main-page')
-            }
+            },
+            
         },
 
         async mounted(){
-            this.task = await tasks.searchTaskByID(this.taskId)
-        }
+            this.task = await tasks.searchTaskByID(this.taskId);
+
+             this.alertButtons = [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Delete',
+                    role: 'destructive',
+                    handler: () => {
+                        this.deleteTask(this.task)
+                    }
+                }
+            ];
+        },
     });
 </script>
 
