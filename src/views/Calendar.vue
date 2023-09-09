@@ -21,5 +21,13 @@
 <style scoped>
   .full-width {
     max-width: 100%;
+    background-color: #191514;
   }
+
+  h1{
+    color: #191514;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
 </style>
