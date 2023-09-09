@@ -22,11 +22,11 @@ export default {
 
 <style scoped>
   :root {
-    --primary: #4ade80;
-    --grey: #64748b;
-    --dark: #1e293b;
-    --dark-alt: #334155;
-    --light: #f1f5f9;
+    --primary: #d87f79;
+    --grey: #4d433d;
+    --dark: #191514;
+    --dark-alt: #312b27;
+    --light: rgb(247, 214, 197);
   }
 
   button {

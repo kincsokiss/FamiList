@@ -2,7 +2,7 @@
     <ion-menu content-id="main-content" class="is-expanded">
       <ion-header>
         <ion-toolbar>
-            <ion-icon :icon="listCircleOutline" size="large" class="logo"></ion-icon>
+            <!-- <ion-icon :icon="listCircleOutline" size="large" class="logo"></ion-icon> -->
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -56,14 +56,14 @@
 
                 .material {
                     font-size: 2rem;
-                    color: #f1f5f9;
+                    color: #f7d6c5;
                     transition: 0.2s ease-out;
                     width: 2rem;
                 }
 
                 &:hover {
                     .material {
-                        color: #4ade80;
+                        color: #312b27;
                         transform: translateX(0.5rem);
                     }
                 }
@@ -77,6 +77,7 @@
         
         .menu {
             margin: 0 -1rem;
+            background-color: #f7d6c5;
 
             .button {
                 align-items: center;
@@ -84,27 +85,27 @@
 
                 padding: 0.5rem 1rem;
                 transition: 0.2s ease-out;
-
-                .material {
-                    font-size: 2rem;
-                    color: #f1f5f9;
-                    transition: 0.2s ease-out;
-                }
+                font-size: 150%;
+                // .material {
+                //     font-size: 2rem;
+                //     color: #191514;
+                //     transition: 0.2s ease-out;
+                // }
 
                 .text {
-                    color: #f1f5f9;
+                    color: #191514;
                     transition: 0.2s ease-out;
                 }
 
                 &:hover, &.router-link-exact-active {
                     
                     .material, .text {
-                        color: #4ade80;
+                        color: #d87f79;
                     }
                 }
 
                 .router-link-exact-active {
-                    border-right: 5px solid #4ade80;
+                    border-right: 5px solid#4d433d;
                 }
             }
         }

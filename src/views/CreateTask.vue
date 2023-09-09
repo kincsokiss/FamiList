@@ -12,13 +12,13 @@
                             </router-link>
                         </nav>
 
-                        <ion-input label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-                        <ion-input label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-                        <ion-input label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-                        <ion-input label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
-                        <ion-input label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-                        <ion-input label="Attachment" ref="att"></ion-input>
-                        <ion-input label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+                        <ion-input class="text" label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
+                        <ion-input class="text" label="Description" placeholder="Enter the description" ref="desc"></ion-input>
+                        <ion-input class="text" label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
+                        <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
+                        <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
+                        <ion-input class="text" label="Attachment" ref="att"></ion-input>
+                        <ion-input class="text" label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
                         <ion-button type="submit">{{ buttonLabel }}</ion-button>
                     </form>
                 </div>
@@ -102,13 +102,29 @@
 
 <style scoped> 
 
+    .text{
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%; 
+    }
+    
+    h2{
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 5%;
+        margin-bottom: -5%;
+
+    }
     ion-toast.custom-toast {
-        --background: #f4f4fa;
+        --background: #f7d6c5;
         --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
         --color: #4b4a50;
     }
     .back_color {
-        background-color: #1B2F33;
+        background-color: #f7d6c5;
     }
 
     .position {
@@ -117,11 +133,11 @@
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
-        color: #f1f5f9;
+        color: #f7d6c5;
         top: -3rem;
         
         &:hover {
-            color: #4ade80;       
+            color: #312b27;       
         }
     }
 
@@ -130,14 +146,18 @@
         text-align: center;
     }
 
-    h2 {
-        font-size: 30pt;
-        position: relative;
-    }
+    
 
     ion-button {
-        --background: rgb(64, 130, 161);
-        --border-radius: 10px;
+        color: #f7d6c5;
+        text-decoration: none;
+        background-color: #312b27;
+        
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        &:hover {
+            background-color: #191514;
+        }
     }
 
 </style>

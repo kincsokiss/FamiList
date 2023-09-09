@@ -10,8 +10,9 @@
       task: {
         default: {
           title: '',
-          description: '',
+          creator:'',
           deadline: '',
+          description: '',
           id: ''
         }
       } 
