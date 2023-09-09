@@ -14,6 +14,7 @@
 
 <script>
     import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+    import { toastController } from "@ionic/vue";
     
     export default({
     name:'SignInPage',
@@ -32,6 +33,16 @@
     },
 
     methods: {
+        async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'User succesfully signed in!',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+        },
+
         formSubmit(e) {
             e.preventDefault();
             const email = this.$refs.email.value;
@@ -43,6 +54,7 @@
                 console.log(data, "Successfully signed in!");
                 console.log(auth.currentUser)
 
+                this.presentToast();
                 this.$router.push('/main-page')
             }) 
             .catch((error) => {

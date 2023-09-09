@@ -30,6 +30,7 @@
 
 <script>
     import { defineComponent } from 'vue';
+    import { toastController } from '@ionic/vue';
     import tasks from '../modules/tasks';
     import { closeCircle } from 'ionicons/icons';
 
@@ -46,7 +47,6 @@
             att: '',
             creator: '',
             closeCircle,
-            isTaskUpdating: false,
             task: {
                 default: {
                     title: '',
@@ -69,6 +69,16 @@
     },
 
     methods: {
+        async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'Task has been created',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+        },
+
         formSubmit(e) {
             e.preventDefault();
             const title = this.$refs.title.value;
@@ -79,12 +89,9 @@
             const att = this.$refs.att.value;
             const creator = this.$refs.creator.value;
 
-            if(!this.isTaskUpdating){
-                tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
-            }
-            else{
-                tasks.updateTask(this.task.id, title, desc, deadline, resp, repeat, att, creator)
-            }
+
+            tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
+            this.presentToast();
             this.$refs.form.reset();
         },
     },
@@ -94,6 +101,12 @@
 </script>
 
 <style scoped> 
+
+    ion-toast.custom-toast {
+        --background: #f4f4fa;
+        --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+        --color: #4b4a50;
+    }
     .back_color {
         background-color: #1B2F33;
     }
