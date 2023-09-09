@@ -24,6 +24,7 @@
 
 <script>
     import users from '../modules/users.js';
+    import { toastController } from '@ionic/vue';
     import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
     // import firebase from "firebase";
 
@@ -42,6 +43,16 @@
     },
 
     methods: {
+        async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'User has been created!',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+        },
+
         formSubmit(e) {
             e.preventDefault();
             const name = this.$refs.name.value;
@@ -62,6 +73,7 @@
                 console.log(data, "Successfully registered!");
                 console.log(auth.currentUser)
 
+                this.presentToast();
                 this.$router.push('/main-page')
             }) 
             .catch((error) => {

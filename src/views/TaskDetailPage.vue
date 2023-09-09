@@ -35,6 +35,7 @@
 <script>
 import tasks from '../modules/tasks';
 import { IonButton, IonAlert } from '@ionic/vue';
+import { IonButton, toastController } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
 
     export default({
@@ -88,6 +89,16 @@ import { closeCircle } from 'ionicons/icons';
         },
 
         methods: {
+            async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'Task has been saved',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+            },
+
             saveTask() {
                 if(this.isEditMode) {
                     this.task.title = this.$refs.tit.value;
@@ -100,6 +111,7 @@ import { closeCircle } from 'ionicons/icons';
                     tasks.updateTask(this.taskId, this.task)
                 }
                 this.changeEditMode();
+                this.presentToast();
             },
 
             changeEditMode() {
