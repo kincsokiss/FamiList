@@ -1,5 +1,6 @@
 <template>
-    <ion-grid>
+  <body class="main">
+    <ion-grid >
       <ion-row>
         <ion-col>
           <CalendarItem/>
@@ -11,6 +12,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </body>
+    
 </template>
 
 <script>
@@ -34,7 +37,8 @@ import CalendarItem from './Calendar.vue';
     --opacity: 0.5;
   }
 
-  main {
+  .main {
     max-height: 100%;
+    background-color: #f7d6c5;
   }
 </style>

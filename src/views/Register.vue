@@ -1,20 +1,20 @@
 <template>
-    <main class="dimensions back_color">
+    <main class="dimensionsback_color">
         <ion-grid>
             <ion-row>
                 <ion-col>
                     <form ref="form" @submit="formSubmit">
                         <h1>Create an Account</h1>
-                        <ion-input label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
-                        <ion-input label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
-                        <ion-input label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
+                        <ion-input class="text" label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
+                        <ion-input class="text" label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
+                        <ion-input class="text" label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
                         
-                        <ion-input label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-                        <ion-input label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                        <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+                        <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
                         <ion-button type="submit">Create</ion-button>
                         <!-- <p>OR</p>
                         <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
-                        <label>Hello {{ name }} :) </label>
+                        <!-- <label>Hello {{ name }} :) </label> -->
                     </form>
                 </ion-col>
             </ion-row>
@@ -24,6 +24,7 @@
 
 <script>
     import users from '../modules/users.js';
+    import { toastController } from '@ionic/vue';
     import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
     // import firebase from "firebase";
 
@@ -42,6 +43,16 @@
     },
 
     methods: {
+        async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'User has been created!',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+        },
+
         formSubmit(e) {
             e.preventDefault();
             const name = this.$refs.name.value;
@@ -62,6 +73,7 @@
                 console.log(data, "Successfully registered!");
                 console.log(auth.currentUser)
 
+                this.presentToast();
                 this.$router.push('/main-page')
             }) 
             .catch((error) => {
@@ -97,8 +109,16 @@
 
 <style scoped>
 
+    .text{
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%; 
+    }
+
     ion-grid {
-        background-color: #1B2F33;
+        background-color: #f7d6c5;
     }
 
     ion-col {
@@ -106,14 +126,23 @@
     }
 
     h1 {
-        font-size: 25pt;
-        position: relative;
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
     }
 
     ion-button {
-        --background: rgb(64, 130, 161);
-        --border-radius: 10px;
+        color: #f7d6c5;
+        text-decoration: none;
+        background-color: #312b27;
+        
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        &:hover {
+            background-color: #191514;
+        }
     }
+
 
     
 </style>
