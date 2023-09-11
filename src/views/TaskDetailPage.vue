@@ -35,6 +35,7 @@
 <script>
 import tasks from '../modules/tasks';
 import { IonButton, IonAlert } from '@ionic/vue';
+import { toastController } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
 
     export default({
@@ -88,6 +89,16 @@ import { closeCircle } from 'ionicons/icons';
         },
 
         methods: {
+            async presentToast(position = 'middle'){
+                const toast = await toastController.create({
+                    message: 'Task has been saved',
+                    duration: 1500,
+                    position: position
+                });
+
+                await toast.present();
+            },
+
             saveTask() {
                 if(this.isEditMode) {
                     this.task.title = this.$refs.tit.value;
@@ -100,6 +111,7 @@ import { closeCircle } from 'ionicons/icons';
                     tasks.updateTask(this.taskId, this.task)
                 }
                 this.changeEditMode();
+                this.presentToast();
             },
 
             changeEditMode() {
@@ -140,10 +152,18 @@ import { closeCircle } from 'ionicons/icons';
 </script>
 
 <style scoped>
+    .text{
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%; 
+    }
+
     ion-col {
         position: absolute;
         text-align: center;
-        background-color: #1B2F33;
+        background-color: #f7d6c5;
     }
 
     .position {
@@ -152,10 +172,23 @@ import { closeCircle } from 'ionicons/icons';
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
-        color: #f1f5f9;
+        color: #f7d6c5;
+        top: -3rem;
         
         &:hover {
-            color: #4ade80;       
+            color: #312b27;       
+        }
+    }
+
+    .button {
+        color: #f7d6c5;
+        text-decoration: none;
+        background-color: #312b27;
+        
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        &:hover {
+            background-color: #191514;
         }
     }
 

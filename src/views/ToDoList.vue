@@ -6,7 +6,7 @@
   </router-link>
       
   <ion-content>
-    <ion-list>
+    <ion-list class="ion-list">
         <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
     </ion-list>
   </ion-content>
@@ -52,14 +52,24 @@
 
 <style scoped>
 
+  .ion-list{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  h1{
+    color: #191514;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
   .logo_ {
     margin-bottom: 0.5rem;
     font-size: 2rem;
-    color: #f1f5f9;
+    color:#191514;
     width: 2rem;
 
     &:hover {
-      color: #4ade80;
+      color: #312b27;
     }
   }
 

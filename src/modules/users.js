@@ -26,10 +26,11 @@ class UsersModule {
   async updateUser(documentID, newName, newAge, newRank, newPhoneNumber) {
     try {
       await firebaseDb.editDoc('Users', documentID, {
-        age: newAge,
-        name: newName,
-        rank: newRank,
-        phoneNumber: newPhoneNumber
+        age: user.age,
+        name: user.name,
+        rank: user.rank,
+        phoneNumber: user.phoneNumber,
+        uid: user.id
       });
       console.log('User updated');
     } catch (error) {
