@@ -65,6 +65,16 @@ class TasksModule {
     }
   }
   
+  async searchTaskByDeadline(documentDeadline){
+    try{
+      const datas = await firebaseDb.searchDocbyDeadline('Tasks', documentDeadline);
+      console.log(datas);
+      return datas;
+    } catch (error) {
+      console.log('searchTaskbyDeadline has failed: ', error);
+    }
+  }
+  //where
 
 }
 const tasks = new TasksModule();
