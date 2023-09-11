@@ -35,7 +35,7 @@
 <script>
 import tasks from '../modules/tasks';
 import { IonButton, IonAlert } from '@ionic/vue';
-import { IonButton, toastController } from '@ionic/vue';
+import { toastController } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
 
     export default({
