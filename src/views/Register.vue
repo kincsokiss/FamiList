@@ -73,6 +73,10 @@
                 console.log(data, "Successfully registered!");
                 console.log(auth.currentUser)
 
+                const user = auth.currentUser;
+                const uid = user.uid;
+
+                users.addUser(name, age, rank, phonenumber, uid);
                 this.presentToast();
                 this.$router.push('/main-page')
             }) 

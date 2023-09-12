@@ -83,7 +83,7 @@
 
   ion-content {
     top: -2.5rem;
-    max-width: 100%;
-    height: 100%;
+    max-width: 200%;
+    height: 200%;
   }
 </style>
