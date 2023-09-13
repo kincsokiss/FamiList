@@ -1,14 +1,16 @@
 <template>
     <main class="details">
-        <form ref="form" @submit="formSubmit">
-            <h4 class="size" >Login to Your Account</h4>
-            <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-            <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
-            <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
-            <ion-button type="submit" class="ion-button">Submit</ion-button>
-            <!-- <p>OR</p>
-            <ion-button @click="signInWithGoogle">Sign In With Google</ion-button> -->
-        </form>
+        <ion-card>
+            <form ref="form" @submit="formSubmit">
+                <h4 class="size" >Login to Your Account</h4>
+                <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+                <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
+                <ion-button type="submit" class="ion-button">Submit</ion-button>
+                <!-- <p>OR</p>
+                <ion-button @click="signInWithGoogle">Sign In With Google</ion-button> -->
+            </form>
+        </ion-card>
     </main>
 </template>  
 
@@ -85,10 +87,10 @@
     }
     .text{
         color: #191514;
+        font-family: 'Poppins', sans-serif;
     }
 
     .details {
-        background-color: #f7d6c5;
         text-align: center;
         position: relative;
     }
@@ -114,5 +116,12 @@
         }
     }
 
+    ion-card {
+        text-align: center;
+        background-color: #fae6dc;
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+    }
 
 </style>

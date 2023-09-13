@@ -1,31 +1,26 @@
 <template>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <div>
-                    <form ref="form" @submit="formSubmit" class="back_color">
-                        <h2>Create a new task!</h2>
+    <ion-card>
+        <form ref="form" @submit="formSubmit" class="back_color">
+            
 
-                        <nav>
-                            <router-link to="/main-page">
-                                <ion-icon :icon="closeCircle" class="position"></ion-icon>
-                            </router-link>
-                        </nav>
+            <nav>
+                <router-link to="/main-page">
+                    <ion-icon :icon="closeCircle" class="position"></ion-icon>
+                </router-link>
+            </nav>
 
-                        <ion-input class="text" label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-                        <ion-input class="text" label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-                        <ion-input class="text" label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-                        <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
-                        <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-                        <ion-input class="text" label="Attachment" ref="att"></ion-input>
-                        <ion-input class="text" label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
-                        <ion-button type="submit">{{ buttonLabel }}</ion-button>
-                    </form>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    
+            <h2>Create a new task!</h2>
+
+            <ion-input class="text" label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
+            <ion-input class="text" label="Description" placeholder="Enter the description" ref="desc"></ion-input>
+            <ion-input class="text" label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
+            <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
+            <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
+            <ion-input class="text" label="Attachment" ref="att"></ion-input>
+            <ion-input class="text" label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+            <ion-button type="submit">{{ buttonLabel }}</ion-button>
+        </form>
+    </ion-card>
 </template>
 
 <script>
@@ -102,20 +97,24 @@
 
 <style scoped> 
 
+    ion-card {
+        text-align: center;
+        background-color: #fae6dc;
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+    }
+
     .text{
         color: #191514;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        margin-left: 5%;
-        margin-right: 5%; 
     }
     
     h2{
         color: #191514;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        padding-top: 5%;
-        margin-bottom: -5%;
 
     }
     ion-toast.custom-toast {
@@ -123,29 +122,18 @@
         --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
         --color: #4b4a50;
     }
-    .back_color {
-        background-color: #f7d6c5;
-    }
+
 
     .position {
         display: flex;
         justify-content: end;
-        margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
-        top: -1rem;
         
         &:hover {
             color: #312b27;       
         }
-    }
-
-    ion-col {
-        position: absolute;
-        text-align: center;
-    }
-
-    
+    }   
 
     ion-button {
         color: #f7d6c5;

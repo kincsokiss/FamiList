@@ -4,15 +4,10 @@
         <ion-row>
           <ion-col>
             <SignInPage/>
-          </ion-col>          
-        </ion-row>
-        <ion-row>
-          <ion-col>
             <NewHere/>
           </ion-col>          
         </ion-row>
       </ion-grid>
-      
     </main> 
 </template>
 
@@ -32,4 +27,8 @@
 
 <style scoped> 
 
+
+  ion-col {
+    background-color: #f7d6c5;
+  }
 </style>

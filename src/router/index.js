@@ -24,10 +24,11 @@ import UserDetailPage from '@/views/UserDetailPage.vue';
     
   ];
   
-    const router = createRouter({
+  const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
   })
+
 
 const app = createApp({});
 

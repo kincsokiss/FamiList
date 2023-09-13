@@ -20,17 +20,13 @@ class FirebaseDbModule{
             appId: "1:381982770857:web:7f6688d841e12e584bcbb8"
           };
           
-          // initialize firebase app
           initializeApp(firebaseConfig);
           
     }
 
     storeDoc(collectionName, data) {
 
-        //initialize services
         const dataBase = getFirestore();
-
-        //collection reference
         const collectionReference = collection( dataBase, collectionName );
 
         return addDoc(collectionReference, data)
@@ -70,10 +66,8 @@ class FirebaseDbModule{
     }
 
     getDocs(collectionName){
-        //initialize services
+        
         const dataBase = getFirestore();
-
-        //collection reference
         const collectionReference = collection( dataBase, collectionName );
 
         return getDocs(collectionReference)

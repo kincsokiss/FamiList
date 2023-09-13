@@ -1,24 +1,20 @@
 <template>
     <main class="dimensionsback_color">
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <form ref="form" @submit="formSubmit">
-                        <h1>Create an Account</h1>
-                        <ion-input class="text" label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
-                        <ion-input class="text" label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
-                        <ion-input class="text" label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
-                        
-                        <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-                        <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
-                        <ion-button type="submit">Create</ion-button>
-                        <!-- <p>OR</p>
-                        <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
-                        <!-- <label>Hello {{ name }} :) </label> -->
-                    </form>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+        <ion-card>
+            <form ref="form" @submit="formSubmit">
+                <h1>Create an Account</h1>
+                <ion-input class="text" label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
+                <ion-input class="text" label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
+                <ion-input class="text" label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
+                
+                <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
+                <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <ion-button type="submit">Create</ion-button>
+                <!-- <p>OR</p>
+                <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
+                <!-- <label>Hello {{ name }} :) </label> -->
+            </form>
+        </ion-card>
     </main>
 </template>   
 
@@ -112,7 +108,13 @@
 </script>
 
 <style scoped>
-
+    ion-card {
+        text-align: center;
+        background-color: #fae6dc;
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+    }
     .text{
         color: #191514;
         font-weight: bold;

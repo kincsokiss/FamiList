@@ -38,3 +38,9 @@
 
   });
  </script>
+
+ <style scoped>
+  ion-toolbar {
+    --background: #c5636578;
+  }
+</style>

@@ -1,35 +1,29 @@
 <template>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <div>
-                    <nav>
-                        <router-link to="/main-page">
-                            <ion-icon :icon="closeCircle" class="position"></ion-icon>
-                        </router-link>
-                    </nav>
+    <ion-card>
+        <nav>
+            <router-link to="/main-page">
+                <ion-icon :icon="closeCircle" class="position"></ion-icon>
+            </router-link>
+        </nav>
 
-                    <form ref="form">
-                        <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Responsibles" ref="resp" :value="task.responsibles" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
-                        <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
-                        <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
-                        <ion-button id="present-alert">Delete</ion-button>
-                        <ion-alert
-                            trigger="present-alert"
-                            sub-header="Important message"
-                            message="Are you sure you want to delete this task?"
-                            :buttons="alertButtons"
-                        ></ion-alert>
-                    </form>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+        <form ref="form">
+            <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Responsibles" ref="resp" :value="task.responsibles" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
+            <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
+            <ion-button @click="onClickButton" class="button">{{ buttonLabel }}</ion-button>
+            <ion-button id="present-alert" class="button">Delete</ion-button>
+            <ion-alert
+                trigger="present-alert"
+                sub-header="Important message"
+                message="Are you sure you want to delete this task?"
+                :buttons="alertButtons"
+            ></ion-alert>
+        </form>
+    </ion-card>
 </template>
 
 <script>
@@ -152,18 +146,12 @@ import { closeCircle } from 'ionicons/icons';
 </script>
 
 <style scoped>
-    .text{
-        color: #191514;
-        font-weight: bold;
-        font-family: 'Poppins', sans-serif;
-        margin-left: 5%;
-        margin-right: 5%; 
-    }
-
-    ion-col {
-        position: absolute;
+    ion-card {
         text-align: center;
-        background-color: #f7d6c5;
+        background-color: #fae6dc;
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins', sans-serif;
     }
 
     .position {
@@ -179,7 +167,7 @@ import { closeCircle } from 'ionicons/icons';
     }
 
     .button {
-        color: #f7d6c5;
+        color: #fae6dc;
         text-decoration: none;
         background-color: #312b27;
         
@@ -188,17 +176,6 @@ import { closeCircle } from 'ionicons/icons';
         &:hover {
             background-color: #191514;
         }
-    }
-
-    .is-input-visible {
-        .color{
-            background-color: #355155;
-        }
-        
-    }
-
-    .size {
-        height: 100%;
     }
 
 </style>

@@ -53,6 +53,10 @@ export default {
 
     color: var(--ion-color-medium-shade);
   }
+
+  ion-page {
+    --background: #f7d6c5;
+  }
   
 </style>
 

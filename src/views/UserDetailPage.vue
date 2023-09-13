@@ -1,28 +1,22 @@
 <template>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div>
-            <form ref="form">
-              <ion-input :fill="isInputEditable" label="Name" ref="nam" :value="user.name" :readonly="!isEditMode"></ion-input>
-              <ion-input :fill="isInputEditable" label="Age" ref="ag" :value="user.age" :readonly="!isEditMode"></ion-input>
-              <ion-input label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
-              <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
-              <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
-              <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
-              <ion-button @click="signOutUser">Sign out</ion-button>
-              <ion-button id="present-alert">Delete user</ion-button>
-              <ion-alert
-                  trigger="present-alert"
-                  sub-header="Important message"
-                  message="Are you sure you want to delete this user?"
-                  :buttons="alertButtons"
-              ></ion-alert>
-            </form>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-card>
+      <form ref="form">
+        <ion-input :fill="isInputEditable" label="Name" ref="nam" :value="user.name" :readonly="!isEditMode"></ion-input>
+        <ion-input :fill="isInputEditable" label="Age" ref="ag" :value="user.age" :readonly="!isEditMode"></ion-input>
+        <ion-input fill="outline" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
+        <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
+        <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
+        <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
+        <ion-button @click="signOutUser">Sign out</ion-button>
+        <ion-button id="present-alert">Delete user</ion-button>
+        <ion-alert
+            trigger="present-alert"
+            sub-header="Important message"
+            message="Are you sure you want to delete this user?"
+            :buttons="alertButtons"
+        ></ion-alert>
+      </form>
+    </ion-card>
 </template>
 
 <script>
@@ -190,11 +184,11 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
   </script>
 
 <style scoped>
-    ion-col {
-        position: absolute;
+    ion-card {
         text-align: center;
-        background-color: #f3bdaa;
+        background-color: #fae6dc;
         font-weight: bold;
+        color: black;
         font-family: 'Poppins', sans-serif;
     }
 

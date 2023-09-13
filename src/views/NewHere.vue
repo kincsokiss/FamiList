@@ -1,5 +1,5 @@
 <template>
-    <main class="back_color dimension centered">
+    <main>
         <h2>New Here?</h2>
         <h5>Sign Up and discover the coolest To-Do List for families</h5>
         <router-link to="/register-page" class="ion-button">Sign Up</router-link>
@@ -13,8 +13,15 @@
 </script>
 
 <style scoped>
-    
 
+    main {
+        text-align: center;
+        background-color:#f7d6c5;
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+    }
+    
     .ion-button {
         color: #f7d6c5;
         text-decoration: none;
@@ -31,18 +38,7 @@
     h2,h5{
         color: #191514;
         font-family: 'Poppins', sans-serif;
-    }
-    .back_color {
-        background-color:#f7d6c5 ;
+        
     }
 
-    .dimension {
-        height: 100%;
-        width: 100%;
-    }
-
-    .centered {
-        text-align: center;
-        position: relative;
-    }
 </style>
