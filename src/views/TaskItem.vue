@@ -33,18 +33,26 @@
 </script>
 
 <template>
-  <ion-item detail="true" :href="detailsPageURL">
+  <ion-item detail="true" :href="detailsPageURL"  class="box">
     <ion-label>
-      <h3 class="color-light"> {{ this.task.title }} </h3>
-      <p> {{ this.task.description }} </p>
-      <p> {{ this.task.deadline }}</p>
+      <h3 class="text-color"> {{ this.task.title }} </h3>
+      <p class="text-color"> {{ this.task.description }} </p>
+      <p class="text-color"> {{ this.task.deadline }}</p>
     </ion-label>
   </ion-item>
     
 </template>
 
 <style>
-  .color-light {
-    color:white;
+
+  .box{
+    --ion-item-background: #fae6dc;
+    
   }
+
+  h3, p{
+    --color:#191514;
+  }
+
+  
 </style>

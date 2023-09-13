@@ -4,11 +4,12 @@
   <router-link to="/create-task" class="pos">
     <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
   </router-link>
-      
-  <ion-content>
-    <ion-list class="ion-list">
+  
+  <ion-content class="box">
+      <ion-list class="ion-list">
         <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
     </ion-list>
+    
   </ion-content>
 </template>
 
@@ -52,8 +53,9 @@
 
 <style scoped>
 
+  
   .ion-list{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   h1{
@@ -71,6 +73,15 @@
     &:hover {
       color: #312b27;
     }
+  }
+
+  .box{
+    
+        background-color: #fae6dc;
+        color: #191514;
+        font-family: 'Poppins', sans-serif;
+      
+    
   }
 
   .pos {

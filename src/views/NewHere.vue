@@ -31,6 +31,7 @@
     h2,h5{
         color: #191514;
         font-family: 'Poppins', sans-serif;
+        
     }
     .back_color {
         background-color:#f7d6c5 ;

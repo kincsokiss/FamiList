@@ -85,6 +85,9 @@
     }
     .text{
         color: #191514;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
     .details {
