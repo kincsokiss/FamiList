@@ -41,6 +41,7 @@
             repeat: '',
             att: '',
             creator: '',
+            done: '',
             closeCircle,
             task: {
                 default: {
@@ -50,7 +51,8 @@
                     id: '',
                     responsible: '',
                     attachments: '',
-                    creator: ''
+                    creator: '',
+                    done: ''
                 }
             }
         };
@@ -83,9 +85,10 @@
             const repeat = this.$refs.repeat.value;
             const att = this.$refs.att.value;
             const creator = this.$refs.creator.value;
+            const done = false;
 
 
-            tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
+            tasks.addTask(title, desc, deadline, resp, repeat, att, creator, done);
             this.presentToast();
             this.$refs.form.reset();
         },
