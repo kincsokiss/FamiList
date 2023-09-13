@@ -4,7 +4,9 @@ import {
   addDoc, doc,
   deleteDoc,
   updateDoc,
-  getDoc
+  getDoc,
+  query,
+  where
 } from 'firebase/firestore';
 
 class FirebaseDbModule{
@@ -95,18 +97,16 @@ class FirebaseDbModule{
         }
     }
 
-    async searchDocbyAuthID(collectionName, authID){
-        
+    async searchDocbyUID(collectionName, uid){
         const dataBase = getFirestore();
         const docRef = collection(dataBase, collectionName);
-        const q = query(docRef, where("uid", "==", authID));
+        const q = query(docRef, where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
         if(!querySnapshot.empty){
             const docData = querySnapshot.docs[0].id;
             return docData;
-        }
-        else{
-            console.log('No such document');
+        } else {
+            console.log('No such document')
             return null;
         }
     }

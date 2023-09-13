@@ -9,6 +9,7 @@
 
 <script>
 import HeaderVue from './views/Header.vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import FooterVue from './views/Footer.vue';
 
 export default {
@@ -16,7 +17,16 @@ export default {
     components: {
       HeaderVue,
       // FooterVue,
-  },
+    },
+
+    created() {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if(!user){
+          this.$router.push('/');
+        }
+      })
+    }
 };
 </script>
 

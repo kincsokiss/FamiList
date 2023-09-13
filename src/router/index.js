@@ -8,7 +8,8 @@ import CreateTask from '@/views/CreateTask.vue';
 
 import RegisterPage from '@/views/Register.vue';
 import SignInPage from '@/views/SignIn.vue';
-import TaskDetailPage from '@/views/TaskDetailPage.vue'
+import TaskDetailPage from '@/views/TaskDetailPage.vue';
+import UserDetailPage from '@/views/UserDetailPage.vue';
   
   const routes = [
     { path: '/main-page', name: 'mainpage', component: MainPage },
@@ -18,7 +19,8 @@ import TaskDetailPage from '@/views/TaskDetailPage.vue'
     { path: '/register-page', name: 'registerpage', component: RegisterPage },
     { path: '/sign-in-page', name: 'signinpage', component: SignInPage },
     { path: '/create-task', name: 'createtask', component: CreateTask },
-    { path: '/tasks/:taskid', component: TaskDetailPage }
+    { path: '/tasks/:taskid', component: TaskDetailPage },
+    { path: '/user-detail-page', component: UserDetailPage }
     
   ];
   

@@ -18,7 +18,7 @@
 
             <nav>
                 <div id="nav">
-                    <router-link to="/" class="button">
+                    <router-link to="/user-detail-page" class="button">
                         <ion-icon :icon="settingsOutline" class="material"></ion-icon>
                         <span class="text">User Settings</span>
                     </router-link>
@@ -77,7 +77,6 @@
         
         .menu {
             margin: 0 -1rem;
-            background-color: #f7d6c5;
 
             .button {
                 align-items: center;

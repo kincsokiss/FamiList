@@ -8,13 +8,14 @@ class UsersModule {
   // this.updateUser('UlWHuHmaDgc2R0oTeFo0','Hanuka', 5, 'kiskocsag', '0776154686');
   // this.searchUserByID('UlWHuHmaDgc2R0oTeFo0');
   }
-  async addUser(name, age, rank, phoneNumber) {
+  async addUser(name, age, rank, phoneNumber, id) {
       try {
         const userId = await firebaseDb.storeDoc('Users',{
-          Age: age,
-          Name: name,
-          Rank: rank,
-          PhoneNumber: phoneNumber
+          age: age,
+          name: name,
+          rank: rank,
+          phoneNumber: phoneNumber,
+          uid: id
         });
 
         console.log(userId);
@@ -23,14 +24,13 @@ class UsersModule {
       }
   }
 
-  async updateUser(documentID, newName, newAge, newRank, newPhoneNumber) {
+  async updateUser(documentID, user) {
     try {
       await firebaseDb.editDoc('Users', documentID, {
         age: user.age,
         name: user.name,
         rank: user.rank,
-        phoneNumber: user.phoneNumber,
-        uid: user.id
+        phoneNumber: user.phoneNumber
       });
       console.log('User updated');
     } catch (error) {
@@ -51,9 +51,18 @@ class UsersModule {
   async searchUserByID(documentId){
     try{
       const datas = await firebaseDb.searchDocbyID('Users', documentId);
-      console.log(datas);
+      return datas;
     } catch (error) {
       console.log('searchUserbyID has failed: ', error);
+    }
+  }
+
+  async searchUserbyUID(uid){
+    try{
+      const datas = await firebaseDb.searchDocbyUID('Users', uid);
+      return datas;
+    } catch(error) {
+      console.log('searchUserbyUID has failed: ', error);
     }
   }
 
