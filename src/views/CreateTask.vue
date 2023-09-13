@@ -133,8 +133,7 @@
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
-        color: #f7d6c5;
-        top: -3rem;
+        top: -1rem;
         
         &:hover {
             color: #312b27;       

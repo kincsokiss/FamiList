@@ -3,7 +3,7 @@
     <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+            <ion-menu-button v-if="isVisible"></ion-menu-button>
           </ion-buttons>
         </ion-toolbar>
     </ion-header>
@@ -11,10 +11,30 @@
   
   <script>
   import SideBar from './SideBar.vue';
+  import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
   export default({
    name:'HeaderVue',
    components: {
     SideBar
-   }
+   },
+
+   data() {
+      return{
+        isVisible: false,
+      }
+    },
+
+    created() {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if(user){
+          this.isVisible = true;
+        } else {
+          this.isVisible = false;
+        }
+      })
+    }
+
   });
  </script>
