@@ -16,8 +16,10 @@
             <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
+
             <ion-button @click="onClickButton" class="button">{{ buttonLabel }}</ion-button>
             <ion-button id="present-alert" class="button">Delete</ion-button>
+
             <ion-alert
                 trigger="present-alert"
                 sub-header="Important message"
@@ -167,6 +169,7 @@ import { IonCheckbox } from '@ionic/vue';
     
     }
 
+<style lang="scss" scoped>
     ion-card {
         text-align: center;
         background-color: #fae6dc;
@@ -175,6 +178,24 @@ import { IonCheckbox } from '@ionic/vue';
         font-family: 'Poppins', sans-serif;
         margin-left: 5%;
         margin-right: 5%; 
+        padding: 8px;
+
+        ion-checkbox {
+            margin-bottom: 8px;
+        }
+
+        ion-input {
+            margin-bottom: 8px;
+        }
+    }
+
+    .input-fill-solid.sc-ion-input-md-h {
+        --background: #00000000;
+        --border-color: #c56364;        
+    }
+
+    .input-fill-solid.has-focus.sc-ion-input-md-h {
+        --background: #00000000;
     }
 
     .is-done {

@@ -39,6 +39,6 @@ import CalendarItem from './Calendar.vue';
 
   .main {
     max-height: 100%;
-    background-color: #f7d6c5;
+    // background-color: #f7d6c5;
   }
 </style>

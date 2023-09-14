@@ -2,7 +2,6 @@
     <ion-card>
         <form ref="form" @submit="formSubmit" class="back_color">
             
-
             <nav>
                 <router-link to="/main-page">
                     <ion-icon :icon="closeCircle" class="position"></ion-icon>
@@ -17,7 +16,8 @@
             <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
             <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
             <ion-input class="text" label="Attachment" ref="att"></ion-input>
-            <ion-input class="text" label="Creator" placeholder="Who created it?" ref="creator"></ion-input>    
+            <ion-input class="text" label="Creator" :value="this.user.name"></ion-input>
+
             <ion-button type="submit">{{ buttonLabel }}</ion-button>
         </form>
     </ion-card>
@@ -28,6 +28,8 @@
     import { toastController } from '@ionic/vue';
     import tasks from '../modules/tasks';
     import { closeCircle } from 'ionicons/icons';
+    import { getAuth, onAuthStateChanged } from 'firebase/auth';
+    import users from '../modules/users';
 
     export default defineComponent({
     name:'CreateTask',
@@ -43,6 +45,8 @@
             creator: '',
             done: '',
             closeCircle,
+            userAuthId: '',
+            userId: '',
             task: {
                 default: {
                     title: '',
@@ -54,12 +58,28 @@
                     creator: '',
                     done: ''
                 }
+            },
+            user: {
+                default: {
+                    name: ''
+                }
             }
-        };
+        }
+    },
+
+    created() {
+            const auth = getAuth();
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.userAuthId = user.uid;
+                this.fetchUserData();
+            } else {
+                this.userAuthId = null;
+            }
+            });
     },
 
     computed: {
-
         buttonLabel(){
             return this.isTaskUpdating ? 'Update' : 'Create'
         }
@@ -74,6 +94,25 @@
                 });
 
                 await toast.present();
+        },
+
+        async fetchUserData() {
+            try {
+                this.userId = await users.searchUserbyUID(this.userAuthId);
+                console.log(this.userId)
+                this.getUserData()
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+            },
+
+            async getUserData() {
+                try{
+                    this.user = await users.searchUserByID(this.userId);
+                    console.log(this.user);
+                } catch (error) {
+                    console.log('Error in getUserData: ', error);
+                }
         },
 
         formSubmit(e) {
@@ -150,6 +189,11 @@
         &:hover {
             background-color: #191514;
         }
+        margin-top: 8px;
+    }
+
+    form {
+        padding: 8px;
     }
 
 </style>

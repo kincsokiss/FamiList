@@ -45,13 +45,13 @@
 <style lang="scss" scoped>
 
     ion-menu {
-        ion-toolbar {
-            --background: #c5636578;
-        }
+        // ion-toolbar {
+        //     --background: #c5636578;
+        // }
 
-        ion-content {
-            --background: #f7d6c5;
-        }
+        // ion-content {
+        //     --background: #f7d6c5;
+        // }
 
         .logo {
             margin-bottom: 0.5rem;
