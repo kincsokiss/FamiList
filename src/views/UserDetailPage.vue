@@ -6,9 +6,9 @@
         <ion-input fill="outline" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
         <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
         <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
-        <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
-        <ion-button @click="signOutUser">Sign out</ion-button>
-        <ion-button id="present-alert">Delete user</ion-button>
+        <ion-button @click="onClickButton" class="button" >{{ buttonLabel }}</ion-button>
+        <ion-button @click="signOutUser" class="button" >Sign out</ion-button>
+        <ion-button id="present-alert" class="button" >Delete user</ion-button>
         <ion-alert
             trigger="present-alert"
             sub-header="Important message"
@@ -192,4 +192,20 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         font-family: 'Poppins', sans-serif;
     }
 
+    ion-input{
+      margin-left: 5%;
+      font-size: 13pt;
+
+    }
+    .button {
+        color: #f7d6c5;
+        text-decoration: none;
+        background-color: #312b27;
+        
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        &:hover {
+            background-color: #191514;
+        }
+    }
 </style>
