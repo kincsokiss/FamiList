@@ -1,12 +1,15 @@
 <template>
     <ion-card>
+
         <nav>
             <router-link to="/main-page">
                 <ion-icon :icon="closeCircle" class="position"></ion-icon>
             </router-link>
         </nav>
 
-        <form ref="form">
+        <form ref="form" :class="{'is-done' : task.done}">
+
+            <ion-checkbox @ionChange="isDone" :checked="task.done" v-model="task.done">Done</ion-checkbox>
             <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
@@ -14,8 +17,10 @@
             <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
+
             <ion-button @click="onClickButton" class="button">{{ buttonLabel }}</ion-button>
             <ion-button id="present-alert" class="button">Delete</ion-button>
+
             <ion-alert
                 trigger="present-alert"
                 sub-header="Important message"
@@ -145,13 +150,43 @@ import { closeCircle } from 'ionicons/icons';
     });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     ion-card {
         text-align: center;
         background-color: #fae6dc;
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%; 
+        padding: 8px;
+
+        ion-checkbox {
+            margin-bottom: 8px;
+        }
+
+        ion-input {
+            margin-bottom: 8px;
+        }
+    }
+
+    .input-fill-solid.sc-ion-input-md-h {
+        --background: #00000000;
+        --border-color: #c56364;        
+    }
+
+    .input-fill-solid.has-focus.sc-ion-input-md-h {
+        --background: #00000000;
+    }
+
+    .is-done {
+        text-decoration: line-through;
+    }
+
+    ion-col {
+        position: absolute;
+        text-align: center;
+        background-color: #f7d6c5;
     }
 
     .position {

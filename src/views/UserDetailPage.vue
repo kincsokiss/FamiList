@@ -1,20 +1,24 @@
 <template>
     <ion-card>
       <form ref="form">
+
         <ion-input :fill="isInputEditable" label="Name" ref="nam" :value="user.name" :readonly="!isEditMode"></ion-input>
         <ion-input :fill="isInputEditable" label="Age" ref="ag" :value="user.age" :readonly="!isEditMode"></ion-input>
-        <ion-input fill="outline" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
+        <ion-input :fill="isInputEditable" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
         <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
         <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
+
         <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
-        <ion-button @click="signOutUser">Sign out</ion-button>
-        <ion-button id="present-alert">Delete user</ion-button>
+        <ion-button v-if="isInputEditable === 'outline'" @click="signOutUser">Sign out</ion-button>
+        <ion-button v-if="isInputEditable === 'solid'" id="present-alert">Delete user</ion-button>
+
         <ion-alert
             trigger="present-alert"
             sub-header="Important message"
             message="Are you sure you want to delete this user?"
             :buttons="alertButtons"
         ></ion-alert>
+
       </form>
     </ion-card>
 </template>
@@ -183,13 +187,27 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
   };
   </script>
 
-<style scoped>
+<style lang="scss" scoped>
     ion-card {
         text-align: center;
         background-color: #fae6dc;
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
+        padding: 8px;
+
+        ion-input {
+            margin-bottom: 8px;
+        }
+    }
+
+    .input-fill-solid.sc-ion-input-md-h {
+        --background: #00000000;
+        --border-color: #c56364;        
+    }
+
+    .input-fill-solid.has-focus.sc-ion-input-md-h {
+        --background: #00000000;
     }
 
 </style>
