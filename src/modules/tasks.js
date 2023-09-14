@@ -8,7 +8,7 @@ class TasksModule {
   // this.updateTask('lAOm9ACmQ4TMi0xv9E2Q', 'tit', 'desc', '10 Jul 2023', 'Reka', true, 'valamike', 'Gabi');
   // this.searchTaskByID('rT89H5JF5rn4PloGiDzW');
   }
-  async addTask(title, description, deadline, responsibles, repeatable, attachments, creator) {
+  async addTask(title, description, deadline, responsibles, repeatable, attachments, creator, done) {
       try {
         const taskId = await firebaseDb.storeDoc('Tasks',{
           title: title,
@@ -18,6 +18,7 @@ class TasksModule {
           repeatable: repeatable,
           attachments: attachments,
           creator: creator,
+          done: done,
         });
 
         console.log(taskId);
@@ -35,7 +36,8 @@ class TasksModule {
         responsibles: task.responsibles,
         repeatable: task.repeatable,
         attachments: task.attachments,
-        creator: task.creator
+        creator: task.creator,
+        done: task.done
       });
       console.log('Task updated');
     } catch (error) {

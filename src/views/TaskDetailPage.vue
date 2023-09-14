@@ -6,7 +6,8 @@
             </router-link>
         </nav>
 
-        <form ref="form">
+        <form ref="form" :class="{'is-done' : task.done}">
+            <ion-checkbox @ionChange="isDone" :checked="task.done" v-model="task.done">Done</ion-checkbox>
             <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
@@ -31,15 +32,17 @@ import tasks from '../modules/tasks';
 import { IonButton, IonAlert } from '@ionic/vue';
 import { toastController } from '@ionic/vue';
 import { closeCircle } from 'ionicons/icons';
+import { IonCheckbox } from '@ionic/vue';
 
     export default({
         name:'TaskDetailPage',
 
         components: {
             IonButton,
-            IonAlert
+            IonAlert,
+            IonCheckbox
         },
-
+        
         data() {
             return {
                 task: {
@@ -51,7 +54,8 @@ import { closeCircle } from 'ionicons/icons';
                         responsible: '',
                         attachments: '',
                         creator: '',
-                        repeatable: '' 
+                        repeatable: '' ,
+                        done: ''
                     }           
                 },
                 closeCircle,
@@ -63,7 +67,9 @@ import { closeCircle } from 'ionicons/icons';
                 repeat: '',
                 att: '',
                 crea: '',
-                alertButtons: []
+                alertButtons: [],
+                done: ''
+               
             };
         },
         
@@ -79,7 +85,7 @@ import { closeCircle } from 'ionicons/icons';
 
             isInputEditable() {
                 return this.isEditMode ? 'solid' : 'outline'
-            }
+            },
         },
 
         methods: {
@@ -93,6 +99,11 @@ import { closeCircle } from 'ionicons/icons';
                 await toast.present();
             },
 
+            isDone(event){
+                this.task.done = event.detail.checked;
+                tasks.updateTask(this.taskId, this.task);
+            },
+
             saveTask() {
                 if(this.isEditMode) {
                     this.task.title = this.$refs.tit.value;
@@ -102,15 +113,15 @@ import { closeCircle } from 'ionicons/icons';
                     this.task.repeatable = this.$refs.repeat.value;
                     this.task.attachments = this.$refs.att.value;
                     this.task.creator = this.$refs.crea.value;
-                    tasks.updateTask(this.taskId, this.task)
+                    this.changeEditMode();
+                    this.presentToast();
                 }
-                this.changeEditMode();
-                this.presentToast();
+                tasks.updateTask(this.taskId, this.task)
+                
             },
 
             changeEditMode() {
                 this.isEditMode = !this.isEditMode;
-
             },
 
             onClickButton() {
@@ -122,7 +133,6 @@ import { closeCircle } from 'ionicons/icons';
                 this.$refs.form.reset();
                 this.$router.push('/main-page')
             },
-            
         },
 
         async mounted(){
@@ -152,6 +162,18 @@ import { closeCircle } from 'ionicons/icons';
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        margin-right: 5%; 
+    }
+
+    .is-done {
+        text-decoration: line-through;
+    }
+
+    ion-col {
+        position: absolute;
+        text-align: center;
+        background-color: #f7d6c5;
     }
 
     .position {
@@ -160,6 +182,8 @@ import { closeCircle } from 'ionicons/icons';
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem;
+        color: #f7d6c5;
+        top: -3rem;
         
         &:hover {
             color: #312b27;       
@@ -167,7 +191,7 @@ import { closeCircle } from 'ionicons/icons';
     }
 
     .button {
-        color: #fae6dc;
+        color: #f7d6c5;
         text-decoration: none;
         background-color: #312b27;
         
@@ -176,6 +200,17 @@ import { closeCircle } from 'ionicons/icons';
         &:hover {
             background-color: #191514;
         }
+    }
+
+    .is-input-visible {
+        .color{
+            background-color: #355155;
+        }
+        
+    }
+
+    .size {
+        height: 100%;
     }
 
 </style>

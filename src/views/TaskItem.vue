@@ -13,7 +13,8 @@
           creator:'',
           deadline: '',
           description: '',
-          id: ''
+          id: '',
+          done: ''
         }
       } 
     },
@@ -21,8 +22,10 @@
     data() {
         return {
           detailsPageURL: null,
+          done: ''
         };
     },
+
 
     mounted(){
       this.detailsPageURL = '/tasks/' + this.task.id;
@@ -35,9 +38,9 @@
 <template>
   <ion-item detail="true" :href="detailsPageURL"  class="box">
     <ion-label>
-      <h3 class="text-color"> {{ this.task.title }} </h3>
-      <p class="text-color"> {{ this.task.description }} </p>
-      <p class="text-color"> {{ this.task.deadline }}</p>
+      <h3 :class="{'text-color' : task.done}"> {{ this.task.title }} </h3>
+      <p :class="{'text-color' : task.done}"> {{ this.task.description }} </p>
+      <p :class="{'text-color' : task.done}"> {{ this.task.deadline }}</p>
     </ion-label>
   </ion-item>
     
@@ -51,6 +54,10 @@
 
   h3, p{
     --color:#191514;
+  }
+
+  .text-color {
+    text-decoration: line-through;
   }
 
   
