@@ -1,9 +1,11 @@
 <template>
   
     <ion-row>
-      <ion-col><ion-card>
-        <ion-datetime presentation="date" :highlighted-dates="taskDeadlines" class="full-width"></ion-datetime>
-      </ion-card></ion-col>
+      <ion-col>
+        <ion-card>
+         <ion-datetime presentation="date" :highlighted-dates="taskDeadlines" class="full-width"></ion-datetime>
+        </ion-card>
+      </ion-col>
     </ion-row>
   
 </template>
@@ -42,8 +44,12 @@
     font-family: 'Poppins', sans-serif;
     --wheel-highlight-background: #f7d6c5;
     --wheel-fade-background-rgb:#191514;
-    
+   
   }
+  .full-width  ion-label {
+      font-size: 13pt;
+    }
+    
   ion-datetime::part(wheel-item active) {
     color: #c56364;
   }
@@ -51,6 +57,8 @@
     color: #191514;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
+    
+
   }
 
 </style>

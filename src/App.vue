@@ -1,5 +1,5 @@
 <template>
-  <ion-app>
+  <ion-app >
     <HeaderVue/>    
     <ion-page id="main-content">
       <router-view/>
@@ -57,6 +57,8 @@ export default {
   ion-page {
     --background: #f7d6c5;
   }
+
+  
   
 </style>
 

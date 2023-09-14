@@ -112,6 +112,8 @@
         color: #191514;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        font-size: 13pt;
     }
     
     h2{

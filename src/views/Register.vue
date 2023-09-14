@@ -3,16 +3,14 @@
         <ion-card>
             <form ref="form" @submit="formSubmit">
                 <h1>Create an Account</h1>
-                <ion-input class="text" label="Name" placeholder="Enter user's name" ref="name" required="required"></ion-input>
-                <ion-input class="text" label="Age" type="number" placeholder="Enter user's age" ref="age" required="required"></ion-input>
-                <ion-input class="text" label="Phone number" type="tel" placeholder="Enter user's phone number" ref="phonenumber" required="required"></ion-input>
+                <ion-input class="text" label="Name" placeholder="Enter name" ref="name" required="required"></ion-input>
+                <ion-input class="text" label="Age" type="number" placeholder="Enter age" ref="age" required="required"></ion-input>
+                <ion-input class="text" label="Phone number" type="tel" placeholder="Enter number" ref="phonenumber" required="required"></ion-input>
                 
-                <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-                <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <ion-input class="text" label="Email" placeholder="Enter email" type="email" ref="email" required="required"></ion-input>
+                <ion-input class="text" label="Password" placeholder="Enter password" type="password" ref="password" required="required"></ion-input>
                 <ion-button type="submit">Create</ion-button>
-                <!-- <p>OR</p>
-                <ion-button @click="signInWithGoogle">Sign Up With Google</ion-button><br/> -->
-                <!-- <label>Hello {{ name }} :) </label> -->
+                
             </form>
         </ion-card>
     </main>
@@ -84,22 +82,6 @@
             this.$refs.form.reset();
         },
 
-        // 
-        // googleSignIn: function() {
-        //     let provider = new firebase.auth.GoogleAuthProvider();
-        //     firebase
-        //             .auth()
-        //             .signInWithPopup(provider)
-        //             .then((result) => {
-        //                 let token = result.credential.accessToken;
-        //                 let user = result.user;
-        //                     console.log(token)
-        //                     console.log(user)
-        //             })
-        //             .catch((err) => {
-        //                 console.log(err);
-        //             })
-        // }
 
     },
     
@@ -121,7 +103,9 @@
         font-family: 'Poppins', sans-serif;
         margin-left: 5%;
         margin-right: 5%; 
+        font-size: 13pt;
     }
+    
 
     ion-grid {
         background-color: #f7d6c5;

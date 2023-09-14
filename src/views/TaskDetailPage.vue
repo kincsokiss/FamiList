@@ -1,12 +1,13 @@
 <template>
     <ion-card>
-        <nav>
+        
+
+        <form ref="form" :class="{'is-done' : task.done}">
+            <nav>
             <router-link to="/main-page">
                 <ion-icon :icon="closeCircle" class="position"></ion-icon>
             </router-link>
         </nav>
-
-        <form ref="form" :class="{'is-done' : task.done}">
             <ion-checkbox @ionChange="isDone" :checked="task.done" v-model="task.done">Done</ion-checkbox>
             <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
@@ -156,6 +157,16 @@ import { IonCheckbox } from '@ionic/vue';
 </script>
 
 <style scoped>
+
+    ion-input{
+        color: #191514;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5%;
+        font-size: 13pt;
+    
+    }
+
     ion-card {
         text-align: center;
         background-color: #fae6dc;
@@ -181,9 +192,7 @@ import { IonCheckbox } from '@ionic/vue';
         justify-content: end;
         margin-bottom: 0.5rem;
         position: relative;
-        font-size: 1.5rem;
-        color: #f7d6c5;
-        top: -3rem;
+        font-size: 1.5rem; 
         
         &:hover {
             color: #312b27;       
