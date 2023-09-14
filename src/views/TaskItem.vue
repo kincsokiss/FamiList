@@ -1,3 +1,14 @@
+<template>
+  <ion-item detail="true" :href="detailsPageURL"  class="box">
+    <ion-label>
+      <p :class="{'text-color' : task.done}"> {{ this.task.title }} </p>
+      <p :class="{'text-color' : task.done}"> {{ this.task.description }} </p>
+      <p :class="{'text-color' : task.done}"> {{ this.formatDate(this.task.deadline)}}</p>
+    </ion-label>
+  </ion-item>
+    
+</template>
+
 <script>
   import { IonItem, IonLabel } from '@ionic/vue';
   import { defineComponent } from 'vue';
@@ -26,22 +37,20 @@
 
     mounted(){
       this.detailsPageURL = '/tasks/' + this.task.id;
+      //const date= new Date("2023-09");
+      //console.log (date);
+    },
+
+    methods:{
+      formatDate(date){
+        //return new Date(date);
+        return date;
+      }
     }
 
   });
   
 </script>
-
-<template>
-  <ion-item detail="true" :href="detailsPageURL"  class="box">
-    <ion-label>
-      <h3 class="text-color"> {{ this.task.title }} </h3>
-      <p class="text-color"> {{ this.task.description }} </p>
-      <p class="text-color"> {{ this.task.deadline }}</p>
-    </ion-label>
-  </ion-item>
-    
-</template>
 
 <style>
 

@@ -8,7 +8,6 @@ import {
   query,
   where
 } from 'firebase/firestore';
-
 class FirebaseDbModule{
     constructor(){
         const firebaseConfig = {

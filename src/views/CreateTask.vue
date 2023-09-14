@@ -84,7 +84,6 @@
             const att = this.$refs.att.value;
             const creator = this.$refs.creator.value;
 
-
             tasks.addTask(title, desc, deadline, resp, repeat, att, creator);
             this.presentToast();
             this.$refs.form.reset();
