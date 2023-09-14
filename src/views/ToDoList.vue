@@ -40,6 +40,11 @@
 
     async mounted() {
       this.tasks = await tasks.getTasks();
+      console.log(this.tasks);
+      const deadlines = this.tasks.map(item=>
+        item.deadline
+      ); 
+      console.log(deadlines);
     },
     
 

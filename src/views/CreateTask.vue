@@ -123,7 +123,7 @@
             const resp = this.$refs.resp.value;
             const repeat = this.$refs.repeat.value;
             const att = this.$refs.att.value;
-            const creator = this.$refs.creator.value;
+            const creator = this.user.name;
             const done = false;
 
 

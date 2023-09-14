@@ -1,5 +1,4 @@
 <template>
-  
     <ion-row>
       <ion-col>
         <ion-card>
@@ -13,24 +12,30 @@
 <script>
   import { IonDatetime } from '@ionic/vue';
   import { defineComponent } from 'vue';
+  import tasks from '../modules/tasks';
 
   export default defineComponent({
     name:'CalendarItem',
     components: { 
       IonDatetime
     },
-    setup(){
-      const taskDeadlines=[
-        {
-          date:'2023-09-18',
-          textColor: "red"
-        },
-        {
-          date:'2023-09-06',
-          textColor: "red"
-        }
-      ]
-    return {taskDeadlines};
+    data(){
+      return{
+        taskDeadlines: [],
+        tasks: []
+      }
+      
+    },
+    
+    async mounted(){
+      this.tasks = await tasks.getTasks();
+      console.log(this.tasks);
+      this.taskDeadlines = this.tasks.map(item=>{
+        return {date:item.deadline,textColor: "red" }
+      }); 
+      
+      console.log(this.taskDeadlines);
+      
     }
   });
 </script>

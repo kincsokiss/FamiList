@@ -1,5 +1,4 @@
 import firebaseDb from "./firebase"
-
 class TasksModule {
   constructor() {
   // this.getTasks();

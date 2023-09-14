@@ -194,7 +194,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
-        padding: 8px;
+        padding: 2%;
 
         ion-input {
             margin-bottom: 8px;
@@ -202,7 +202,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
     }
 
     ion-input{
-      margin-left: 5%;
+      margin: 1%;
       font-size: 13pt;
 
     }

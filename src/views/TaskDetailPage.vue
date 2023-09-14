@@ -158,39 +158,40 @@ import { IonCheckbox } from '@ionic/vue';
     });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
     ion-input{
         color: #191514;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        margin-left: 5%;
+        margin: 1%;
         font-size: 13pt;
     
     }
 
-<style lang="scss" scoped>
+
+
     ion-card {
         text-align: center;
         background-color: #fae6dc;
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
-        margin-left: 5%;
-        margin-right: 5%; 
-        padding: 8px;
+        margin-left: 2%;
+        margin-right: 2%; 
+        padding: 2%;
 
         ion-checkbox {
-            margin-bottom: 8px;
+            margin-bottom: 2%;
         }
 
         ion-input {
-            margin-bottom: 8px;
+            margin-bottom: 2%;
         }
     }
 
     .input-fill-solid.sc-ion-input-md-h {
-        --background: #00000000;
+        --background: #05040400;
         --border-color: #c56364;        
     }
 
