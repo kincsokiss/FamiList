@@ -7,8 +7,6 @@
                 <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
                 <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
                 <ion-button type="submit" class="ion-button">Submit</ion-button>
-                <!-- <p>OR</p>
-                <ion-button @click="signInWithGoogle">Sign In With Google</ion-button> -->
             </form>
         </ion-card>
     </main>
@@ -68,11 +66,6 @@
             this.$refs.form.reset();
             
         },
-
-        // 
-        signInWithGoogle() {
-
-        }
     },
     
 });

@@ -1,13 +1,6 @@
 import firebaseDb from "./firebase"
 
 class UsersModule {
-  constructor() {
-  //  this.getUsers();\
-  //this.deleteUser('ABQFbm6JnlQx1eDSeBJh');
-  // this.addUser('Kati', 17, 'Child', '07453468768');
-  // this.updateUser('UlWHuHmaDgc2R0oTeFo0','Hanuka', 5, 'kiskocsag', '0776154686');
-  // this.searchUserByID('UlWHuHmaDgc2R0oTeFo0');
-  }
   async addUser(name, age, rank, phoneNumber, id) {
       try {
         const userId = await firebaseDb.storeDoc('Users',{
