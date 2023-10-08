@@ -42,7 +42,7 @@
             const auth = getAuth();
             signInWithEmailAndPassword(auth, email, password)
             .then((data) => {
-                console.log(data, "Successfully signed in!");
+                console.log(data.user, "Successfully signed in!");
                 console.log(auth.currentUser)
 
                 this.$router.push('/main-page')

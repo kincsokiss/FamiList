@@ -10,7 +10,7 @@
 
         <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
         <ion-button v-if="isInputEditable === 'outline'" @click="signOutUser">Sign out</ion-button>
-        <ion-button v-if="isInputEditable === 'solid'" id="present-alert">Delete user</ion-button>
+        <ion-button id="present-alert">Delete user</ion-button>
 
         <ion-alert
             trigger="present-alert"
@@ -60,7 +60,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
     
     computed: {
         buttonLabel() {
-        return this.isEditMode ? 'Save' : 'Edit';
+          return this.isEditMode ? 'Save' : 'Edit';
         },
 
         isInputEditable() {
@@ -152,8 +152,9 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         this.isEditMode ? this.saveUser() : this.changeEditMode();
       },
 
-      async deleteUser() {
-        await users.deleteUser(this.userId);
+      deleteUser() {
+        
+        users.deleteUser(this.userId);
 
         const auth = getAuth();
         const user = auth.currentUser;
@@ -168,7 +169,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
       },
     },
 
-    async mounted(){
+    mounted(){
       this.alertButtons = [
         {
           text: 'Cancel',
@@ -177,6 +178,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         {
           text: 'Delete',
           role: 'destructive',
+
           handler: () => {
             this.deleteUser();
           }

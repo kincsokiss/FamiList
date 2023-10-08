@@ -8,6 +8,8 @@ import {
   query,
   where
 } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+
 class FirebaseDbModule{
     constructor(){
         const firebaseConfig = {
@@ -19,23 +21,24 @@ class FirebaseDbModule{
             appId: "1:381982770857:web:7f6688d841e12e584bcbb8"
           };
           
-          initializeApp(firebaseConfig);
+          const app = initializeApp(firebaseConfig);
+
+          getAuth(app)
           
     }
 
-    storeDoc(collectionName, data) {
+    async storeDoc(collectionName, data) {
 
         const dataBase = getFirestore();
         const collectionReference = collection( dataBase, collectionName );
 
-        return addDoc(collectionReference, data)
-        .then((docRef) => {
+        try {
+            const docRef = await addDoc(collectionReference, data);
             return docRef.id;
-        })
-        .catch(err => {
-            console.log(err.message)
+        } catch (err) {
+            console.log(err.message);
             return err;
-        })
+        }
     }
 
     async editDoc(collectionName, documentID, data){

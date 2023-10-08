@@ -19,7 +19,7 @@
 <script>
     import users from '../modules/users.js';
     import { toastController } from '@ionic/vue';
-    import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+    import { getAuth, EmailAuthProvider, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
     // import firebase from "firebase";
 
     export default({
@@ -55,13 +55,11 @@
             let rank = "child";
             const email = this.$refs.email.value;
             const password = this.$refs.password.value;
-            this.name = this.$refs.name.value;
 
             if(age >= 18) rank = "adult";
 
-            users.addUser(name, age, rank, phonenumber);
-
             const auth = getAuth();
+
             createUserWithEmailAndPassword(auth, email, password)
             .then((data) => {
                 console.log(data, "Successfully registered!");
@@ -72,6 +70,11 @@
 
                 users.addUser(name, age, rank, phonenumber, uid);
                 this.presentToast();
+
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        console.log("Email verification sent!")
+                    })
                 this.$router.push('/main-page')
             }) 
             .catch((error) => {
