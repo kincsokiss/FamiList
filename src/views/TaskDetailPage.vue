@@ -1,13 +1,12 @@
 <template>
     <ion-card>
-        
-
+    
         <form ref="form" :class="{'is-done' : task.done}">
             <nav>
-            <router-link to="/main-page">
-                <ion-icon :icon="closeCircle" class="position"></ion-icon>
-            </router-link>
-        </nav>
+                <router-link to="/main-page">
+                    <ion-icon :icon="closeCircle" class="position"></ion-icon>
+                </router-link>
+            </nav>
             <ion-checkbox @ionChange="isDone" :checked="task.done" v-model="task.done">Done</ion-checkbox>
             <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
             <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
@@ -134,13 +133,17 @@ import { IonCheckbox } from '@ionic/vue';
             deleteTask() {
                 tasks.deleteTask(this.taskId)
                 this.$refs.form.reset();
-                this.$router.push('/main-page')
+                this.$router.push('/main-page');
             },
         },
 
         async mounted(){
-            this.task = await tasks.searchTaskByID(this.taskId);
-
+                if(await tasks.searchTaskByID(this.taskId) == undefined){
+                    this.$router.push('/err-nonexistent-task');
+                } 
+                else this.task = await tasks.searchTaskByID(this.taskId);
+               
+           
              this.alertButtons = [
                 {
                     text: 'Cancel',
