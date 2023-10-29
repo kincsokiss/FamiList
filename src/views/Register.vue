@@ -20,7 +20,6 @@
     import users from '../modules/users.js';
     import { toastController } from '@ionic/vue';
     import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-    // import firebase from "firebase";
 
     export default({
     name:'RegisterPage',

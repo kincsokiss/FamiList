@@ -7,6 +7,9 @@
         <ion-input :fill="isInputEditable" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
         <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
         <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
+        <ion-button v-if="isEditMode" @click="newPassword">New Password</ion-button>
+
+        <br v-if="isEditMode"/>
 
         <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
         <ion-button v-if="isInputEditable === 'outline'" @click="signOutUser">Sign out</ion-button>
@@ -27,7 +30,7 @@
 import users from '../modules/users';
 import { toastController } from '@ionic/vue';
 import { IonButton, IonAlert } from '@ionic/vue';
-import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, sendPasswordResetEmail, updateEmail, deleteUser, signOut } from 'firebase/auth';
   
   export default {
     name: 'UserItem',
@@ -54,6 +57,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         ag: '',
         phone: '',
         email: '',
+        password: '',
         alertButtons: []
       };
     },
@@ -82,7 +86,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
     },
 
     methods: {
-      async presentToast(position = 'middle'){
+      async presentUserToast(position = 'middle'){
         const toast = await toastController.create({
           message: 'User has been updated!',
           duration: 1500,
@@ -90,6 +94,28 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
         });
 
         await toast.present();
+      },
+
+      async presentPasswordToast(position = 'middle'){
+        const toast = await toastController.create({
+          message: 'Reset password email sent!',
+          duration: 1500,
+          position: position
+        });
+
+        await toast.present();
+      },
+
+      newPassword(){
+        const auth = getAuth()
+        const user = auth.currentUser;
+        sendPasswordResetEmail(auth, user.email)
+          .then(() => {
+            this.presentPasswordToast()
+          })
+          .catch((error) => {
+            console.log("newPassword failed: ", error)
+          })
       },
 
       async fetchUserData() {
@@ -118,7 +144,7 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
           })
       },
 
-      saveUser() {
+      async saveUser() {
         if (this.isEditMode) {
           this.user.name = this.$refs.nam.value;
           this.user.age = this.$refs.ag.value;
@@ -131,17 +157,25 @@ import { getAuth, onAuthStateChanged, updateEmail, deleteUser, signOut } from 'f
               this.user.rank = "child";
           }
 
+          
           const auth = getAuth()
-          updateEmail(auth.currentUser, this.email).then(() => {
+          const user = auth.currentUser
+
+          await updateEmail(user, this.email).then(() => {
               console.log('Email updated')
           }) .catch((error) => {
               console.log('updateEmail has failed: ', error)
           })
-          
+
           users.updateUser(this.userId, this.user);
+        
+          this.changeEditMode();
+          this.presentUserToast();
+
+        } else {
+          this.changeEditMode();
         }
-        this.changeEditMode();
-        this.presentToast();
+          
       },
 
       changeEditMode() {
