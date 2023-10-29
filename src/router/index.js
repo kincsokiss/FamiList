@@ -10,6 +10,7 @@ import RegisterPage from '@/views/Register.vue';
 import SignInPage from '@/views/SignIn.vue';
 import TaskDetailPage from '@/views/TaskDetailPage.vue';
 import UserDetailPage from '@/views/UserDetailPage.vue';
+import TaskNonexistent from '@/views/TaskNonexistent.vue';
   
   const routes = [
     { path: '/main-page', name: 'mainpage', component: MainPage },
@@ -20,7 +21,8 @@ import UserDetailPage from '@/views/UserDetailPage.vue';
     { path: '/sign-in-page', name: 'signinpage', component: SignInPage },
     { path: '/create-task', name: 'createtask', component: CreateTask },
     { path: '/tasks/:taskid', component: TaskDetailPage },
-    { path: '/user-detail-page', component: UserDetailPage }
+    { path: '/user-detail-page', component: UserDetailPage },
+    { path: '/err-nonexistent-task', component: TaskNonexistent }
     
   ];
   
