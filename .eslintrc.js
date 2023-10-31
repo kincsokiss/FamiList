@@ -15,6 +15,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/no-deprecated-slot-attribute': 'off',
   },
+  globals: {
+    vMaskito: 'readonly'
+  },
   overrides: [
     {
       files: [

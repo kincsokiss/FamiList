@@ -11,18 +11,11 @@
     </main> 
 </template>
 
-<script>
+<script setup>
     import SignInPage from './SignIn.vue';
     import NewHere from './NewHere.vue';
-
-    export default ({
-        name: 'UserSettings',
-
-        components: {
-          SignInPage,
-          NewHere
-        }
-    })
+    import { IonGrid, IonRow, IonCol } from '@ionic/vue';
+    
 </script>
 
 <style scoped> 

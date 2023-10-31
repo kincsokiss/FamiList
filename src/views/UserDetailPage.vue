@@ -1,12 +1,46 @@
 <template>
     <ion-card>
-      <form ref="form">
+      <form>
 
-        <ion-input :fill="isInputEditable" label="Name" ref="nam" :value="user.name" :readonly="!isEditMode"></ion-input>
-        <ion-input :fill="isInputEditable" label="Age" ref="ag" :value="user.age" :readonly="!isEditMode"></ion-input>
-        <ion-input :fill="isInputEditable" label="Rank" ref="ran" :value="user.rank" :readonly="true"></ion-input>
-        <ion-input :fill="isInputEditable" label="Phone number" ref="phone" :value="user.phoneNumber" :readonly="!isEditMode"></ion-input>
-        <ion-input :fill="isInputEditable" label="Email" ref="email" :value="email" :readonly="!isEditMode"></ion-input>
+        <ion-input 
+          :fill="isInputEditable" 
+          label="Name" 
+          v-bind:value="user.name"
+          v-on:ion-input="user.name = $event.target.value"
+          :readonly="!isEditMode"
+        ></ion-input>
+
+        <ion-input 
+          :fill="isInputEditable" 
+          label="Age" 
+          v-bind:value="user.age"
+          v-on:ion-input="user.age = $event.target.value"
+          :readonly="!isEditMode"
+        ></ion-input>
+
+        <ion-input 
+          :fill="isInputEditable" 
+          label="Rank" 
+          v-bind:value="user.rank"
+          v-on:ion-input="user.rank = $event.target.value"
+          :readonly="true"
+        ></ion-input>
+
+        <ion-input 
+          :fill="isInputEditable" 
+          label="Phone number" 
+          v-bind:value="user.phoneNumber"
+          v-on:ion-input="user.phoneNumber = $event.target.value"
+          :readonly="!isEditMode"
+        ></ion-input>
+        <ion-input 
+          :fill="isInputEditable" 
+          label="Email" 
+          v-bind:value="user.email" 
+          v-on:ion-input="user.email = $event.target.value"
+          :readonly="!isEditMode"
+        ></ion-input>
+
         <ion-button v-if="isEditMode" @click="newPassword">New Password</ion-button>
 
         <br v-if="isEditMode"/>
@@ -26,202 +60,165 @@
     </ion-card>
 </template>
 
-<script>
-import users from '../modules/users';
-import { toastController } from '@ionic/vue';
-import { IonButton, IonAlert } from '@ionic/vue';
-import { getAuth, onAuthStateChanged, sendPasswordResetEmail, updateEmail, deleteUser, signOut } from 'firebase/auth';
-  
-  export default {
-    name: 'UserItem',
+<script setup>
+  import users from '../modules/users';
+  import { toastController } from '@ionic/vue';
+  import { IonButton, IonAlert, IonInput, IonCard } from '@ionic/vue';
+  import { sendPasswordResetEmail, updateEmail, deleteUser, signOut, getAuth } from 'firebase/auth';
+  import { ref, computed, onMounted } from 'vue';
+  import { useRouter } from 'vue-router';
+  import firebaseDb from '../modules/firebase';
 
-    components: {
-      IonAlert,
-      IonButton
-    },
-  
-    data() {
-      return {
-        user: {
-          default: {
-            name: '',
-            age: '',
-            rank: '',
-            phoneNumber: '',
-          },
-        },
-        isEditMode: false,
-        userUId: null,
-        userId: null,
-        nam: '',
-        ag: '',
-        phone: '',
-        email: '',
-        password: '',
-        alertButtons: []
-      };
-    },
+  const router = useRouter();
+  const user = ref('');
+  const userId = ref('');
+
+  const isEditMode = ref(false);
+  const authUser = ref('');
+  const auth = getAuth();
+
+  const alertButtons = [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Delete',
+        role: 'destructive',
+
+        handler: () => {
+          Delete();
+        }
+      }
+  ];
     
-    computed: {
-        buttonLabel() {
-          return this.isEditMode ? 'Save' : 'Edit';
-        },
+  const buttonLabel = computed(() => {
+    return isEditMode.value ? 'Save' : 'Edit';
+  })
 
-        isInputEditable() {
-            return this.isEditMode ? 'solid' : 'outline';
-        },
-    },
+  const isInputEditable = computed(() => {
+      return isEditMode.value ? 'solid' : 'outline';
+  })
 
-    created() {
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          this.userUId = user.uid;
-          this.email = user.email;
-          this.fetchUserData();
-        } else {
-          this.userUId = null;
-        }
-      });
-    },
+  onMounted(async() => {
+      authUser.value = await firebaseDb.getAuthUser();
+      fetchUserData();
+  })
 
-    methods: {
-      async presentUserToast(position = 'middle'){
-        const toast = await toastController.create({
-          message: 'User has been updated!',
-          duration: 1500,
-          position: position
-        });
+  async function fetchUserData() {
+    try {
+      userId.value = await users.searchUserbyEmail(auth.currentUser.email);
+      getUserData(userId.value)
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }
 
-        await toast.present();
-      },
+  async function getUserData(userID) {
+      try{
+        user.value = await users.searchUserByID(userID);
+        console.log(user.value)
+      } catch (error) {
+        console.log('Error in getUserData: ', error);
+      }
+  }
 
-      async presentPasswordToast(position = 'middle'){
-        const toast = await toastController.create({
-          message: 'Reset password email sent!',
-          duration: 1500,
-          position: position
-        });
+  async function presentUserToast(position = 'middle'){
+    const toast = await toastController.create({
+      message: 'User has been updated!',
+      duration: 1500,
+      position: position
+    });
 
-        await toast.present();
-      },
+    await toast.present();
+  }
 
-      newPassword(){
-        const auth = getAuth()
-        const user = auth.currentUser;
-        sendPasswordResetEmail(auth, user.email)
-          .then(() => {
-            this.presentPasswordToast()
-          })
-          .catch((error) => {
-            console.log("newPassword failed: ", error)
-          })
-      },
+  async function presentPasswordToast(position = 'middle'){
+    const toast = await toastController.create({
+      message: 'Reset password email sent!',
+      duration: 1500,
+      position: position
+    });
 
-      async fetchUserData() {
-        try {
-          this.userId = await users.searchUserbyUID(this.userUId);
-          this.getUserData()
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-        }
-      },
+    await toast.present();
+  }
 
-      async getUserData() {
-          try{
-              this.user = await users.searchUserByID(this.userId);
-          } catch (error) {
-              console.log('Error in getUserData: ', error);
-          }
-      },
+  function newPassword(){
+    const user = auth.currentUser;
+    sendPasswordResetEmail(auth, user.email)
+      .then(() => {
+        presentPasswordToast()
+      })
+      .catch((error) => {
+        console.log("newPassword failed: ", error)
+      })
+  }
 
-      signOutUser(){
-          const auth = getAuth();
-          signOut(auth).then(() => {
-              this.$router.push('/')
-          }).catch((error) => {
-              console.log('signOutUser has failed: ', error)
-          })
-      },
+  function signOutUser(){
+      signOut(auth).then(() => {
+          router.push('/')
+      }).catch((error) => {
+          console.log('signOutUser has failed: ', error)
+      })
+  }
 
-      async saveUser() {
-        if (this.isEditMode) {
-          this.user.name = this.$refs.nam.value;
-          this.user.age = this.$refs.ag.value;
-          this.user.phoneNumber = this.$refs.phone.value;
+  async function saveUser() {
+    if (isEditMode.value) {
+      user.value.rank = 'child';
 
-          if(this.user.age >= 18){
-              this.user.rank = "adult";
-          }
-          else {
-              this.user.rank = "child";
-          }
+      if(user.value.age >= 18) user.value.rank = 'adult';
 
-          
-          const auth = getAuth()
-          const user = auth.currentUser
+      const authUser = auth.currentUser
 
-          await updateEmail(user, this.email).then(() => {
-              console.log('Email updated')
-          }) .catch((error) => {
-              console.log('updateEmail has failed: ', error)
-          })
+      await updateEmail(authUser, user.value.email).then(() => {
+          console.log('Email updated')
+      }) .catch((error) => {
+          console.log('updateEmail has failed: ', error)
+      })
 
-          users.updateUser(this.userId, this.user);
-        
-          this.changeEditMode();
-          this.presentUserToast();
+      users.updateUser(userId.value, user.value);
+    
+      changeEditMode();
+      presentUserToast();
 
-        } else {
-          this.changeEditMode();
-        }
-          
-      },
+    } else {
+      changeEditMode();
+    }
+      
+  }
 
-      changeEditMode() {
-        this.isEditMode = !this.isEditMode;
-      },
+  function changeEditMode() {
+    isEditMode.value = !isEditMode.value;
+  }
 
-      onClickButton() {
-        this.isEditMode ? this.saveUser() : this.changeEditMode();
-      },
+  function onClickButton() {
+    isEditMode.value ? saveUser() : changeEditMode();
+  }
 
-      deleteUser() {
-        
-        users.deleteUser(this.userId);
+  function Delete() {
+    users.deleteUser(userId.value);
 
-        const auth = getAuth();
-        const user = auth.currentUser;
-        deleteUser(user).then(() => {
-          console.log('User deleted')
-        }) .catch ((error) => {
-          console.log("deleteUser has failed: ", error)
-        })
+    deleteUser(auth.currentUser).then(() => {
+      console.log('User deleted')
+    }) .catch ((error) => {
+      console.log("deleteUser has failed: ", error)
+    })
 
-        this.$refs.form.reset();
-        this.$router.push('/');
-      },
-    },
+    resetForm();
+    router.push('/');
+  }
 
-    mounted(){
-      this.alertButtons = [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Delete',
-          role: 'destructive',
+  function resetForm() {
+    user.value = {
+      name: '',
+      age: '',
+      rank: '',
+      phoneNumber: '',
+      email: '',
+    }
+  }
 
-          handler: () => {
-            this.deleteUser();
-          }
-        }
-      ]
-    },
-
-  };
-  </script>
+</script>
 
 <style lang="scss" scoped>
     ion-card {

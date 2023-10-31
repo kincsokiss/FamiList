@@ -6,8 +6,6 @@
     </ion-footer>
   </template>
   
-  <script>
-  export default({
-   name:'FooterVue',
-  });
- </script>
+<script setup>
+import { IonFooter, IonToolbar, IonTitle } from '@ionic/vue'
+</script>

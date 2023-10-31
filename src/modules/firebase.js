@@ -6,9 +6,10 @@ import {
   updateDoc,
   getDoc,
   query,
-  where
+  where,
+  onSnapshot
 } from 'firebase/firestore';
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 class FirebaseDbModule{
     constructor(){
@@ -27,6 +28,25 @@ class FirebaseDbModule{
           
     }
 
+    async getAuthUser(){
+        const auth = getAuth();
+        return new Promise((resolve) => {
+            onAuthStateChanged(auth, (user) => {
+                resolve(user)
+            })
+        })
+    }
+
+    async isUserLoggedIn(){
+        const auth = getAuth();
+        console.log(auth);
+        return new Promise((resolve) => {
+            onAuthStateChanged(auth, (user) => {
+                resolve(Boolean(user))
+            })
+        })
+    }
+
     async storeDoc(collectionName, data) {
 
         const dataBase = getFirestore();
@@ -42,6 +62,7 @@ class FirebaseDbModule{
     }
 
     async editDoc(collectionName, documentID, data){
+        console.log(collectionName, documentID, data);
         const dataBase = getFirestore();
         const docRef = doc(dataBase,collectionName,documentID);
         return updateDoc(docRef, data)
@@ -88,21 +109,24 @@ class FirebaseDbModule{
 
 
     async searchDocbyID(collectionName, docID){
-        const dataBase = getFirestore();
-        const docRef = doc(dataBase, collectionName, docID);
-        const docSnap = await getDoc(docRef);
-        if(docSnap.exists()){
-            return docSnap.data();
-        }
-        else{
-            console.log('No such document');
-        }
+        return new Promise((resolve, reject) => {
+            try {
+                const dataBase = getFirestore();
+                onSnapshot(doc(dataBase, collectionName, docID), (doc) => {
+                    console.log("Current data: ", doc.data());
+                    return resolve(doc.data());
+                });
+            } catch(error) {
+                console.log('No such document', error);
+                return reject(error);
+            }
+        })
     }
 
-    async searchDocbyUID(collectionName, uid){
+    async searchDocbyEmail(collectionName, email){
         const dataBase = getFirestore();
         const docRef = collection(dataBase, collectionName);
-        const q = query(docRef, where("uid", "==", uid));
+        const q = query(docRef, where("email", "==", email));
         const querySnapshot = await getDocs(q);
         if(!querySnapshot.empty){
             const docData = querySnapshot.docs[0].id;

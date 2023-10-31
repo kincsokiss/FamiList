@@ -7,13 +7,13 @@ class TasksModule {
   // this.updateTask('lAOm9ACmQ4TMi0xv9E2Q', 'tit', 'desc', '10 Jul 2023', 'Reka', true, 'valamike', 'Gabi');
   // this.searchTaskByID('rT89H5JF5rn4PloGiDzW');
   }
-  async addTask(title, description, deadline, responsibles, repeatable, attachments, creator, done) {
+  async addTask(title, description, deadline, responsible, repeatable, attachments, creator, done) {
       try {
         const taskId = await firebaseDb.storeDoc('Tasks',{
           title: title,
           description:  description,
           deadline: deadline,
-          responsibles: responsibles,
+          responsible: responsible,
           repeatable: repeatable,
           attachments: attachments,
           creator: creator,
@@ -26,17 +26,18 @@ class TasksModule {
       }
   }
 
-  async updateTask(documentID, task) {
+  async updateTask(documentID, title, description, deadline, responsible, repeatable, attachments, creator, done) {
     try {
+      
       await firebaseDb.editDoc('Tasks', documentID, {
-        title:  task.title,
-        description: task.description,
-        deadline: task.deadline,
-        responsibles: task.responsibles,
-        repeatable: task.repeatable,
-        attachments: task.attachments,
-        creator: task.creator,
-        done: task.done
+        title:  title,
+        description: description,
+        deadline: deadline,
+        responsible: responsible,
+        repeatable: repeatable,
+        attachments: attachments,
+        creator: creator,
+        done: done
       });
       console.log('Task updated');
     } catch (error) {
@@ -59,10 +60,10 @@ class TasksModule {
   async searchTaskByID(documentId){
     try{
       const datas = await firebaseDb.searchDocbyID('Tasks', documentId);
-      console.log(datas);
       return datas;
     } catch (error) {
       console.log('searchTaskbyID has failed: ', error);
+      return error;
     }
   }
   

@@ -15,23 +15,16 @@
    
 </template>
 
-<script>
-import { IonButton } from '@ionic/vue';
+<script setup>
+    import { IonButton } from '@ionic/vue';
+    import { IonGrid, IonRow, IonCol } from '@ionic/vue';
+    import { useRouter } from 'vue-router';
+    const router = useRouter();
 
-    export default({
-        name: 'TaskNonexistent',
-
-        components: {
-            IonButton
-        },
-
-        methods: {
-            ReturnToMainPage() {
-                this.$router.push('/main-page');
-            }
-        }
-    });
-
+    function ReturnToMainPage() {
+        router.push('/main-page');
+    }
+        
 </script>
 
 <style lang="scss" scoped>

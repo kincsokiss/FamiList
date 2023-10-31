@@ -8,52 +8,35 @@
   <ion-content class="box">
     <ion-card>
       <ion-list class="ion-list">
-        <TaskItem v-for="task in tasks" :key="task.id" :task="task"/> 
+        <TaskItem v-for="task in taskList" :key="task.id" :task="task"/> 
       </ion-list>
     </ion-card>
     
   </ion-content>
 </template>
 
-<script>
-  import { defineComponent } from 'vue';
+<script setup>
   import TaskItem from './TaskItem.vue';
   import tasks from '../modules/tasks';
-  import { IonContent } from '@ionic/vue';
+  import { IonContent, IonCard, IonIcon } from '@ionic/vue';
   import { addCircleOutline } from 'ionicons/icons';
-  import { IonList,  } from '@ionic/vue';
+  import { IonList } from '@ionic/vue';
+  import { ref, onMounted } from 'vue';
 
-
-  export default defineComponent ({
-    name: "ToDoList",
-    components: { 
-      IonList,
-      TaskItem,
-      IonContent,
-    },
-
-    data() {
-        return {
-          tasks: null,
-        };
-    },
-
-    async mounted() {
-      this.tasks = await tasks.getTasks();
-      console.log(this.tasks);
-      const deadlines = this.tasks.map(item=>
-        item.deadline
+  const deadlines = ref('');
+  const taskList = ref([]);
+  
+  async function getTasks(){
+    taskList.value = await tasks.getTasks();
+        console.log(taskList.value);
+      deadlines.value = taskList.value.map(item=>
+        item.deadlines
       ); 
-      console.log(deadlines);
-    },
-    
+  }
 
-    setup() {
-      return { addCircleOutline };
-    },
-
-  });
-
+  onMounted(() => {
+    getTasks();
+  })
   
 </script>
 

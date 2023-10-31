@@ -6,10 +6,8 @@
     </main>
 </template>
 
-<script>
-    export default ({
-        name: 'NewHere',
-    })
+<script setup>
+    
 </script>
 
 <style scoped>

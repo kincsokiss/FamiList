@@ -1,22 +1,71 @@
 <template>
     <ion-card>
     
-        <form ref="form" :class="{'is-done' : task.done}">
+        <form :class="{'is-done' : task.done}">
             <nav>
                 <router-link to="/main-page">
                     <ion-icon :icon="closeCircle" class="position"></ion-icon>
                 </router-link>
             </nav>
             <ion-checkbox @ionChange="isDone" :checked="task.done" v-model="task.done">Done</ion-checkbox>
-            <ion-input :fill="isInputEditable" label="Title" ref="tit" :value="task.title" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Description" ref="desc" :value="task.description" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Deadline" ref="dead" :value="task.deadline" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Responsibles" ref="resp" :value="task.responsibles" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Repeatable" ref="repeat" :value="task.repeatable" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Attachment" ref="att" :value="task.attachments" :readonly="!isEditMode"></ion-input>
-            <ion-input :fill="isInputEditable" label="Creator" ref="crea" :value="task.creator" :readonly="!isEditMode"></ion-input>  
+            
+            <ion-input
+                :fill="isInputEditable" 
+                label="Title" 
+                v-bind:value="task.title" 
+                v-on:ion-input="task.title = $event.target.value" 
+                :readonly="!isEditMode"
+            ></ion-input>
+            
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Description" 
+                v-bind:value="task.description"
+                v-on:ion-input="task.description = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>
+            
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Deadline" 
+                v-bind:value="task.deadline"
+                v-on:ion-input="task.deadline = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>
+            
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Responsible" 
+                v-bind:value="task.responsible"
+                v-on:ion-input="task.responsible = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>
+            
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Repeatable" 
+                v-bind:value="task.repeatable"
+                v-on:ion-input="task.repeatable = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>
 
-            <ion-button @click="onClickButton" class="button">{{ buttonLabel }}</ion-button>
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Attachment" 
+                v-bind:value="task.attachments"
+                v-on:ion-input="task.attachments = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>
+            
+            <ion-input 
+                :fill="isInputEditable" 
+                label="Creator" 
+                v-bind:value="task.creator"
+                v-on:ion-input="task.creator = $event.target.value"
+                :readonly="!isEditMode"
+            ></ion-input>  
+
+            <ion-button @click="ClickButton" class="button">{{ buttonLabel }}</ion-button>
             <ion-button id="present-alert" class="button">Delete</ion-button>
 
             <ion-alert
@@ -29,136 +78,111 @@
     </ion-card>
 </template>
 
-<script>
-import tasks from '../modules/tasks';
-import { IonButton, IonAlert } from '@ionic/vue';
-import { toastController } from '@ionic/vue';
-import { closeCircle } from 'ionicons/icons';
-import { IonCheckbox } from '@ionic/vue';
+<script setup>
+    import tasks from '../modules/tasks';
+    import { closeCircle } from 'ionicons/icons';
+    import { IonCheckbox, IonCard, IonInput, IonIcon, toastController, IonButton, IonAlert } from '@ionic/vue';
+    import { computed, onMounted, ref } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
 
-    export default({
-        name:'TaskDetailPage',
+    const task = ref({
+        title: '',
+        description: '',
+        deadline: '',
+        responsible: '',
+        repeatable: '' ,
+        attachments: '',
+        creator: '',
+        done: ''       
+    })
 
-        components: {
-            IonButton,
-            IonAlert,
-            IonCheckbox
-        },
+    const isEditMode = ref(false);
+    const router = useRouter();
+    const route = useRoute();
+    const taskId = ref(null);
+
+    onMounted( async () => {
+        try{
+            taskId.value = route.params.taskid
+            task.value = await tasks.searchTaskByID(taskId.value);
+        } catch(error) {
+            router.push('/err-nonexistent-task');
+        }
         
-        data() {
-            return {
-                task: {
-                    default: {
-                        title: '',
-                        description: '',
-                        deadline: '',
-                        id: '',
-                        responsible: '',
-                        attachments: '',
-                        creator: '',
-                        repeatable: '' ,
-                        done: ''
-                    }           
-                },
-                closeCircle,
-                isEditMode: false,
-                tit: '',
-                desc: '',
-                dead: '',
-                resp: '',
-                repeat: '',
-                att: '',
-                crea: '',
-                alertButtons: [],
-                done: ''
-               
-            };
+    })
+
+    const buttonLabel = computed(() => {
+        return isEditMode.value ? 'Save' : 'Edit'
+    })
+
+    const isInputEditable = computed(() => {
+        return isEditMode.value ? 'solid' : 'outline'
+    })
+
+    const alertButtons = [
+        {
+            text: 'Cancel',
+            role: 'cancel'
         },
-        
+        {
+            text: 'Delete',
+            role: 'destructive',
+            handler: () => {
+                deleteTask()
+            }
+        }
+    ];
 
-        computed:{
-            taskId(){
-                return this.$route.params.taskid
-            },
+    async function presentToast(position = 'middle'){
+        const toast = await toastController.create({
+            message: 'Task has been saved',
+            duration: 1500,
+            position: position
+        });
 
-            buttonLabel() {
-                return this.isEditMode ? 'Save' : 'Edit'
-            },
+        await toast.present();
+    }
 
-            isInputEditable() {
-                return this.isEditMode ? 'solid' : 'outline'
-            },
-        },
+    function isDone(event) {
+        task.value.done = event.detail.checked;
+        tasks.updateTask(taskId.value, task.value.title, task.value.description, task.value.deadline, task.value.deadline, task.value.responsible, task.value.attachments, task.value.creator, task.value.done);
+    }
 
-        methods: {
-            async presentToast(position = 'middle'){
-                const toast = await toastController.create({
-                    message: 'Task has been saved',
-                    duration: 1500,
-                    position: position
-                });
+    function saveTask() {
+        if(isEditMode.value) {
+            tasks.updateTask(taskId.value, task.value.title, task.value.description, task.value.deadline, task.value.deadline, task.value.responsible, task.value.attachments, task.value.creator, task.value.done);
+            changeEditMode();
+            presentToast();
+        }
+    }
 
-                await toast.present();
-            },
+    function changeEditMode() {
+        isEditMode.value = !isEditMode.value;
+    }
 
-            isDone(event){
-                this.task.done = event.detail.checked;
-                tasks.updateTask(this.taskId, this.task);
-            },
+    function ClickButton() {
+        isEditMode.value ? saveTask() : changeEditMode()
+    }
 
-            saveTask() {
-                if(this.isEditMode) {
-                    this.task.title = this.$refs.tit.value;
-                    this.task.description = this.$refs.desc.value;
-                    this.task.deadline = this.$refs.dead.value;
-                    this.task.responsibles = this.$refs.resp.value;
-                    this.task.repeatable = this.$refs.repeat.value;
-                    this.task.attachments = this.$refs.att.value;
-                    this.task.creator = this.$refs.crea.value;
-                    this.changeEditMode();
-                    this.presentToast();
-                }
-                tasks.updateTask(this.taskId, this.task)
-                
-            },
+    function deleteTask() {
+        tasks.deleteTask(taskId.value)
+        resetForm();
+        router.push('/main-page');
+    }
 
-            changeEditMode() {
-                this.isEditMode = !this.isEditMode;
-            },
-
-            onClickButton() {
-                this.isEditMode ? this.saveTask() : this.changeEditMode()
-            },
-
-            deleteTask() {
-                tasks.deleteTask(this.taskId)
-                this.$refs.form.reset();
-                this.$router.push('/main-page');
-            },
-        },
-
-        async mounted(){
-                if(await tasks.searchTaskByID(this.taskId) == undefined){
-                    this.$router.push('/err-nonexistent-task');
-                } 
-                else this.task = await tasks.searchTaskByID(this.taskId);
-               
-           
-             this.alertButtons = [
-                {
-                    text: 'Cancel',
-                    role: 'cancel'
-                },
-                {
-                    text: 'Delete',
-                    role: 'destructive',
-                    handler: () => {
-                        this.deleteTask(this.task)
-                    }
-                }
-            ];
-        },
-    });
+    function resetForm() {
+        task.value = {
+            title: '',
+            description: '',
+            deadline: '',
+            id: '',
+            responsible: '',
+            attachments: '',
+            creator: '',
+            repeatable: '' ,
+            done: ''
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -180,16 +204,14 @@ import { IonCheckbox } from '@ionic/vue';
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
-        margin-left: 2%;
-        margin-right: 2%; 
         padding: 2%;
 
         ion-checkbox {
-            margin-bottom: 2%;
+            margin-bottom: 1%;
         }
 
         ion-input {
-            margin-bottom: 2%;
+            margin-bottom: 1%;
         }
     }
 
@@ -218,6 +240,7 @@ import { IonCheckbox } from '@ionic/vue';
         margin-bottom: 0.5rem;
         position: relative;
         font-size: 1.5rem; 
+        top: 20pt;
         
         &:hover {
             color: #312b27;       

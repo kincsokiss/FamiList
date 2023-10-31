@@ -7,6 +7,7 @@ import Users from './modules/users';
 
 import { IonicVue } from '@ionic/vue';
 
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -31,15 +32,13 @@ import './assets/sass/style.scss';
 
 // import moment from 'moment';
 // import VueMoment from 'vue-moment';
-// Object.defineProperty(Vue.prototype,'$moment',{value:moment})
+// Object.defineProperty(Vue.prototype,'$moment',{value:moment}
 
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(firebaseDb)
   .use(Users)
-  // .use(require('vue-moment'))
-  // .use(VueMoment)
   
 router.isReady().then(() => {
   app.mount('#app');

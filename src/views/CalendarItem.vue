@@ -9,35 +9,27 @@
   
 </template>
 
-<script>
-  import { IonDatetime } from '@ionic/vue';
-  import { defineComponent } from 'vue';
+<script setup>
+  import { IonDatetime, IonCard, IonCol, IonRow } from '@ionic/vue';
   import tasks from '../modules/tasks';
+  import { ref, onActivated } from 'vue';
 
-  export default defineComponent({
-    name:'CalendarItem',
-    components: { 
-      IonDatetime
-    },
-    data(){
-      return{
-        taskDeadlines: [],
-        tasks: []
-      }
-      
-    },
-    
-    async mounted(){
-      this.tasks = await tasks.getTasks();
-      console.log(this.tasks);
-      this.taskDeadlines = this.tasks.map(item=>{
-        return {date:item.deadline,textColor: "red" }
-      }); 
-      
-      console.log(this.taskDeadlines);
-      
-    }
-  });
+  const taskDeadlines = ref([]);
+  const task = ref([]);
+
+  async function getTask() {
+    task.value = await tasks.getTasks();
+    taskDeadlines.value = task.value.map(item=>{
+      return {date:item.deadline, textColor: "red" }
+    });
+
+    console.log(taskDeadlines.value); 
+  }
+
+  onActivated(() => {
+    getTask();
+  })
+
 </script>
 
 <style scoped>
@@ -62,8 +54,6 @@
     color: #191514;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
-    
-
   }
 
 </style>

@@ -1,10 +1,10 @@
 <template>
     <main class="details">
         <ion-card>
-            <form ref="form" @submit="formSubmit">
+            <form @submit="formSubmit">
                 <h4 class="size" >Login to Your Account</h4>
-                <ion-input class="text" label="Email" placeholder="Enter your email" type="email" ref="email" required="required"></ion-input>
-                <ion-input class="text" label="Password" placeholder="Enter your password" type="password" ref="password" required="required"></ion-input>
+                <ion-input class="text" label="Email" placeholder="Enter your email" type="email" v-model="email" required="required"></ion-input>
+                <ion-input class="text" label="Password" placeholder="Enter your password" type="password" v-model="password" required="required"></ion-input>
                 <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
                 <ion-button type="submit" class="ion-button">Submit</ion-button>
             </form>
@@ -12,63 +12,51 @@
     </main>
 </template>  
 
-<script>
+<script setup>
     import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-    
-    export default({
-    name:'SignInPage',
+    import { ref } from "vue";
+    import { useRouter } from "vue-router";
+    import { IonCard, IonInput, IonButton } from "@ionic/vue";
 
-    data() {
-        return {
-            email: '',
-            password: '',
-            errMsg: ''
-        };
-    },
+    const router = useRouter();
+    const email = ref("");
+    const password = ref("");
+    const errMsg = ref("");
 
+    function formSubmit(e) {
+        e.preventDefault();
+        signInWithEmailAndPassword(getAuth(), email.value, password.value)
+        .then((data) => {
+            console.log(data.user, "Successfully signed in!");
+            router.push('/main-page')
+        }) 
+        .catch((error) => {
+            console.log(error.code);
+            switch (error.code) {
+                case "auth/invalid-email":
+                    errMsg.value = "Invalid email"
+                    break;
+                case "auth/user-not-found":
+                    errMsg.value = "No account with that email was found"
+                    break;
+                case "auth/wrong-password":
+                    errMsg.value = "Incorrect password"
+                    break;
+                default:
+                    errMsg.value = "Email or password was incorrect"
+                    break;
+            }
+        })
 
-    mounted(){
+        resetForm();
+        
+    }
 
-    },
-
-    methods: {
-        formSubmit(e) {
-            e.preventDefault();
-            const email = this.$refs.email.value;
-            const password = this.$refs.password.value;
-
-            const auth = getAuth();
-            signInWithEmailAndPassword(auth, email, password)
-            .then((data) => {
-                console.log(data.user, "Successfully signed in!");
-                console.log(auth.currentUser)
-
-                this.$router.push('/main-page')
-            }) 
-            .catch((error) => {
-                console.log(error.code);
-                switch (error.code) {
-                    case "auth/invalid-email":
-                        this.errMsg = "Invalid email"
-                        break;
-                    case "auth/user-not-found":
-                        this.errMsg = "No account with that email was found"
-                        break;
-                    case "auth/wrong-password":
-                        this.errMsg = "Incorrect password"
-                        break;
-                    default:
-                        this.errMsg = "Email or password was incorrect"
-                        break;
-                }
-            })
-
-            this.$refs.form.reset();
-            
-        },
-    },
-    
-});
+    function resetForm() {
+        email.value = "";
+        password.value = "";
+        errMsg.value = "";
+    }
 
 </script>
 
@@ -81,7 +69,7 @@
     .text{
         color: #191514;
         font-family: 'Poppins', sans-serif;
-        margin-left: 5%;
+        margin-left: 2%;
         font-size: 13pt;
     }
 
@@ -118,5 +106,4 @@
         color: black;
         font-family: 'Poppins', sans-serif;
     }
-
 </style>

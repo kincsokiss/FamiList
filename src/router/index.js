@@ -2,11 +2,11 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from '@ionic/vue-router';  
 import UserSettings from '@/views/UserSettings.vue';
 import MainPage from '@/views/MainPage.vue';
-import Calendar from '@/views/Calendar.vue';
+import Calendar from '@/views/CalendarItem.vue';
 import ToDoList from '@/views/ToDoList.vue';
 import CreateTask from '@/views/CreateTask.vue';
 
-import RegisterPage from '@/views/Register.vue';
+import RegisterPage from '@/views/RegisterPage.vue';
 import SignInPage from '@/views/SignIn.vue';
 import TaskDetailPage from '@/views/TaskDetailPage.vue';
 import UserDetailPage from '@/views/UserDetailPage.vue';
