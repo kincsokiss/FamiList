@@ -88,6 +88,7 @@
     .details {
         text-align: center;
         position: relative;
+        margin-top: 5rem;   
     }
 
     .color-danger {

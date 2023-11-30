@@ -183,7 +183,7 @@ import { IonCheckbox } from '@ionic/vue';
         margin-left: 2%;
         margin-right: 2%; 
         padding: 2%;
-
+        margin-top: 5rem;
         ion-checkbox {
             margin-bottom: 2%;
         }
