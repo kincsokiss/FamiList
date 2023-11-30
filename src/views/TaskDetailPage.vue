@@ -205,7 +205,7 @@
         color: black;
         font-family: 'Poppins', sans-serif;
         padding: 2%;
-
+        margin-top: 5rem;
         ion-checkbox {
             margin-bottom: 1%;
         }

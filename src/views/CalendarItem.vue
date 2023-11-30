@@ -56,4 +56,8 @@
     font-family: 'Poppins', sans-serif;
   }
 
+  ion-row{
+    margin-top: 3rem;
+  }
+
 </style>

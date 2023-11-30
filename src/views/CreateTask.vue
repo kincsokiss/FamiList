@@ -102,6 +102,7 @@
         font-weight: bold;
         color: black;
         font-family: 'Poppins', sans-serif;
+        margin-top: 5rem;
     }
 
     .text{

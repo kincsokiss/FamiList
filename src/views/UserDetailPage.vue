@@ -228,7 +228,7 @@
         color: black;
         font-family: 'Poppins', sans-serif;
         padding: 2%;
-
+        margin-top: 5rem;
         ion-input {
             margin-bottom: 8px;
         }
