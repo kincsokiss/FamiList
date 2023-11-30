@@ -41,22 +41,17 @@
         .material {
             font-size: 2rem;
             color: #f7d6c5;
-            transition: 0.2s ease-out;
             width: 2rem;
         }
 
         &:hover {
             .material {
                 color: #312b27;
-                transform: translateX(0.5rem);
             }
         }
 
 
-        h3, .button .text {
-            opacity: 0;
-            transition: 0.3s ease-out;
-        }
+
         
         .menu {
             margin: 0 -1rem;
@@ -66,12 +61,10 @@
                 text-decoration: none;
 
                 padding: 0.5rem 1rem;
-                transition: 0.2s ease-out;
                 font-size: 150%;
 
                 .text {
                     color: #191514;
-                    transition: 0.2s ease-out;
                 }
 
                 &:hover, &.router-link-exact-active {

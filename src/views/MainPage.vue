@@ -1,7 +1,7 @@
 <template>
   <body class="main">
-    
-    <ion-grid >
+    <ion-content>
+      <ion-grid >
       <ion-row>
         <ion-col>
           <CalendarItem/>
@@ -13,6 +13,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    </ion-content>
+    
   </body>
     
 </template>
@@ -20,7 +22,7 @@
 <script setup>
 import ToDoList from './ToDoList.vue';
 import CalendarItem from './CalendarItem.vue';
-import { IonGrid, IonRow, IonCol } from '@ionic/vue';
+import { IonGrid, IonRow, IonCol, IonContent } from '@ionic/vue';
 </script>
 
 <style lang="scss" scoped>

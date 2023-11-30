@@ -5,20 +5,17 @@
     <ion-icon :icon="addCircleOutline" class="logo_"></ion-icon>
   </router-link>
   
-  <ion-content class="box">
     <ion-card>
       <ion-list class="ion-list">
         <TaskItem v-for="task in taskList" :key="task.id" :task="task"/> 
       </ion-list>
     </ion-card>
-    
-  </ion-content>
 </template>
 
 <script setup>
   import TaskItem from './TaskItem.vue';
   import tasks from '../modules/tasks';
-  import { IonContent, IonCard, IonIcon } from '@ionic/vue';
+  import { IonCard, IonIcon } from '@ionic/vue';
   import { addCircleOutline } from 'ionicons/icons';
   import { IonList } from '@ionic/vue';
   import { ref, onMounted } from 'vue';
@@ -56,7 +53,6 @@
   }
 
   .logo_ {
-    margin-bottom: 0.5rem;
     font-size: 2rem;
     color:#191514;
     width: 2rem;
@@ -69,6 +65,7 @@
   ion-card {
     --ion-item-background: #fae6dc;
     --background: #fae6dc;
+    top: -2.5rem;
   }
 
   .box{
@@ -85,10 +82,4 @@
     top: -3rem;
   }
 
-  ion-content {
-    top: -2.5rem;
-    max-width: 200%;
-    height: 200%;
-    --background: #f7d6c5;
-  }
 </style>
