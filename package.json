@@ -19,14 +19,19 @@
     "@capacitor/ios": "5.0.3",
     "@capacitor/keyboard": "5.0.2",
     "@capacitor/status-bar": "5.0.2",
-    "@ionic/vue": "^7.0.0",
-    "@ionic/vue-router": "^7.0.0",
+    "@ionic/cli": "^7.1.5",
+    "@ionic/vue": "^7.5.6",
+    "@ionic/vue-router": "^7.5.6",
+    "@maskito/core": "^1.8.1",
+    "@maskito/phone": "^1.8.1",
+    "@maskito/vue": "^1.8.1",
     "core-js": "^3.6.5",
     "firebase": "^9.23.0",
     "ionicons": "^7.0.0",
-    "vue": "^3.2.47",
+    "v-mask": "^2.3.0",
+    "vue": "^3.3.9",
     "vue-moment": "^4.1.0",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@capacitor/cli": "5.0.3",

@@ -1,5 +1,6 @@
 <template>
   <body class="main">
+    
     <ion-grid >
       <ion-row>
         <ion-col>
@@ -16,20 +17,10 @@
     
 </template>
 
-<script>
+<script setup>
 import ToDoList from './ToDoList.vue';
-import CalendarItem from './Calendar.vue';
-
-  
-  export default({
-    name: "MainPage",
-    components: {
-      ToDoList,
-      CalendarItem,
-    
-    },
-  });
-
+import CalendarItem from './CalendarItem.vue';
+import { IonGrid, IonRow, IonCol } from '@ionic/vue';
 </script>
 
 <style lang="scss" scoped>

@@ -10,44 +10,33 @@
     
 </template>
 
-<script>
+<script setup>
 import users from '../modules/users.js';
+import { ref } from 'vue';
 
-export default({
-    name:'UserItem',
+const name = ref('');
+const age = ref('');
+const phonenumber = ref('');
+const rank = ref('');
 
-    data() {
-        return {
-            name: '',
-            age: '',
-            phonenumber: '',
-            rank: ''
-        };
-    },
+function formSubmit(e) {
+    e.preventDefault();
+    const name = name.value;
+    console.log(name);
 
-    methods: {
-        formSubmit(e) {
-            e.preventDefault();
-            console.log('alma');
-            const name = this.$refs.name.value;
-            console.log(name);
+    const age = age.value;
+    console.log(age);
 
-            const age = this.$refs.age.value;
-            console.log(age);
+    const phonenumber = phonenumber.value;
+    console.log(phonenumber);
 
-            const phonenumber = this.$refs.phonenumber.value;
-            console.log(phonenumber);
+    const rank = rank.value;
+    console.log(rank);
 
-            const rank = this.$refs.rank.value;
-            console.log(rank);
+    form.reset();
 
-            this.$refs.form.reset();
-
-            users.storeUser(name, age, rank, phonenumber);
-        }
-    },
-    
-});
+    users.storeUser(name, age, rank, phonenumber);
+}; 
 </script>
 
 <style>

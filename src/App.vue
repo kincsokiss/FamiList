@@ -7,27 +7,25 @@
   </ion-app>
 </template>
 
-<script>
-import HeaderVue from './views/Header.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-// import FooterVue from './views/Footer.vue';
+<script setup>
+  import HeaderVue from './views/HeaderItem.vue';
+  import { getAuth, onAuthStateChanged } from 'firebase/auth';
+  import { useRouter } from 'vue-router';
+  import { onMounted } from 'vue';
+  import { IonApp, IonPage } from '@ionic/vue';
 
-export default {
-    name: 'App',
-    components: {
-      HeaderVue,
-      // FooterVue,
-    },
-
-    created() {
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if(!user){
-          this.$router.push('/');
-        }
-      })
-    }
-};
+  const router = useRouter();
+  
+  onMounted(() => {
+    const auth = getAuth();
+    
+    console.log(auth);
+    onAuthStateChanged(auth, (user) => {
+      if(!user){
+        router.push('/');
+      }
+    })
+})
 </script>
 
 <style scoped>
@@ -57,8 +55,5 @@ export default {
   ion-page {
     --background: #f7d6c5;
   }
-
-  
-  
 </style>
 

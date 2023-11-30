@@ -29,54 +29,29 @@
     </ion-menu>
 </template>
 
-<script>
-    import { listCircleOutline, settingsOutline, chevronForwardOutline, homeOutline } from 'ionicons/icons';
-
-    export default ({
-        name: "SideBar",
-
-        setup() {
-            return { listCircleOutline, settingsOutline, homeOutline, chevronForwardOutline };
-        },
-    });
-
+<script setup>
+    import { settingsOutline, homeOutline } from 'ionicons/icons';
+    import { IonMenu, IonHeader, IonToolbar, IonContent, IonIcon } from '@ionic/vue';
+        
 </script>
 
 <style lang="scss" scoped>
 
     ion-menu {
-        // ion-toolbar {
-        //     --background: #c5636578;
-        // }
-
-        // ion-content {
-        //     --background: #f7d6c5;
-        // }
-
-        .logo {
-            margin-bottom: 0.5rem;
+        .material {
+            font-size: 2rem;
+            color: #f7d6c5;
+            transition: 0.2s ease-out;
             width: 2rem;
         }
 
-        .menu-toggle-wrap {
-
-            .menu-toggle {
-
-                .material {
-                    font-size: 2rem;
-                    color: #f7d6c5;
-                    transition: 0.2s ease-out;
-                    width: 2rem;
-                }
-
-                &:hover {
-                    .material {
-                        color: #312b27;
-                        transform: translateX(0.5rem);
-                    }
-                }
+        &:hover {
+            .material {
+                color: #312b27;
+                transform: translateX(0.5rem);
             }
         }
+
 
         h3, .button .text {
             opacity: 0;
@@ -93,11 +68,6 @@
                 padding: 0.5rem 1rem;
                 transition: 0.2s ease-out;
                 font-size: 150%;
-                // .material {
-                //     font-size: 2rem;
-                //     color: #191514;
-                //     transition: 0.2s ease-out;
-                // }
 
                 .text {
                     color: #191514;

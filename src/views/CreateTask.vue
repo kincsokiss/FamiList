@@ -10,130 +10,87 @@
 
             <h2>Create a new task!</h2>
 
-            <ion-input class="text" label="Title" placeholder="Enter the title" ref="title" required="required"></ion-input>
-            <ion-input class="text" label="Description" placeholder="Enter the description" ref="desc"></ion-input>
-            <ion-input class="text" label="Deadline" type="date" placeholder="Set the deadline" ref="deadline"></ion-input>
-            <ion-input class="text" label="Responsibles" placeholder="Who should do it?" ref="resp"></ion-input>
-            <ion-input class="text" label="Repeatable" ref="repeat" placeholder="yes/no"></ion-input>
-            <ion-input class="text" label="Attachment" ref="att"></ion-input>
-            <ion-input class="text" label="Creator" :value="this.user.name"></ion-input>
+            <ion-input class="text" label="Title" placeholder="Enter the title" v-model="title" required="required"></ion-input>
+            <ion-input class="text" label="Description" placeholder="Enter the description" v-model="description"></ion-input>
+            <ion-input class="text" label="Deadline" type="date" placeholder="Set the deadline" v-model="deadline"></ion-input>
+            <ion-input class="text" label="Responsible" placeholder="Who should do it?" v-model="responsible"></ion-input>
+            <ion-input class="text" label="Repeatable" v-model="repeat" placeholder="yes/no"></ion-input>
+            <ion-input class="text" label="Attachment" v-model="attachment"></ion-input>
+            <ion-input class="text" label="Creator" :value="user.name"></ion-input>
 
-            <ion-button type="submit">{{ buttonLabel }}</ion-button>
+            <ion-button type="submit">Create</ion-button>
         </form>
     </ion-card>
 </template>
 
-<script>
-    import { defineComponent } from 'vue';
-    import { toastController } from '@ionic/vue';
+<script setup>
+    import { toastController, IonCard, IonInput, IonIcon, IonButton } from '@ionic/vue';
     import tasks from '../modules/tasks';
     import { closeCircle } from 'ionicons/icons';
-    import { getAuth, onAuthStateChanged } from 'firebase/auth';
     import users from '../modules/users';
+    import { onMounted, ref } from 'vue';
+    import firebaseDb from '../modules/firebase';
+    import { getAuth } from 'firebase/auth';
 
-    export default defineComponent({
-    name:'CreateTask',
-
-    data() {
-        return {
-            title: '',
-            desc: '',
-            deadline: '',
-            resp: '',
-            repeat: '',
-            att: '',
-            creator: '',
-            done: '',
-            closeCircle,
-            userAuthId: '',
-            userId: '',
-            task: {
-                default: {
-                    title: '',
-                    description: '',
-                    deadline: '',
-                    id: '',
-                    responsible: '',
-                    attachments: '',
-                    creator: '',
-                    done: ''
-                }
-            },
-            user: {
-                default: {
-                    name: ''
-                }
-            }
-        }
-    },
-
-    created() {
-            const auth = getAuth();
-            onAuthStateChanged(auth, (user) => {
-            if (user) {
-                this.userAuthId = user.uid;
-                this.fetchUserData();
-            } else {
-                this.userAuthId = null;
-            }
-            });
-    },
-
-    computed: {
-        buttonLabel(){
-            return this.isTaskUpdating ? 'Update' : 'Create'
-        }
-    },
-
-    methods: {
-        async presentToast(position = 'middle'){
-                const toast = await toastController.create({
-                    message: 'Task has been created',
-                    duration: 1500,
-                    position: position
-                });
-
-                await toast.present();
-        },
-
-        async fetchUserData() {
-            try {
-                this.userId = await users.searchUserbyUID(this.userAuthId);
-                console.log(this.userId)
-                this.getUserData()
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-            },
-
-            async getUserData() {
-                try{
-                    this.user = await users.searchUserByID(this.userId);
-                    console.log(this.user);
-                } catch (error) {
-                    console.log('Error in getUserData: ', error);
-                }
-        },
-
-        formSubmit(e) {
-            e.preventDefault();
-            const title = this.$refs.title.value;
-            const desc = this.$refs.desc.value;
-            const deadline = this.$refs.deadline.value;
-            const resp = this.$refs.resp.value;
-            const repeat = this.$refs.repeat.value;
-            const att = this.$refs.att.value;
-            const creator = this.user.name;
-            const done = false;
-
-
-            tasks.addTask(title, desc, deadline, resp, repeat, att, creator, done);
-            this.presentToast();
-            this.$refs.form.reset();
-        },
-    },
+    const title = ref('');
+    const description = ref('');
+    const deadline = ref('');
+    const responsible = ref('');
+    const repeat = ref('');
+    const attachment = ref('');
+    const done = ref(false);
+    const authUser = ref('');
+    const user = ref('');
+    const auth = getAuth();
     
-});
+    onMounted(async() => {
+        authUser.value = await firebaseDb.getAuthUser();
+        fetchUserData();
+    })
+
+    async function presentToast(position = 'middle'){
+            const toast = await toastController.create({
+                message: 'Task has been created',
+                duration: 1500,
+                position: position
+            });
+
+            await toast.present();
+    }
+
+    async function fetchUserData() {
+        try {
+            let userId = await users.searchUserbyEmail(auth.currentUser.email);
+            getUserData(userId);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    }
+
+    async function getUserData(userId) {
+        try{
+            user.value = await users.searchUserByID(userId);
+        } catch (error) {
+            console.log('Error in getUserData: ', error);
+        }
+    }
+
+    function formSubmit(e) {
+        e.preventDefault();
+        tasks.addTask(title.value, description.value, deadline.value, responsible.value, repeat.value, attachment.value, user.value.name, done.value);
+        presentToast();
+        resetForm();
+    }
+
+    function resetForm() {
+        title.value = "";
+        description.value = "";
+        deadline.value = "";
+        responsible.value = "";
+        repeat.value = "";
+        attachment.value = "";
+        done.value = "";
+    }
 
 </script>
 
@@ -172,6 +129,7 @@
         display: flex;
         justify-content: end;
         position: relative;
+        top: 20pt;
         font-size: 1.5rem;
         
         &:hover {

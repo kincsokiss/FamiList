@@ -1,17 +1,18 @@
 import firebaseDb from "./firebase"
 
 class UsersModule {
-  async addUser(name, age, rank, phoneNumber, id) {
+  async addUser(name, age, rank, phoneNumber, email) {
       try {
         const userId = await firebaseDb.storeDoc('Users',{
           age: age,
           name: name,
           rank: rank,
           phoneNumber: phoneNumber,
-          uid: id
+          email: email,
         });
 
         console.log(userId);
+        return userId
       } catch (error) {
         console.log('storeUser has failed: ', error)
       }
@@ -23,7 +24,8 @@ class UsersModule {
         age: user.age,
         name: user.name,
         rank: user.rank,
-        phoneNumber: user.phoneNumber
+        phoneNumber: user.phoneNumber,
+        email: user.email,
       });
       console.log('User updated');
     } catch (error) {
@@ -50,9 +52,9 @@ class UsersModule {
     }
   }
 
-  async searchUserbyUID(uid){
+  async searchUserbyEmail(email){
     try{
-      const datas = await firebaseDb.searchDocbyUID('Users', uid);
+      const datas = await firebaseDb.searchDocbyEmail('Users', email);
       return datas;
     } catch(error) {
       console.log('searchUserbyUID has failed: ', error);
