@@ -61,6 +61,6 @@
   }
   
   ion-fab{
-    top: -15%;
+    top: -13%;
   }
 </style>

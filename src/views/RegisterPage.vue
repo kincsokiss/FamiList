@@ -1,11 +1,11 @@
 <template>
-    <main class="dimensionsback_color">
+    <main>
         <ion-card>
             <form @submit="formSubmit">
                 <h1>Create an Account</h1>
                 <ion-input class="text" label="Name" placeholder="Enter name" v-model="name" required="required"></ion-input>
                 <ion-input class="text" label="Age" type="number" placeholder="Enter age" v-model="age" required="required"></ion-input>
-                <ion-input class="text" label="Phone number" v-model="phonenumber" required="required"></ion-input>
+                <ion-input class="text" label="Phone number" v-maskito="phoneOptions" v-model="phonenumber" required="required"></ion-input>
                 <ion-input class="text" label="Email" placeholder="Enter email" type="email" v-model="email" required="required"></ion-input>
                 <ion-input class="text" label="Password" placeholder="Enter password" type="password" v-model="password" required="required"></ion-input>
                 <ion-button type="submit">Create</ion-button>
@@ -21,6 +21,7 @@
     import { IonInput, IonButton, IonCard } from '@ionic/vue';
     import { ref } from 'vue';  
     import { useRouter } from 'vue-router';
+    import { maskito as vMaskito} from '@maskito/vue';
 
     const router = useRouter();
     const name = ref('');
@@ -31,6 +32,18 @@
     const password = ref('');
     const auth = getAuth();
     const userID = ref('');
+
+    const phoneOptions = {
+        mask: ['+', '4', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+        elementPredicate: (el) => {
+        return new Promise((resolve) => {
+            requestAnimationFrame(async () => {
+            const input = await el.getInputElement();
+            resolve(input);
+            });
+        });
+        },
+    }
 
     async function presentToast(position = 'middle'){
         const toast = await toastController.create({
@@ -106,14 +119,6 @@
     }
     
 
-    ion-grid {
-        background-color: #f7d6c5;
-    }
-
-    ion-col {
-        text-align: center;
-    }
-
     h1 {
         color: #191514;
         font-weight: bold;
@@ -130,5 +135,9 @@
         &:hover {
             background-color: #191514;
         }
+    }
+
+    main{
+        margin-top: 4rem;
     }
 </style>

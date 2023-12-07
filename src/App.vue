@@ -1,8 +1,11 @@
 <template>
   <ion-app >
     <HeaderVue/>    
-    <ion-page id="main-content">
-      <router-view/>
+    <ion-page id="main-content" :fullscreen="true">
+      <ion-content>
+        <router-view/>
+        
+      </ion-content>
     </ion-page>
   </ion-app>
 </template>
@@ -12,7 +15,7 @@
   import { getAuth, onAuthStateChanged } from 'firebase/auth';
   import { useRouter } from 'vue-router';
   import { onMounted } from 'vue';
-  import { IonApp, IonPage } from '@ionic/vue';
+  import { IonApp, IonPage, IonContent } from '@ionic/vue';
 
   const router = useRouter();
   
