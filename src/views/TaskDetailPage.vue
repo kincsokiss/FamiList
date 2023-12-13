@@ -1,7 +1,7 @@
 <template>
     <ion-card>
     
-        <form :class="{'is-done' : task.done}">
+        <form>
             <nav>
                 <router-link to="/main-page">
                     <ion-icon :icon="closeCircle" class="position"></ion-icon>
