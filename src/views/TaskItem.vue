@@ -1,9 +1,9 @@
 <template>
   <ion-item detail="true" :href="detailsPageURL"  class="box">
     <ion-label>
-      <p :class="{'text-color' : props.task.done}"> {{ props.task.title }} </p>
-      <p :class="{'text-color' : props.task.done}"> {{ props.task.description }} </p>
-      <p :class="{'text-color' : props.task.done}"> {{ formatDate(props.task.deadline)}}</p>
+      <p :class="[{'text-linethrough' : props.task.done}, 'bold']"> {{ props.task.title }} </p>
+      <p> {{ props.task.description }} </p>
+      <p> {{ props.task.deadline }}</p>
     </ion-label>
   </ion-item>
     
@@ -25,15 +25,6 @@
   });
 
  const detailsPageURL = ref('/tasks/' + props.task.id);
-
-  // onMounted(() => {
-  //   detailsPageURL = '/tasks/' + props.task.id;
-  // })
-  
-  function formatDate(date){
-    //return new Date(date);
-    return date;
-  }
   
 </script>
 
@@ -44,15 +35,17 @@
   }
 
   p{
-    
-    font-size: 13pt;
+    font-size: 13px !important;
+    color: #191514 !important;
   }
 
-  .text-color {
+  .text-linethrough {
     text-decoration: line-through;
-    --ion-text-color:#191514;
-    color: #191514;
-  }
 
+  }
   
+  .bold {
+    font-weight: bold;
+    font-size: 15px !important;
+  }
 </style>

@@ -18,11 +18,17 @@
   import { IonCard, IonIcon } from '@ionic/vue';
   import { addCircleOutline } from 'ionicons/icons';
   import { IonList } from '@ionic/vue';
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, watch } from 'vue';
+
+  const props = defineProps([
+    'isRefreshing',
+  ]);
+
+  const emit = defineEmits(['updateRefreshingState']);
 
   const deadlines = ref('');
   const taskList = ref([]);
-  
+ 
   async function getTasks(){
     taskList.value = await tasks.getTasks();
         console.log(taskList.value);
@@ -33,7 +39,19 @@
 
   onMounted(() => {
     getTasks();
-  })
+  }),
+
+  watch(() => props.isRefreshing, async (newVal, oldVal) => {
+      console.log(
+        "Watch props.isRefreshing function called with args:",
+        newVal,
+        oldVal
+      );
+      if (newVal) {
+        await getTasks();
+        emit('updateRefreshingState', false);
+      }
+    });
   
 </script>
 
