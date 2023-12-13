@@ -34,7 +34,7 @@
     const userID = ref('');
 
     const phoneOptions = {
-        mask: ['+', '4', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+        mask: ['+', '4', '0' , ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
         elementPredicate: (el) => {
         return new Promise((resolve) => {
             requestAnimationFrame(async () => {

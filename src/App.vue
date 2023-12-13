@@ -24,8 +24,11 @@
     
     console.log(auth);
     onAuthStateChanged(auth, (user) => {
-      if(!user){
+      if (!user){
         router.push('/');
+      }
+      else {
+        router.push('/main-page');
       }
     })
 })

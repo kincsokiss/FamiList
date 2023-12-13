@@ -1,8 +1,8 @@
 <template>
     <main class="details">
         <ion-card>
-            <form @submit="formSubmit">
-                <h4 class="size" >Login to Your Account</h4>
+            <form @submit="formSubmit" class="p-8">
+                <h4 class="size" >Login</h4>
                 <ion-input class="text" label="Email" placeholder="Enter your email" type="email" v-model="email" required="required"></ion-input>
                 <ion-input class="text" label="Password" placeholder="Enter your password" type="password" v-model="password" required="required"></ion-input>
                 <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
@@ -61,6 +61,11 @@
 </script>
 
 <style scoped>
+
+    .p-8 {
+        padding: 8px;
+    }
+
     h4{
         color:#191514;
         font-family: 'Poppins', sans-serif;
@@ -69,8 +74,7 @@
     .text{
         color: #191514;
         font-family: 'Poppins', sans-serif;
-        margin-left: 2%;
-        font-size: 13pt;
+        font-size: 13px;
     }
 
     .details {
