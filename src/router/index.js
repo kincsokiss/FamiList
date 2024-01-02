@@ -13,8 +13,8 @@ import UserDetailPage from '@/views/UserDetailPage.vue';
 import TaskNonexistent from '@/views/TaskNonexistent.vue';
   
   const routes = [
-    { path: '/main-page', name: 'mainpage', component: MainPage },
-    { path: '/', component: UserSettings },
+    { path: '/', name: 'mainpage', component: MainPage },
+    { path: '/user-settings', component: UserSettings },
     { path: '/calendar', component: Calendar },
     { path: '/to-do-list', component: ToDoList },
     { path: '/register-page', name: 'registerpage', component: RegisterPage },

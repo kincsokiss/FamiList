@@ -3,7 +3,7 @@
         <form ref="form" @submit="formSubmit" class="back_color">
             
             <nav>
-                <router-link to="/main-page">
+                <router-link to="/">
                     <ion-icon :icon="closeCircle" class="position"></ion-icon>
                 </router-link>
             </nav>
@@ -16,7 +16,7 @@
             <ion-input class="text" label="Responsible" placeholder="Who should do it?" v-model="responsible"></ion-input>
             <ion-input class="text" label="Repeatable" v-model="repeat" placeholder="yes/no"></ion-input>
             <ion-input class="text" label="Attachment" v-model="attachment"></ion-input>
-            <ion-input class="text" label="Creator" :value="user.name"></ion-input>
+            <ion-input class="text" readonly="true" label="Creator" :value="user.name"></ion-input>
 
             <ion-button type="submit">Create</ion-button>
         </form>

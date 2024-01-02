@@ -3,10 +3,10 @@
     <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-menu-button v-if="isVisible"></ion-menu-button>
+            <ion-menu-button v-if="showMenu"></ion-menu-button>
           </ion-buttons>
         </ion-toolbar>
-        <ion-fab v-if="isVisible" vertical="top" horizontal="end">
+        <ion-fab v-if="showMenu" vertical="top" horizontal="end">
           <ion-fab-button size="small">
             <ion-icon :icon="personCircleOutline"></ion-icon>
           </ion-fab-button>
@@ -29,16 +29,15 @@
   import { getAuth, signOut } from 'firebase/auth';
   import { IonFab, IonToolbar, IonButtons, IonMenuButton, IonFabButton, IonFabList, IonHeader, IonIcon } from '@ionic/vue';
   import { personCircleOutline, settingsOutline, logOutOutline } from 'ionicons/icons' 
-  import { onMounted, ref } from 'vue';
+  import { watch, ref } from 'vue';
   import { useRouter } from "vue-router";
-  import firebaseDb from '../modules/firebase';
 
   const router = useRouter();
-  const isVisible = ref(false);
-  
-  onMounted(async() => {
-    isVisible.value = await firebaseDb.isUserLoggedIn();
-  })
+  const props = defineProps([
+    'showMenu'
+  ])
+
+  const show_menu = ref(false);
 
   function goToUserSettings(){
     router.push('/user-detail-page')
@@ -47,11 +46,19 @@
   function signOutUser(){
     const auth = getAuth();
     signOut(auth).then(() => {
-        router.push('/')
+        router.push('/user-settings') 
+        show_menu.value = false;
     }).catch((error) => {
         console.log('signOutUser has failed: ', error)
     })
   }
+
+  watch(() => props.showMenu, (newVal, oldVal) => {
+    console.log('showMenu: ', props.showMenu)
+    console.log("User is logged in: ", newVal, oldVal)
+    if (newVal !== oldVal) show_menu.value = newVal;
+    console.log("show_menu: ", show_menu.value)
+  })
 
  </script>
 

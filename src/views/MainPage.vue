@@ -34,13 +34,17 @@ import ToDoList from './ToDoList.vue';
 import CalendarItem from './CalendarItem.vue';
 import { IonGrid, IonRow, IonCol, IonContent, IonRefresher, IonRefresherContent } from '@ionic/vue';
 import { chevronDownCircleOutline } from 'ionicons/icons';
-import { ref } from 'vue';
+import { onMounted, provide, ref } from 'vue';
 
 const isRefreshing = ref(false);
 const handleRefresh = async (event) => {
   event.detail.complete();
   isRefreshing.value = true;
 }
+
+onMounted(() => {
+  provide('showMenuMainPage', true);
+})
 
 function updateRefreshingState(state){
   isRefreshing.value = state;
