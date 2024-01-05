@@ -9,7 +9,7 @@
         <div class="menu">
             <nav>
                 <div id="nav">
-                    <router-link to="/main-page" class="button">
+                    <router-link to="/" class="button">
                         <ion-icon :icon="homeOutline" class="material"></ion-icon>
                         <span class="text">Home Page</span>
                     </router-link>

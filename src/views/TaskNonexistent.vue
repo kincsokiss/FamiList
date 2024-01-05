@@ -22,7 +22,7 @@
     const router = useRouter();
 
     function ReturnToMainPage() {
-        router.push('/main-page');
+        router.push('/');
     }
         
 </script>

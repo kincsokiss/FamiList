@@ -156,7 +156,7 @@
 
   function signOutUser(){
       signOut(auth).then(() => {
-          router.push('/')
+          router.push('/user-settings')
       }).catch((error) => {
           console.log('signOutUser has failed: ', error)
       })
@@ -205,7 +205,7 @@
     })
 
     resetForm();
-    router.push('/');
+    router.push('/user-settings');
   }
 
   function resetForm() {

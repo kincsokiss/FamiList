@@ -22,13 +22,14 @@
     const email = ref("");
     const password = ref("");
     const errMsg = ref("");
+    
 
     function formSubmit(e) {
         e.preventDefault();
         signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((data) => {
             console.log(data.user, "Successfully signed in!");
-            router.push('/main-page')
+            router.push('/')
         }) 
         .catch((error) => {
             console.log(error.code);

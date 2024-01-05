@@ -1,10 +1,9 @@
 <template>
   <ion-app >
-    <HeaderVue/>    
+    <HeaderVue :showMenu="showMenu"/>    
     <ion-page id="main-content" :fullscreen="true">
       <ion-content>
         <router-view/>
-        
       </ion-content>
     </ion-page>
   </ion-app>
@@ -14,24 +13,30 @@
   import HeaderVue from './views/HeaderItem.vue';
   import { getAuth, onAuthStateChanged } from 'firebase/auth';
   import { useRouter } from 'vue-router';
-  import { onMounted } from 'vue';
+  import { onMounted, ref } from 'vue';
   import { IonApp, IonPage, IonContent } from '@ionic/vue';
 
   const router = useRouter();
+  const showMenu = ref();
+  
   
   onMounted(() => {
+    console.log("APP.VUE BROOOOOOOO")
     const auth = getAuth();
     
     console.log(auth);
     onAuthStateChanged(auth, (user) => {
       if (!user){
-        router.push('/');
+        showMenu.value = false;
+        router.push('/user-settings');
       }
       else {
-        router.push('/main-page');
+        showMenu.value = true;
       }
     })
-})
+
+    console.log(showMenu.value);
+  })
 </script>
 
 <style scoped>

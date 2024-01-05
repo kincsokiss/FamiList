@@ -74,7 +74,7 @@
             //     .then(() => {
             //         console.log("Email verification sent!")
             //     })
-            router.push('/main-page')
+            router.push('/')
         }) 
         .catch((error) => {
             console.log(error.code);

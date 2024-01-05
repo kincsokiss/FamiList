@@ -3,7 +3,7 @@
     
         <form>
             <nav>
-                <router-link to="/main-page">
+                <router-link to="/">
                     <ion-icon :icon="closeCircle" class="position"></ion-icon>
                 </router-link>
             </nav>
@@ -167,7 +167,7 @@
     function deleteTask() {
         tasks.deleteTask(taskId.value)
         resetForm();
-        router.push('/main-page');
+        router.push('/');
     }
 
     function resetForm() {
