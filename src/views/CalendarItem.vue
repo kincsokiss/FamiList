@@ -12,7 +12,7 @@
 <script setup>
   import { IonDatetime, IonCard, IonCol, IonRow } from '@ionic/vue';
   import tasks from '../modules/tasks';
-  import { ref, onActivated } from 'vue';
+  import { ref, onMounted } from 'vue';
 
   const taskDeadlines = ref([]);
   const task = ref([]);
@@ -20,13 +20,11 @@
   async function getTask() {
     task.value = await tasks.getTasks();
     taskDeadlines.value = task.value.map(item=>{
-      return {date:item.deadline, textColor: "red" }
+      return {date:item.deadline, textColor: "red"}
     });
-
-    console.log(taskDeadlines.value); 
   }
 
-  onActivated(() => {
+  onMounted(() => {
     getTask();
   })
 
@@ -50,6 +48,7 @@
   ion-datetime::part(wheel-item active) {
     color: #c56364;
   }
+  
   h1{
     color: #191514;
     font-weight: bold;
