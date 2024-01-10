@@ -14,27 +14,23 @@
 
     main {
         text-align: center;
-        background-color:#f7d6c5;
         font-weight: bold;
-        color: black;
         font-family: 'Poppins', sans-serif;
     }
     
     .ion-button {
-        color: #f7d6c5;
         text-decoration: none;
-        background-color: #312b27;
+        /* background-color: #312b27; */
         padding: 3%;
         border-radius: 10px;
         font-family: 'Poppins', sans-serif;
-        &:hover {
+        /* &:hover {
             background-color: #191514;
-        }
+        } */
     }
 
 
     h2,h5{
-        color: #191514;
         font-family: 'Poppins', sans-serif;
         
     }

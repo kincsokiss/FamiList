@@ -30,10 +30,6 @@
 
 <style>
 
-  .box{
-    --ion-item-background: #fae6dc; 
-  }
-
   p{
     font-size: 13px !important;
     color: #191514 !important;

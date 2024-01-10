@@ -1,8 +1,8 @@
 <template>
     <ion-row>
       <ion-col>
-        <ion-card>
-         <ion-datetime presentation="date" :highlighted-dates="taskDeadlines" class="full-width"></ion-datetime>
+        <ion-card >
+         <ion-datetime presentation="date" :highlighted-dates="taskDeadlines" class="full-width" ></ion-datetime>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-  import { IonDatetime, IonCard, IonCol, IonRow } from '@ionic/vue';
+  import { IonDatetime, IonCard, IonCol, IonRow} from '@ionic/vue';
   import tasks from '../modules/tasks';
   import { ref, onMounted } from 'vue';
 
@@ -33,11 +33,9 @@
 <style scoped>
   .full-width {
     max-width: 100%;
-    background-color:#fae6dc;
     --ion-text-color:#191514;
     color: #191514;
     font-family: 'Poppins', sans-serif;
-    --wheel-highlight-background: #f7d6c5;
     --wheel-fade-background-rgb:#191514;
    
   }
@@ -46,11 +44,10 @@
     }
     
   ion-datetime::part(wheel-item active) {
-    color: #c56364;
+    font-family: 'Poppins', sans-serif;
   }
   
   h1{
-    color: #191514;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
   }

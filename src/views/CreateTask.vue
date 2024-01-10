@@ -98,9 +98,7 @@
 
     ion-card {
         text-align: center;
-        background-color: #fae6dc;
         font-weight: bold;
-        color: black;
         font-family: 'Poppins', sans-serif;
         margin-top: 5rem;
     }
@@ -119,11 +117,9 @@
         font-family: 'Poppins', sans-serif;
 
     }
-    ion-toast.custom-toast {
-        --background: #f7d6c5;
+    /* ion-toast.custom-toast {
         --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
-        --color: #4b4a50;
-    }
+    } */
 
 
     .position {
@@ -133,21 +129,19 @@
         top: 20pt;
         font-size: 1.5rem;
         
-        &:hover {
+        /* &:hover {
             color: #312b27;       
-        }
+        } */
     }   
 
     ion-button {
-        color: #f7d6c5;
         text-decoration: none;
-        background-color: #312b27;
         
         border-radius: 10px;
         font-family: 'Poppins', sans-serif;
-        &:hover {
+        /* &:hover {
             background-color: #191514;
-        }
+        } */
         margin-top: 8px;
     }
 

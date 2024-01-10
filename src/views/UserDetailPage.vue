@@ -1,8 +1,8 @@
 <template>
-    <ion-card>
+    <ion-card >
       <form>
 
-        <ion-input 
+        <ion-input
           :fill="isInputEditable" 
           label="Name" 
           v-bind:value="user.name"
@@ -45,7 +45,7 @@
 
         <br v-if="isEditMode"/>
 
-        <ion-button @click="onClickButton">{{ buttonLabel }}</ion-button>
+        <ion-button class="primary" @click="onClickButton">{{ buttonLabel }}</ion-button>
         <ion-button v-if="isInputEditable === 'outline'" @click="signOutUser">Sign out</ion-button>
         <ion-button id="present-alert">Delete user</ion-button>
 
@@ -223,40 +223,34 @@
 <style lang="scss" scoped>
     ion-card {
         text-align: center;
-        background-color: #fae6dc;
         font-weight: bold;
-        color: black;
         font-family: 'Poppins', sans-serif;
         padding: 2%;
         margin-top: 5rem;
-        ion-input {
-            margin-bottom: 8px;
-        }
     }
 
     ion-input{
       margin: 1%;
       font-size: 13pt;
-
+      color: black;
+      margin-bottom: 8px;
     }
     .button {
-        color: #f7d6c5;
         text-decoration: none;
-        background-color: #312b27;
-        
+        color: white;
         border-radius: 10px;
         font-family: 'Poppins', sans-serif;
-        &:hover {
-            background-color: #191514;
-        }
+        // &:hover {
+        //     background-color: #191514;
+        // }
     }
-    .input-fill-solid.sc-ion-input-md-h {
-        --background: #00000000;
-        --border-color: #c56364;        
-    }
+    // .input-fill-solid.sc-ion-input-md-h {
+    //     --background: #00000000;
+    //     --border-color: #c56364;        
+    // }
 
-    .input-fill-solid.has-focus.sc-ion-input-md-h {
-        --background: #00000000;
-    }
+    // .input-fill-solid.has-focus.sc-ion-input-md-h {
+    //     --background: #00000000;
+    // }
 
 </style>

@@ -200,9 +200,7 @@
 
     ion-card {
         text-align: center;
-        background-color: #fae6dc;
         font-weight: bold;
-        color: black;
         font-family: 'Poppins', sans-serif;
         padding: 2%;
         margin-top: 5rem;
