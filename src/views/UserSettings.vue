@@ -22,6 +22,8 @@
 
 
   ion-col {
-    background-color: #f7d6c5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

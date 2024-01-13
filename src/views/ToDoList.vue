@@ -61,7 +61,6 @@
   
   .ion-list{
     font-family: 'Poppins', sans-serif;
-    --ion-item-background: #fae6dc;
   }
 
   h1{
@@ -75,20 +74,16 @@
     color:#191514;
     width: 2rem;
 
-    &:hover {
+    /* &:hover {
       color: #312b27;
-    }
+    } */
   }
 
   ion-card {
-    --ion-item-background: #fae6dc;
-    --background: #fae6dc;
     top: -2.5rem;
   }
 
   .box{
-    
-    color: #191514;
     font-family: 'Poppins', sans-serif;    
   }
 
