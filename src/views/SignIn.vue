@@ -2,27 +2,95 @@
     <main class="details">
         <ion-card>
             <form @submit="formSubmit" class="p-8">
-                <h4 class="size" >Login</h4>
+                <h4 class="size">Login</h4>
                 <ion-input class="text" label="Email" placeholder="Enter your email" type="email" v-model="email" required="required"></ion-input>
                 <ion-input class="text" label="Password" placeholder="Enter your password" type="password" v-model="password" required="required"></ion-input>
                 <p class="color-danger" v-if="errMsg">{{ errMsg }}</p> 
                 <ion-button type="submit" class="ion-button">Submit</ion-button>
+                <br/>
+                <ion-button type="button" @click="signInWithGoogle" class="ion-button">
+                    <ion-icon slot="icon-only" :icon="logoGoogle"></ion-icon>
+                </ion-button>
+                <ion-button type="button" @click="signInWithApple" class="ion-button">
+                    <ion-icon slot="icon-only" :icon="logoApple"></ion-icon>
+                </ion-button>
+                <ion-button type="button" @click="signInWithFacebook" class="ion-button">
+                    <ion-icon slot="icon-only" :icon="logoFacebook"></ion-icon>
+                </ion-button>
             </form>
         </ion-card>
     </main>
 </template>  
 
 <script setup>
-    import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+    import { getAuth, FacebookAuthProvider, OAuthProvider, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
     import { ref } from "vue";
     import { useRouter } from "vue-router";
-    import { IonCard, IonInput, IonButton } from "@ionic/vue";
+    import { logoGoogle, logoApple, logoFacebook } from "ionicons/icons";
+    import { IonCard, IonIcon, IonInput, IonButton } from "@ionic/vue";
 
     const router = useRouter();
     const email = ref("");
     const password = ref("");
     const errMsg = ref("");
+    const auth = getAuth();
+    const providerGoogle = new GoogleAuthProvider();
+    const providerApple = new OAuthProvider('apple.com');
+    const providerFacebook = new FacebookAuthProvider();
     
+    function signInWithGoogle() {
+        signInWithPopup(auth, providerGoogle)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                const user = result.user;
+                console.log(token);
+                console.log(user, "Successfully signed in!");
+                router.push('/')
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errrorMessage = error.message;
+                const email = error.customData.email;
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(errorCode, errrorMessage, email, credential);
+            })
+    }
+
+    function signInWithApple() {
+        signInWithPopup(auth, providerApple)
+            .then((result) => {
+                const user = result.user;
+                const credential = OAuthProvider.credentialFromResult(result);
+                const accessToken = credential.accessToken;
+                const idToken = credential.idToken;
+                console.log(accessToken, idToken, user, "Successfully signed in!");
+                router.push('/');
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errrorMessage = error.message;
+                const email = error.customData.email;
+                const credential = OAuthProvider.credentialFromError(error);
+                console.log(errorCode, errrorMessage, email, credential);
+            })
+    }
+
+    function signInWithFacebook() {
+        signInWithPopup(auth, providerFacebook)
+            .then((result) => {
+                const credential = FacebookAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                const user = result.user;
+                console.log(token);
+                console.log(user, "Successfully signed in!");
+                router.push('/')
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errrorMessage = error.message;
+                const email = error.customData.email;
+                const credential = FacebookAuthProvider.credentialFromError(error);
+                console.log(errorCode, errrorMessage, email, credential);
+            })
+    }
 
     function formSubmit(e) {
         e.preventDefault();
@@ -96,12 +164,12 @@
     .ion-button {
         color: #f7d6c5;
         text-decoration: none;
-        background-color: #312b27;
+        background-color: transparent;
         
         border-radius: 10px;
         font-family: 'Poppins', sans-serif;
         &:hover {
-            background-color: #191514;
+            background-color: transparent;
         }
     }
 
