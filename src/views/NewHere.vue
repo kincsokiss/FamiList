@@ -29,10 +29,10 @@
         } */
     }
 
-
     h2,h5{
         font-family: 'Poppins', sans-serif;
-        
+        color: #191514;
+        text-wrap: wrap;
     }
 
 </style>

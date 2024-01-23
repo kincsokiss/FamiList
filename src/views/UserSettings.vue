@@ -2,8 +2,10 @@
     <main>
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col sixe="12" size-sm="6">
             <SignInPage/>
+          </ion-col>
+          <ion-col size="12" size-sm="6">
             <NewHere/>
           </ion-col>          
         </ion-row>
@@ -19,8 +21,6 @@
 </script>
 
 <style scoped> 
-
-
   ion-col {
     display: flex;
     justify-content: center;
