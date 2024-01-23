@@ -2,7 +2,7 @@
     <main>
       <ion-grid>
         <ion-row>
-          <ion-col sixe="12" size-sm="6">
+          <ion-col size="12" size-sm="6">
             <SignInPage/>
           </ion-col>
           <ion-col size="12" size-sm="6">
